@@ -23,7 +23,6 @@ blob <- function(dir, ext = "[.]xlsx$", n =  10000L) {
   sub <- dirname(files)
 
   filenames <- basename(files)
-  filenames <- sub(ext, "", filenames)
 
   blob <- lapply(files, function(x) {
     readBin(con = x, what = integer(), n = n, size = NA_integer_, signed = TRUE,
