@@ -4,7 +4,7 @@
 \alias{blob}
 \title{BLOB}
 \usage{
-blob(dir, ext = "[.]pdf$", n = 10000L)
+blob(dir, ext = "[.]pdf$", n = 10000L, recursive = TRUE)
 }
 \arguments{
 \item{dir}{A string of the directory}
@@ -12,6 +12,8 @@ blob(dir, ext = "[.]pdf$", n = 10000L)
 \item{ext}{A string of the file extension(s)}
 
 \item{n}{An integer of the (maximal) number of records to be read.}
+
+\item{recursive}{A flag indicating whether no recurse into subdirectories.}
 }
 \value{
 A tibble with the columns FileName and BLOB
