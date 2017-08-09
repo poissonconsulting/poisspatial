@@ -1,0 +1,15 @@
+Package: poisspatial
+Title: What the Package Does (one line, title case)
+Version: 0.0.0.9000
+Authors@R: c(
+    person("Joe", "Thorley", email = "joe@poissonconsulting.ca", role = c("aut", "cre")),
+    person("Seb", "Dalgarno", role = "aut"))
+Description: What the package does (one paragraph).
+Depends: R (>= 3.4.1)
+Imports: datacheckr,
+         tibble
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Suggests: testthat
+RoxygenNote: 6.0.1
