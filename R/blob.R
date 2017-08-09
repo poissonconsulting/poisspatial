@@ -31,7 +31,7 @@ blob <- function(dir, ext = "[.]pdf$", n =  10000L, recursive = TRUE) {
             endian = "little")
   })
 
-  tibble::tibble(File = filenames,
-                 Sub = sub,
+  tibble::tibble(FileName = filenames,
+                 SubDirectory = sub,
                 BLOB = I(lapply(blob, function(x) {serialize(x, NULL)})))
 }
