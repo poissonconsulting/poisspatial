@@ -4,7 +4,7 @@
 \alias{blob}
 \title{BLOB}
 \usage{
-blob(dir, ext = "[.]xlsx$", n = 10000L)
+blob(dir, ext = "[.]pdf$", n = 10000L)
 }
 \arguments{
 \item{dir}{A string of the directory}

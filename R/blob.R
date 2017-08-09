@@ -6,7 +6,7 @@
 #' @seealso readBin
 #' @return A tibble with the columns FileName and BLOB
 #' @export
-blob <- function(dir, ext = "[.]xlsx$", n =  10000L) {
+blob <- function(dir, ext = "[.]pdf$", n =  10000L) {
   check_string(dir)
   check_string(ext)
   check_count(n)
@@ -19,8 +19,8 @@ blob <- function(dir, ext = "[.]xlsx$", n =  10000L) {
   if (!length(files))
     return(tibble::tibble(FileName = character(0), BLOB = integer(0)))
 
-  sub <- sub(dir, "", files)
-  sub <- dirname(files)
+  sub <- list.files(dir, pattern = ext, recursive = TRUE)
+  sub <- dirname(sub)
 
   filenames <- basename(files)
 
