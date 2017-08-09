@@ -19,6 +19,9 @@ blob <- function(dir, ext = "[.]xlsx$", n =  10000L) {
   if (!length(files))
     return(tibble::tibble(FileName = character(0), BLOB = integer(0)))
 
+  sub <- sub(dir, "", files)
+  sub <- dirname(files)
+
   filenames <- basename(files)
   filenames <- sub(ext, "", filenames)
 
@@ -27,6 +30,7 @@ blob <- function(dir, ext = "[.]xlsx$", n =  10000L) {
             endian = "little")
   })
 
-  tibble::tibble(FileName = filenames,
+  tibble::tibble(File = filenames,
+                 Sub = sub,
                 BLOB = I(lapply(blob, function(x) {serialize(x, NULL)})))
 }
