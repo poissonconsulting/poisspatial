@@ -8,6 +8,20 @@
 #' @return A tibble with the columns FileName and BLOB
 #' @export
 blob <- function(dir, ext = "[.]pdf$", n =  10000L, recursive = TRUE) {
+  .Deprecated("ps_blob")
+  ps_blob(dir, ext = ext, n = n, recursive = recursive)
+}
+
+#' BLOB
+#'
+#' @param dir A string of the directory
+#' @param ext A string of the file extension(s)
+#' @param n An integer of the (maximal) number of records to be read.
+#' @param recursive A flag indicating whether no recurse into subdirectories.
+#' @seealso readBin
+#' @return A tibble with the columns FileName and BLOB
+#' @export
+ps_blob <- function(dir, ext = "[.]pdf$", n =  10000L, recursive = TRUE) {
   check_string(dir)
   check_string(ext)
   check_count(n)
