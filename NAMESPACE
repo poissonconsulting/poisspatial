@@ -2,4 +2,7 @@
 
 export(blob)
 export(ps_blob)
+export(ps_nearest)
+import(data.table)
 import(datacheckr)
+importFrom(tibble,has_name)
