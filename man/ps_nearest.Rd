@@ -7,15 +7,12 @@
 ps_nearest(x, y, by)
 }
 \arguments{
-\item{x}{A data.frame with the column by}
+\item{x}{A data.frame.}
 
 \item{y}{A data.frame.}
 
-\item{by}{The unquoted name of the column to calculate the inner join by.}
-}
-\value{
-xx
+\item{by}{The unquoted name of a shared column.}
 }
 \description{
-Inner join on two data.frames based on the nearest value in by.
+Nearest
 }

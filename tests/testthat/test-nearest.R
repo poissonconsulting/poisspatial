@@ -6,7 +6,7 @@ test_that("nearest", {
   y <- data.frame(Date = ISOdate(2000, 1, c(2, 6, 12)))
   y$Row <- 1:nrow(x)
 
-  n <- ps_nearest(x, y, "Date")
+  n <- ps_nearest1(x, y, "Date")
   expect_is(n, "tbl_df")
   expect_identical(colnames(n), c("Date", "Row", "Distance"))
   expect_identical(n$Date, x$Date)
@@ -20,7 +20,7 @@ test_that("nearest", {
   y <- data.frame(Date = ISOdate(2000, 1, c(5, 6, 12)))
   y$Row <- 1:nrow(x)
 
-  n <- ps_nearest(x, y, "Date")
+  n <- ps_nearest1(x, y, "Date")
   expect_is(n, "tbl_df")
   expect_identical(colnames(n), c("Date", "Row", "Distance"))
   expect_identical(n$Date, x$Date)
@@ -28,13 +28,13 @@ test_that("nearest", {
   expect_identical(n$Distance, as.difftime(c(-4, -1, 3), units = "days"))
 })
 
-test_that("nearest2", {
+test_that("nearest", {
 
   x <- data.frame(Date = ISOdate(2000, 1, c(9, 1, 4)))
   y <- data.frame(Date = ISOdate(2000, 1, c(12, 5, 6)))
   y$Row <- 1:nrow(x)
 
-  n <- ps_nearest(x, y, "Date")
+  n <- ps_nearest1(x, y, "Date")
   expect_is(n, "tbl_df")
   expect_identical(colnames(n), c("Date", "Row", "Distance"))
   expect_identical(n$Date, x$Date)

@@ -3,6 +3,7 @@
 export(blob)
 export(ps_blob)
 export(ps_nearest)
+export(ps_nearest1)
 import(data.table)
 import(datacheckr)
 importFrom(tibble,has_name)
