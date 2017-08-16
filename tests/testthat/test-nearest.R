@@ -13,3 +13,18 @@ test_that("nearest", {
   expect_identical(n$Row, c(1L, 1L, 2L))
   expect_identical(n$Distance, as.difftime(c(-1, 2, 3), units = "days"))
 })
+
+test_that("nearest", {
+
+  x <- data.frame(Date = ISOdate(2000, 1, c(1, 4, 9)))
+  y <- data.frame(Date = ISOdate(2000, 1, c(5, 6, 12)))
+  y$Row <- 1:nrow(x)
+
+  n <- ps_nearest(x, y, "Date")
+  expect_is(n, "tbl_df")
+  expect_identical(colnames(n), c("Date", "Row", "Distance"))
+  expect_identical(n$Date, x$Date)
+  expect_identical(n$Row, c(1L, 1L, 2L))
+  expect_identical(n$Distance, as.difftime(c(-4, -1, 3), units = "days"))
+})
+
