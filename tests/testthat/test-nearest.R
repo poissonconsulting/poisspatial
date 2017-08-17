@@ -1,6 +1,6 @@
 context("nearest")
 
-test_that("nearest", {
+test_that("nearest data.frame 1", {
 
   x <- data.frame(Date = ISOdate(2000, 1, c(1, 4, 9)))
   y <- data.frame(Date = ISOdate(2000, 1, c(2, 6, 12)))
@@ -15,7 +15,7 @@ test_that("nearest", {
   expect_identical(n$Row2, c(1L, 1L, 2L) + 1.5)
 })
 
-test_that("nearest", {
+test_that("nearest data.table 1", {
 
   x <- data.table::data.table(Date = ISOdate(2000, 1, c(1, 4, 9)))
   y <- data.frame(Date = ISOdate(2000, 1, c(5, 6, 12)))
@@ -29,7 +29,7 @@ test_that("nearest", {
   expect_identical(n$Distance, as.difftime(c(-4, -1, 3), units = "days"))
 })
 
-test_that("nearest", {
+test_that("nearest tbl_df 1", {
 
   x <- tibble::tibble(Date = ISOdate(2000, 1, c(9, 1, 4)))
   y <- data.frame(Date = ISOdate(2000, 1, c(12, 5, 6)))
