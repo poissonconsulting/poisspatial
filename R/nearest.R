@@ -65,6 +65,5 @@ ps_nearest.tbl_df <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
     as.data.frame() %>%
     ps_nearest(y = y, by = by, dist_col = dist_col) %>%
     tibble::as_tibble()
-  print(x)
   x
 }
