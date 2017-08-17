@@ -3,8 +3,6 @@
 S3method(ps_nearest,data.frame)
 S3method(ps_nearest,data.table)
 S3method(ps_nearest,tbl_df)
-export(blob)
-export(ps_blob)
 export(ps_nearest)
 import(data.table)
 import(datacheckr)
