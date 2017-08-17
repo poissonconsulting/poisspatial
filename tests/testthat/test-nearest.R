@@ -43,3 +43,14 @@ test_that("nearest tbl_df 1", {
   expect_identical(n$Distance, c(259200, 345600, 86400))
 })
 
+test_that("nearest data.frame 2", {
+  x <- data.frame(X = c(1,1,10), Y = c(1,10,1))
+  y <- data.frame(X = c(1,4.5,5,6), Y = c(1,5,4,6))
+
+  n <- ps_nearest(x, y, dist_col = "D")
+  expect_identical(class(n), c("data.frame"))
+  expect_identical(colnames(n), c("X", "Y", "X.y", "Y.y", "D"))
+  expect_identical(n$X, x$X)
+  expect_identical(n$Y, x$Y)
+  expect_equal(n$D, c(0, 6.103278, 5.830952), tolerance = 0.000001)
+})

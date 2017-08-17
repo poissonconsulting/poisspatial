@@ -5,14 +5,15 @@ Authors@R: c(
     person("Joe", "Thorley", email = "joe@poissonconsulting.ca", role = c("aut", "cre")),
     person("Seb", "Dalgarno", role = "aut"))
 Description: What the package does (one paragraph).
+License: MIT + file LICENSE
 Depends: R (>= 3.4.1)
 Imports: datacheckr,
          data.table,
          magrittr,
          nabor,
          tibble
-License: MIT + file LICENSE
+Suggests: testthat
+Remotes: poissonconsulting/datacheckr
 Encoding: UTF-8
 LazyData: true
-Suggests: testthat
 RoxygenNote: 6.0.1
