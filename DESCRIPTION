@@ -9,6 +9,7 @@ Depends: R (>= 3.4.1)
 Imports: datacheckr,
          data.table,
          magrittr,
+         nabor,
          tibble
 License: MIT + file LICENSE
 Encoding: UTF-8

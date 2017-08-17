@@ -9,7 +9,7 @@ test_that("nearest data.frame 1", {
 
   n <- ps_nearest(x, y, "Date")
   expect_identical(class(n), c("data.frame"))
-  expect_identical(colnames(n), c("Date", "Row", "Row2"))
+  expect_identical(colnames(n), c("Date", "Date.y", "Row", "Row2"))
   expect_identical(n$Date, x$Date)
   expect_identical(n$Row, c(1L, 1L, 2L))
   expect_identical(n$Row2, c(1L, 1L, 2L) + 1.5)
@@ -26,7 +26,7 @@ test_that("nearest data.table 1", {
   expect_identical(class(n), c("data.table", "data.frame"))
   expect_identical(n$Date, x$Date)
   expect_identical(n$Row, c(1L, 1L, 2L))
-  expect_identical(n$Distance, as.difftime(c(-4, -1, 3), units = "days"))
+  expect_identical(n$Distance, c(345600, 86400, 259200))
 })
 
 test_that("nearest tbl_df 1", {
@@ -37,9 +37,9 @@ test_that("nearest tbl_df 1", {
 
   n <- ps_nearest(x, y, "Date", dist_col = "Distance")
   expect_identical(class(n), c("tbl_df", "tbl", "data.frame"))
-  expect_identical(colnames(n), c("Date", "Row", "Distance"))
+  expect_identical(colnames(n), c("Date", "Date.y", "Row", "Distance"))
   expect_identical(n$Date, x$Date)
-  expect_identical(n$Row, c(3L, 2L, 2L))
-  expect_identical(n$Distance, as.difftime(c(3, -4, -1), units = "days"))
+  expect_identical(n$Row, c(1L, 2L, 2L))
+  expect_identical(n$Distance, c(259200, 345600, 86400))
 })
 

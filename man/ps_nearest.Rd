@@ -2,24 +2,26 @@
 % Please edit documentation in R/nearest.R
 \name{ps_nearest}
 \alias{ps_nearest}
-\title{Nearest Join}
+\title{Nearest Neighbour}
 \usage{
 ps_nearest(x, y, by = c("X", "Y"), dist_col = NULL, ...)
 }
 \arguments{
-\item{x}{The object.}
+\item{x}{A data.frame, data.table or tibble.}
 
-\item{y}{The object with rows to bind to each row in y.}
+\item{y}{An object that can be converted to a data.frame.}
 
-\item{by}{A character vector of length 1 or 2 specifying the columns to use when calculating distance.}
+\item{by}{A possibly named character vector specifying the column(s) to calculated the distance over.}
 
 \item{dist_col}{A string indicating the name of the column to save the distance in.}
 
 \item{...}{Not used}
 }
-\value{
-The updated object with the columns in y.
-}
 \description{
-Each row in object x is bound with a closet row in object y based on the closest values in by.
+Each row in object x is bound with its closest neighbour in object y.
+Uses the nabor package.
+}
+\details{
+The column(s) to use when calculating the distances are converted to numeric values.
+Missing values are currently not permitted.
 }

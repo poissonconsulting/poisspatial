@@ -1,61 +1,87 @@
-#' Nearest Join
+#' Nearest Neighbour
 #'
-#' Each row in object x is bound with a closet row in object y based on the closest values in by.
+#' Each row in object x is bound with its closest neighbour in object y.
+#' Uses the nabor package.
 #'
-#' @param x The object.
-#' @param y The object with rows to bind to each row in y.
-#' @param by A character vector of length 1 or 2 specifying the columns to use when calculating distance.
+#' The column(s) to use when calculating the distances are converted to numeric values.
+#' Missing values are currently not permitted.
+#'
+#' @param x A data.frame, data.table or tibble.
+#' @param y An object that can be converted to a data.frame.
+#' @param by A possibly named character vector specifying the column(s) to calculated the distance over.
 #' @param dist_col A string indicating the name of the column to save the distance in.
 #' @param ... Not used
-#' @return The updated object with the columns in y.
 #' @export
 ps_nearest <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
   UseMethod("ps_nearest")
 }
 
-nearest <- function(x, y) {
-  stopifnot(is.data.frame(x))
-  stopifnot(is.data.frame(y))
+# data 2 numeric matrix
+d2nm <- function(x, by) {
+  x <- x[, by, drop = FALSE]
+  x[] <- lapply(x, as.numeric)
+  x %<>% as.matrix()
+  x
+}
+
+nn1 <- function(x, y) {
+  stopifnot(is.matrix(x))
+  stopifnot(is.matrix(y))
+
+  stopifnot(is.numeric(x))
+  stopifnot(is.numeric(y))
 
   stopifnot(nrow(x) > 0)
   stopifnot(nrow(y) > 0)
 
-  stopifnot(ncol(x) %in% c(1L, 2L))
-  stopifnot(!anyDuplicated(colnames(x)))
-  stopifnot(identical(colnames(x), colnames(y)))
-  stopifnot(!any(c("..index", "..metric", "..distance") %in% colnames(x)))
+  stopifnot(ncol(x) > 0)
+  stopifnot(ncol(y) == ncol(x))
 
-  if (ncol(x) == 1L) {
-    x <- as.data.table(x)
-    y <- as.data.table(y)
+  stopifnot(!any(is.na(x)))
+  stopifnot(!any(is.na(y)))
 
-    y[, "..index" := 1:nrow(y)]
-    x[,"..index" := y[x, "..index", on = colnames(x), roll = "nearest"]]
-    y <- y[x$..index]
-    setnames(y, old = colnames(y)[1], new = "..metric")
-
-    x[, "..index" := NULL]
-    x <- cbind(x, y)
-
-    x$..distance <- x[,colnames(x)[1],with = FALSE][[1]] - x$..metric
-    x[, c("..index", "..distance")]
-    return(x)
-  }
-  stop()
+  nn1 <- nabor::knn(y, query = x, k = 1L)
+  names(nn1) <- c("index", "distance")
+  nn1 %<>% as.data.frame()
+  nn1
 }
 
 #' @export
 ps_nearest.data.frame <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
-  x <- as.data.frame(x)
-  y <- as.data.frame(y)
+  check_vector(by, "")
+  check_unique(by)
+  checkor(check_string(dist_col), check_null(dist_col))
 
-  x2 <- nearest(x[by], y[by])
-  y <- y[!colnames(y) %in% by]
+  if (!is.null(names(by))) {
+    check_unique(names(by))
+    bx <- names(by)
+    names(by) <- NULL
+  } else
+    bx <- by
+
+  x %<>% as.data.frame()
+  y %<>% as.data.frame()
+
+  check_cols(x, bx)
+  check_cols(y, by)
+  check_rows(x)
+  check_rows(y)
+
+  mx <- d2nm(x, bx)
+  my <- d2nm(y, by)
+
+  colnames(my) <- colnames(mx)
+
+  nn1 <- nn1(mx, my)
+
+  y <- y[nn1$index,]
+
+  if (!is.null(dist_col)) y[dist_col] <- nn1$distance
+
   rownames <- rownames(x)
-  x <- cbind(x, y[x2$..index,,drop = FALSE], ..distance = x2$..distance)
+  x %<>% cbind(y)
+  colnames(x)[duplicated(colnames(x))] %<>% paste0(".y")
   rownames(x) <- rownames
-  if (!is.null(dist_col)) x[[dist_col]] <- x[["..distance"]]
-  x$..distance <- NULL
   x
 }
 
