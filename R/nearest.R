@@ -67,3 +67,12 @@ ps_nearest.tbl_df <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
     tibble::as_tibble()
   x
 }
+
+#' @export
+ps_nearest.data.table <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
+  x %<>%
+    as.data.frame() %>%
+    ps_nearest(y = y, by = by, dist_col = dist_col) %>%
+    as.data.table()
+  x
+}
