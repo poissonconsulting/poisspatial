@@ -2,17 +2,24 @@
 % Please edit documentation in R/nearest.R
 \name{ps_nearest}
 \alias{ps_nearest}
-\title{Nearest}
+\title{Nearest Join}
 \usage{
-ps_nearest(x, y, by)
+ps_nearest(x, y, by = c("X", "Y"), dist_col = NULL, ...)
 }
 \arguments{
-\item{x}{A data.frame.}
+\item{x}{The object.}
 
-\item{y}{A data.frame.}
+\item{y}{The object with rows to bind to each row in y.}
 
-\item{by}{The unquoted name of a shared column.}
+\item{by}{A character vector of length 1 or 2 specifying the columns to use when calculating distance.}
+
+\item{dist_col}{A string indicating the name of the column to save the distance in.}
+
+\item{...}{Not used}
+}
+\value{
+The updated object with the columns in y.
 }
 \description{
-Nearest
+Each row in object x is bound with a closet row in object y based on the closest values in by.
 }
