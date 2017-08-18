@@ -4,7 +4,9 @@ as_data_frame <- function(x) {
   if (!is.sf(x))
     return(as.data.frame(x))
 
+  x %<>% sf::st_cast(to = "POINT")
   coords <- sf::st_coordinates(x)
+
   x %<>%
     as.data.frame() %>%
     cbind(coords)
