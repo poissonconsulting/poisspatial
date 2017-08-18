@@ -42,7 +42,7 @@ nn1 <- function(x, y) {
 
   nn1 <- nabor::knn(y, query = x, k = 1L)
   names(nn1) <- c("index", "distance")
-  nn1 %<>% as.data.frame()
+  nn1 %<>% as_data_frame()
   nn1
 }
 
@@ -59,8 +59,8 @@ ps_nearest.data.frame <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) 
   } else
     bx <- by
 
-  x %<>% as.data.frame()
-  y %<>% as.data.frame()
+  x %<>% as_data_frame()
+  y %<>% as_data_frame()
 
   check_cols(x, bx)
   check_cols(y, by)
@@ -88,7 +88,7 @@ ps_nearest.data.frame <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) 
 #' @export
 ps_nearest.tbl_df <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
   x %<>%
-    as.data.frame() %>%
+    as_data_frame() %>%
     ps_nearest(y = y, by = by, dist_col = dist_col) %>%
     tibble::as_tibble()
   x
@@ -97,8 +97,28 @@ ps_nearest.tbl_df <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
 #' @export
 ps_nearest.data.table <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
   x %<>%
-    as.data.frame() %>%
+    as_data_frame() %>%
     ps_nearest(y = y, by = by, dist_col = dist_col) %>%
     as.data.table()
+  x
+}
+
+#' @export
+ps_nearest.sf <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
+  colnames <- c(colnames(x), colnames(y))
+
+  x %<>%
+    as_data_frame() %>%
+    ps_nearest(y = y, by = by, dist_col = dist_col)
+
+  colnames[duplicated(colnames)] %<>% paste0(".y")
+
+  if (!is.null(dist_col)) {
+    colnames %<>% setdiff(dist_col)
+    colnames %<>% c(dist_col)
+  }
+  x <- x[colnames]
+
+  x %<>% sf::st_as_sf()
   x
 }

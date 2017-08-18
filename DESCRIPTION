@@ -11,6 +11,7 @@ Imports: datacheckr,
          data.table,
          magrittr,
          nabor,
+         sf,
          tibble
 Suggests: testthat
 Remotes: poissonconsulting/datacheckr
