@@ -8,7 +8,7 @@
 #'
 #' @param x A data.frame, data.table or tibble.
 #' @param y An object that can be converted to a data.frame.
-#' @param by A possibly named character vector specifying the column(s) to calculated the distance over.
+#' @param by A possibly named character vector specifying the column(s) to calculate the distance over.
 #' @param dist_col A string indicating the name of the column to save the distance in.
 #' @param ... Not used
 #' @export
