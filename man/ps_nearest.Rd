@@ -11,7 +11,7 @@ ps_nearest(x, y, by = c("X", "Y"), dist_col = NULL, ...)
 
 \item{y}{An object that can be converted to a data.frame.}
 
-\item{by}{A possibly named character vector specifying the column(s) to calculated the distance over.}
+\item{by}{A possibly named character vector specifying the column(s) to calculate the distance over.}
 
 \item{dist_col}{A string indicating the name of the column to save the distance in.}
 
