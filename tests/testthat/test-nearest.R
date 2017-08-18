@@ -86,7 +86,7 @@ test_that("nearest sf with data.frame", {
   expect_equal(n$D, c(0, 6.103278, 5.830952), tolerance = 0.000001)
 })
 
-test_that("nearest sf with X and Y", {
+test_that("nearest sf with X and Y and reprojection", {
   x <- data.frame(X = c(1,1,10), Y = c(1,10,1))
   y <- data.frame(X = c(1,4.5,5,6), Y = c(1,5,4,6))
 
@@ -95,12 +95,14 @@ test_that("nearest sf with X and Y", {
   x <- sf::st_as_sf(x, coords = c("X", "Y"), crs = 28992)
   y <- sf::st_as_sf(y, coords = c("X", "Y"), crs = 28992)
 
+  y <- sf::st_transform(y, 4326)
+
   x$X <- c(0,3,100)
 
   n <- ps_nearest(x, y, dist_col = "D")
   expect_identical(class(n), c("sf", "data.frame"))
   expect_identical(colnames(n), c("X", "Row", "D", "geometry", "geometry.y"))
   expect_identical(n$geometry, x$geometry)
-  expect_equal(n$D, c(1.00000, 5.00000, 94.13288), tolerance = 0.000001)
+  expect_equal(n$D, c(1.00000, 5.00000, 94.13288), tolerance = 0.00001)
 })
 

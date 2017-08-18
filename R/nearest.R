@@ -107,6 +107,8 @@ ps_nearest.data.table <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) 
 ps_nearest.sf <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
   colnames <- c(colnames(x), colnames(y))
 
+  if (is.sf(y)) y %<>% sf::st_transform(sf::st_crs(x))
+
   x %<>%
     as_data_frame() %>%
     ps_nearest(y = y, by = by, dist_col = dist_col)
