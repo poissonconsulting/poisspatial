@@ -5,7 +5,7 @@
 poisspatial
 ===========
 
-The goal of poisspatial is to ...
+The `poisspatial` R packages provides functions for manipulating spatial data.
 
 Installation
 ------------
@@ -17,13 +17,11 @@ You can install poisspatial from github with:
 devtools::install_github("poissonconsulting/poisspatial")
 ```
 
-Example
--------
+Contribution
+------------
 
-This is a basic example which shows you how to solve a common problem:
+Please report any [issues](https://github.com/poissonconsulting/poisspatial/issues).
 
-``` r
-## basic example code
-```
+[Pull requests](https://github.com/poissonconsulting/poisspatial/pulls) are always welcome.
 
 Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
