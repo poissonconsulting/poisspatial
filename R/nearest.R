@@ -6,7 +6,7 @@
 #' The column(s) to use when calculating the distances are converted to numeric values.
 #' Missing values are currently not permitted.
 #'
-#' @param x A data.frame, data.table or tibble.
+#' @param x A data.frame, data.table, tibble or sf object.
 #' @param y An object that can be converted to a data.frame.
 #' @param by A possibly named character vector specifying the column(s) to calculate the distance over.
 #' @param dist_col A string indicating the name of the column to save the distance in.
