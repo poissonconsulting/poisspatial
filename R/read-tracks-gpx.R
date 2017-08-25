@@ -11,35 +11,26 @@
 ps_read_tracks_gpx <- function(file, tz = getOption("ps.tz", "UTC"), crs = getOption("ps.crs", 4326)) {
   check_string(file)
 
-  if (!file.exists(file)) stop("'", file, "' does not exist.", call. = FALSE)
+  if (!file.exists(file))
+    stop("file '", file, "' does not exist.", call. = FALSE)
 
   gpx <- XML::xmlTreeParse(file, useInternalNodes = TRUE) %>%
     XML::xmlRoot() %>%
-    XML::xmlToList()
+    magrittr::extract("trk")
 
-  gpx <- gpx[names(gpx) == "trk"]
+  if (!length(gpx))
+    stop("file '", file, "' does not contain tracks", call. = FALSE)
 
+  names(gpx) <- vapply(gpx, xml_value, character(1), name = "name",
+                       USE.NAMES = FALSE)
   gpx %<>%
     lapply(magrittr::extract2, "trkseg") %>%
-    purrr::modify_depth(2, unlist) %>%
-    purrr::modify_depth(2, t) %>%
-    purrr::modify_depth(2, as.data.frame, stringsAsFactors = FALSE) %>%
-    lapply(function(x) do.call(rbind, x)) %>%
-    lapply(stats::setNames, c("elevation", "datetime", "latitude", "longitude")) %>%
-    do.call(rbind, .)
-
-  gpx$datetime %<>%
-    strptime("%Y-%m-%dT%H:%M:%SZ", tz = "UTC") %>%
-    as.POSIXct() %>%
-    lubridate::with_tz(tz)
-
-  gpx %<>%
-    purrr::map_if(is.character, as.numeric) %>%
-    tibble::as_tibble() %>%
+    purrr::imap(xml_trkseg_data_frame) %>%
+    do.call(rbind, .) %>%
     sf::st_as_sf(coords = c("longitude", "latitude", "elevation"), crs = 4326) %>%
     sf::st_transform(crs = crs)
 
-  gpx <- gpx[order(gpx$datetime),]
+  gpx$datetime %<>% lubridate::with_tz(tz)
   gpx
 }
 
@@ -74,5 +65,6 @@ ps_read_tracks_gpxs <- function(dir, pattern = "[.]gpx$", recursive = FALSE,
     purrr::imap(function(x, name) {x$file <- name; x}) %>%
     do.call(rbind, .)
 
+  gpx <- gpx[,c("file", "track", "datetime", "geometry")]
   gpx
 }
