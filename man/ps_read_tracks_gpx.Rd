@@ -20,3 +20,6 @@ An sf object with a tibble of the datetime and a sfc_POINT geometry of three dim
 \description{
 Reads tracks from a gpx file.
 }
+\seealso{
+ps_read_tracks_gpxs
+}

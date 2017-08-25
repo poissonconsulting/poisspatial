@@ -7,7 +7,7 @@
 ps_nearest(x, y, by = c("X", "Y"), dist_col = NULL, ...)
 }
 \arguments{
-\item{x}{A data.frame, data.table or tibble.}
+\item{x}{A data.frame, data.table, tibble or sf object.}
 
 \item{y}{An object that can be converted to a data.frame.}
 
