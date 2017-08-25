@@ -29,7 +29,8 @@ ps_read_tracks_gpx <- function(file, tz = getOption("ps.tz", "UTC"), crs = getOp
     do.call(rbind, .)
 
   gpx$datetime %<>%
-    parsedate::parse_iso_8601() %>%
+    strptime("%Y-%m-%dT%H:%M:%SZ", tz = "UTC") %>%
+    as.POSIXct() %>%
     lubridate::with_tz(tz)
 
   gpx %<>%
