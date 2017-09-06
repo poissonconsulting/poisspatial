@@ -11,7 +11,35 @@ is_crs <- function(x) {
   inherits(try(sf::st_crs(x), silent = TRUE), "crs")
 }
 
-is.sf <- function(x) inherits(x, "sf")
+#' Is sf Class
+#'
+#' @param x The object to test.
+#'
+#' @return A flag.
+#' @export
+is.sf <- function(x) {
+  inherits(x, "sf")
+}
+
+#' Is sfc Class
+#'
+#' @param x The object to test.
+#'
+#' @return A flag.
+#' @export
+is.sfc <- function(x) {
+  inherits(x, "sfc")
+}
+
+#' Get EPSG
+#'
+#' @param x The object to get the epsg code from
+#'
+#' @return The epsg code
+#' @export
+ps_get_epsg <- function(x) {
+  sf::st_crs(x)$epsg
+}
 
 as_data_frame <- function(x) {
   if (!is.sf(x))
