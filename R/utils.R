@@ -1,3 +1,16 @@
+#' Is CRS
+#'
+#' @param x The object to test
+#'
+#' @return A flag.
+#' @export
+#' @examples
+#' is_crs("blah")
+#' is_crs("+init=epsg:3857")
+is_crs <- function(x) {
+  inherits(try(sf::st_crs(x), silent = TRUE), "crs")
+}
+
 is.sf <- function(x) inherits(x, "sf")
 
 as_data_frame <- function(x) {
