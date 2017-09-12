@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • poisspatial</title>
+<title>Batch transform — ps_batch_transform • poisspatial</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -37,7 +37,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -78,88 +78,67 @@
       </header>
 
       <div class="row">
-  <div class="col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>
-        Reference
-        <small>version&nbsp;0.0.0.9005</small>
-      </h1>
+    <h1>Batch transform</h1>
     </div>
 
-    <div class="contents">
-      <table class="ref-index">
+    
+    <p>Batch transform spatial files. Function finds all files with specified extension pattern within input directory
+and sets crs if does not already exist. Files are projected to new crs and written
+to output directory with specified extension and file format (allows any extension recognised by sf::st_write function).</p>
+    
 
-      <colgroup>
-        <col class="alias" />
-        <col class="title" />
-      </colgroup>
+    <pre class="usage"><span class='fu'>ps_batch_transform</span>(<span class='no'>in_dir</span>, <span class='no'>out_dir</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='kw'>in_pattern</span> <span class='kw'>=</span> <span class='st'>"[.]shp$"</span>,
+  <span class='kw'>out_extension</span> <span class='kw'>=</span> <span class='st'>".sqlite"</span>, <span class='no'>in_crs</span>, <span class='no'>out_crs</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>in_dir</th>
+      <td><p>A string of the path to the directory containing spatial files.</p></td>
+    </tr>
+    <tr>
+      <th>out_dir</th>
+      <td><p>A string of the path to the directory that output files will be saved to.</p></td>
+    </tr>
+    <tr>
+      <th>recursive</th>
+      <td><p>A logical specifying whether to search directory recursively.</p></td>
+    </tr>
+    <tr>
+      <th>in_pattern</th>
+      <td><p>A string of the pattern to use when searching for input files.</p></td>
+    </tr>
+    <tr>
+      <th>out_extension</th>
+      <td><p>A string of the extension specifying which file format output files will be saved to.</p></td>
+    </tr>
+    <tr>
+      <th>in_crs</th>
+      <td><p>An integer of the EPSG that files are currently in (only set if crs not currently already present).</p></td>
+    </tr>
+    <tr>
+      <th>out_crs</th>
+      <td><p>An integer of the EPSG that files will be transformed to.</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-      <tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="is_crs.html">is_crs</a></code> </p>
-          </td>
-          <td><p>Is CRS</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="is.sf.html">is.sf</a></code> </p>
-          </td>
-          <td><p>Is sf Class</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="is.sfc.html">is.sfc</a></code> </p>
-          </td>
-          <td><p>Is sfc Class</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="ps_batch_transform.html">ps_batch_transform</a></code> </p>
-          </td>
-          <td><p>Batch transform</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="ps_get_epsg.html">ps_get_epsg</a></code> </p>
-          </td>
-          <td><p>Get EPSG</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="ps_nearest.html">ps_nearest</a></code> </p>
-          </td>
-          <td><p>Nearest Neighbour</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="ps_read_tracks_gpx.html">ps_read_tracks_gpx</a></code> </p>
-          </td>
-          <td><p>Read GPX</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="ps_read_tracks_gpxs.html">ps_read_tracks_gpxs</a></code> </p>
-          </td>
-          <td><p>Read GPX</p></td>
-        </tr>
-      </tbody>
-      </table>
-    </div>
+    <p>Files with specified crs and extension written to output directory.</p>
+    
+
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
-    </ul>
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+          </ul>
+
   </div>
 </div>
 
