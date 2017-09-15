@@ -9,7 +9,7 @@ ps_nearest(x, y, by = c("X", "Y"), dist_col = NULL, ...)
 \arguments{
 \item{x}{A data.frame, data.table, tibble or sf object.}
 
-\item{y}{An object that can be converted to a data.frame.}
+\item{y}{A data.frame, data.table, tibble or sf object.}
 
 \item{by}{A possibly named character vector specifying the column(s) to calculate the distance over.}
 
@@ -24,4 +24,6 @@ Uses the nabor package.
 \details{
 The column(s) to use when calculating the distances are converted to numeric values.
 Missing values are currently not permitted.
+
+sf objects have their sf_column_name renamed to geometry.
 }

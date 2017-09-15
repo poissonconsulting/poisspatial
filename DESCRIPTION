@@ -7,6 +7,8 @@ Authors@R: c(
     person("Seb", "Dalgarno", role = "aut"))
 Description: Spatial functions for Poisson Consulting scripts and packages.
 License: MIT + file LICENSE
+URL: https://github.com/poissonconsulting/skeletonpkg
+BugReports: https://github.com/poissonconsulting/skeletonpkg/issues
 Depends: R (>= 3.3.0)
 Imports: datacheckr,
          data.table,
@@ -14,15 +16,15 @@ Imports: datacheckr,
          magrittr,
          nabor,
          purrr,
+         poisutils,
          sf,
          stats,
          tibble,
          XML
 Suggests: testthat,
           covr
-Remotes: poissonconsulting/datacheckr
-URL: https://github.com/poissonconsulting/skeletonpkg
-BugReports: https://github.com/poissonconsulting/skeletonpkg/issues
+Remotes: poissonconsulting/datacheckr,
+         poissonconsulting/poisutils
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
