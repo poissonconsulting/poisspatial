@@ -55,40 +55,6 @@ as_data_frame <- function(x) {
   x
 }
 
-#' Rename geometry column
-#'
-#' @param x The object.
-#' @param new_name A string of the new column name.
-#' @return The modified object
-#' @export
-ps_rename_sf_column_name <- function(x, new_name = "geometry") {
-  old_name <- ps_sf_column_name(x)
-
-  if (!identical(length(old_name), 1L)) ps_error("x must have one geometry column name")
-
-  if (identical(new_name, old_name))
-    return(x)
-
-  x[new_name] <- x[old_name]
-  x[old_name] <- NULL
-  sf::st_geometry(x) <- new_name
-
-  x
-}
-
-#' Name of geometry column(s)
-#'
-#' @param x The object.
-#'
-#' @return A character vector of the name of the geometry column(s).
-#' @export
-ps_sf_column_name <- function(x) {
-  if (!is.sf(x)) return(character(0))
-
-  colnames <- colnames(x)
-  colnames[vapply(x, is.sfc, TRUE)]
-}
-
 xml_value <- function(x, name) {
   XML::xmlValue(x[[name]], recursive = FALSE)
 }
@@ -98,7 +64,7 @@ xml_sapply_value <- function(x, name) {
 }
 
 xml_attr <- function(x, attr) {
-   XML::xmlGetAttr(x, attr)
+  XML::xmlGetAttr(x, attr)
 }
 
 xml_sapply_attr <- function(x, attr) {
