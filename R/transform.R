@@ -19,6 +19,9 @@ ps_batch_transform <- function(in_dir, out_dir,
                                  out_extension = ".sqlite",
                                  in_crs, out_crs) {
 
+
+
+
   if(!(dir.exists(out_dir))) {
     dir.create(out_dir)
   }

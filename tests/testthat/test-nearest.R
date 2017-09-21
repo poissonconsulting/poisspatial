@@ -64,8 +64,8 @@ test_that("nearest sf", {
   x <- sf::st_as_sf(x, coords = c("X", "Y"), crs = 28992)
   y <- sf::st_as_sf(y, coords = c("X", "Y"), crs = 28992)
 
-  x <- ps_rename_sf_column_name(x, "GEOMETRY")
-  y <- ps_rename_sf_column_name(y, "GEOMETRY2")
+  x <- ps_rename_sf(x, "GEOMETRY")
+  y <- ps_rename_sf(y, "GEOMETRY2")
 
   n <- ps_nearest(x, y, dist_col = "D")
   expect_identical(class(n), c("sf", "data.frame"))

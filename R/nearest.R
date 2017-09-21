@@ -62,7 +62,7 @@ ps_nearest.data.frame <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) 
     bx <- by
 
   if (is.sf(y))
-    y %<>% ps_rename_sf_column_name()
+    y %<>% ps_rename_sf()
 
   x %<>% as_data_frame()
   y %<>% as_data_frame()
@@ -93,7 +93,7 @@ ps_nearest.data.frame <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) 
 #' @export
 ps_nearest.tbl_df <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
   if (is.sf(y))
-    y %<>% ps_rename_sf_column_name()
+    y %<>% ps_rename_sf()
 
   x %<>%
     as_data_frame() %>%
@@ -105,7 +105,7 @@ ps_nearest.tbl_df <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
 #' @export
 ps_nearest.data.table <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
   if (is.sf(y))
-    y %<>% ps_rename_sf_column_name()
+    y %<>% ps_rename_sf()
 
   x %<>%
     as_data_frame() %>%
@@ -116,9 +116,9 @@ ps_nearest.data.table <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) 
 
 #' @export
 ps_nearest.sf <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
-  x %<>% ps_rename_sf_column_name()
+  x %<>% ps_rename_sf()
   if (is.sf(y))
-    y %<>% ps_rename_sf_column_name()
+    y %<>% ps_rename_sf()
 
   colnames <- c(colnames(x), colnames(y))
 

@@ -64,7 +64,7 @@ xml_sapply_value <- function(x, name) {
 }
 
 xml_attr <- function(x, attr) {
-  XML::xmlGetAttr(x, attr)
+   XML::xmlGetAttr(x, attr)
 }
 
 xml_sapply_attr <- function(x, attr) {
