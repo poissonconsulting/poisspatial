@@ -1,7 +1,7 @@
 Package: poisspatial
 Title: Spatial Functions
-Version: 0.0.0.9006
-Date: 2017-09-21
+Version: 0.0.0.9007
+Date: 2017-09-22
 Authors@R: c(
     person("Joe", "Thorley", email = "joe@poissonconsulting.ca", role = c("aut", "cre")),
     person("Seb", "Dalgarno", role = "aut"))

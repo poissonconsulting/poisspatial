@@ -10,7 +10,7 @@ ps_sf_name(x)
 \item{x}{The object.}
 }
 \value{
-A character vector of the name of the active geometry column ('sf column').
+A character vector of the name of the sf (active geometry) column.
 }
 \description{
 Name of sf column

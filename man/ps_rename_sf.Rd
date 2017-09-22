@@ -15,5 +15,5 @@ ps_rename_sf(x, new_name = "geometry")
 The modified object
 }
 \description{
-Rename sf column
+Renames the active geometry column.
 }
