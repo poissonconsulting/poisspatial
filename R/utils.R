@@ -41,6 +41,16 @@ ps_get_epsg <- function(x) {
   sf::st_crs(x)$epsg
 }
 
+#' Get EPSG
+#'
+#' @param x The object to get the epsg code from
+#'
+#' @return The epsg code
+#' @export
+ps_get_proj4string <- function(x) {
+  sf::st_crs(x)$proj4string
+}
+
 as_data_frame <- function(x) {
   if (!is.sf(x))
     return(as.data.frame(x))
