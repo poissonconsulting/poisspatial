@@ -20,7 +20,7 @@ ps_sfc_names <- function(x) {
   if (!is.data.frame(x)) return(x)
 
   sfc_names <- colnames(x)
-  sfc_names[vapply(x, is.sfc, TRUE)]
+  sfc_names <- sfc_names[vapply(x, is.sfc, TRUE)]
   sfc_names %<>% setdiff(ps_sf_name(x))
   sfc_names
 }
@@ -66,7 +66,11 @@ ps_set_sf <- function(x, sfc_column = "geometry"){
 
   if (!sfc_column %in% ps_sfc_names(x)) ps_error("sfc_column must be an sfc column.")
 
-  x %<>% sf::st_set_geometry(sfc_column)
+  if (is.sf(x)) {
+    x %<>% sf::st_set_geometry(sfc_column)
+  } else {
+    x %<>% sf::st_sf(sf_column_name = sfc_column)
+  }
   x
 }
 
@@ -100,3 +104,32 @@ ps_remove_sfcs <- function(x, sfc_columns = ps_sfc_names(x)){
   x <- x[ , setdiff(colnames(x), sfc_columns)]
   x
 }
+
+
+#' Convert point coordinates to sfc (inactive geometry) column.
+#'
+#' @param x The object with columns
+#' @param coords A character vector of specifying the two columns with the point information.
+#' @param crs An integer with the EPSG code, or character with proj4string.
+#' @param new_name A string of the name of the sfc column.
+#' @return The modified object with the coordinates removed
+#' @export
+ps_coords_to_sfc <- function(x, coords = c("X", "Y"), crs = 4326, new_name = "geometry") {
+  if (!is.data.frame(x)) ps_error("x must inherits from a data.frame")
+  check_vector(coords, "", min_length = 2L, max_length = 2L)
+  check_string(new_name)
+
+  sfc <- magrittr::extract(x, coords) %>%
+    as.matrix() %>%
+    sf::st_multipoint(dim = "XY") %>%
+    sf::st_sfc(crs = crs) %>%
+    sf::st_cast("POINT")
+
+  x[coords[1]] <- NULL
+  x[coords[2]] <- NULL
+
+  x[[new_name]] <- sfc
+
+  x
+}
+
