@@ -14,6 +14,3 @@ ps_set_sf(x, sfc_column = "geometry")
 \description{
 Set active geometry column ('sf column').
 }
-\details{
-This is a wrapper for sf::st_set_geometry().
-}

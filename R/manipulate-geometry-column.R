@@ -54,8 +54,6 @@ ps_rename_sf <- function(x, new_name = "geometry") {
 #'
 #' Set active geometry column ('sf column').
 #'
-#' This is a wrapper for sf::st_set_geometry().
-#'
 #' @param x A sf object.
 #' @param sfc_column A string indicating the name of the sf column to set.
 #' @export
@@ -71,6 +69,22 @@ ps_set_sf <- function(x, sfc_column = "geometry"){
   } else {
     x %<>% sf::st_sf(sf_column_name = sfc_column)
   }
+  x
+}
+
+#' Deactivate sf column
+#'
+#' Deactives geometry column ('sf column').
+#'
+#' @param x A sf object.
+#' @export
+#'
+ps_deactivate_sf <- function(x){
+  if (identical(ps_sf_name(x), character(0))) return(x)
+
+  x %<>%
+    as.data.frame() %>%
+    tibble::as_tibble()
   x
 }
 
