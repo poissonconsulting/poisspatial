@@ -39,6 +39,9 @@ test_that("manipulate geometry column", {
   expect_identical(colnames(z), c("Row", "X", "Y"))
   expect_identical(z$Y, c(1, 10, 1))
 
+  z <- ps_coords_to_sf(as.data.frame(z), crs = 28992)
+  expect_equal(z, y)
+
   y <- ps_remove_sf(y)
   expect_true(!is.sf(y))
   expect_identical(length(ps_sf_name(y)), 0L)

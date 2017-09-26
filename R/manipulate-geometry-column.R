@@ -131,6 +131,7 @@ ps_coords_to_sfc <- function(x, coords = c("X", "Y"), crs = 4326, new_name = "ge
   if (!is.data.frame(x)) ps_error("x must inherit from a data.frame")
   check_vector(coords, "", min_length = 2L, max_length = 2L)
   check_string(new_name)
+  check_cols(x, coords)
 
   sfc <- magrittr::extract(x, coords) %>%
     as.matrix() %>%
@@ -143,6 +144,20 @@ ps_coords_to_sfc <- function(x, coords = c("X", "Y"), crs = 4326, new_name = "ge
 
   x[[new_name]] <- sfc
 
+  x
+}
+
+#' Convert point coordinates to sf (active geometry) column.
+#'
+#' @param x The object with columns
+#' @param coords A character vector of specifying the two columns with the point information.
+#' @param crs An integer with the EPSG code, or character with proj4string.
+#' @param new_name A string of the name of the sf column.
+#' @return The modified object with the coordinates removed
+#' @export
+ps_coords_to_sf <- function(x, coords = c("X", "Y"), crs = 4326, new_name = "geometry") {
+  x %<>% ps_coords_to_sfc(coords = coords, crs = crs, new_name = new_name)
+  x %<>% ps_set_sf(new_name)
   x
 }
 
