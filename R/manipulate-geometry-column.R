@@ -119,7 +119,6 @@ ps_remove_sfcs <- function(x, sfc_columns = ps_sfc_names(x)){
   x
 }
 
-
 #' Convert point coordinates to sfc (inactive geometry) column.
 #'
 #' @param x The object with columns
@@ -129,7 +128,7 @@ ps_remove_sfcs <- function(x, sfc_columns = ps_sfc_names(x)){
 #' @return The modified object with the coordinates removed
 #' @export
 ps_coords_to_sfc <- function(x, coords = c("X", "Y"), crs = 4326, new_name = "geometry") {
-  if (!is.data.frame(x)) ps_error("x must inherits from a data.frame")
+  if (!is.data.frame(x)) ps_error("x must inherit from a data.frame")
   check_vector(coords, "", min_length = 2L, max_length = 2L)
   check_string(new_name)
 
@@ -145,5 +144,51 @@ ps_coords_to_sfc <- function(x, coords = c("X", "Y"), crs = 4326, new_name = "ge
   x[[new_name]] <- sfc
 
   x
+}
+
+#' Convert sfc (inactive geometry) to pair of coordinates column.
+#'
+#' @param x The object with columns
+#' @param sfc_name A string of the sfc name.
+#' @param X A string of the name of the X coordinate.
+#' @param Y A string of the name of the Y coordinate.
+#' @return The modified object with the sfc column removed
+#' @export
+ps_sfc_to_coords <- function(x, sfc_name = "geometry", X = "X", Y = "Y") {
+  if (!is.data.frame(x)) ps_error("x must inherit from a data.frame")
+  check_string(sfc_name)
+  check_string(X)
+  check_string(Y)
+
+  if (!sfc_name %in% ps_sfc_names(x))
+    ps_error("sfc_name '", sfc_name, "' is not an inactive geometry column")
+
+  coords <- sf::st_coordinates(x[[sfc_name]])
+
+  x[[X]] <- coords[,"X",drop = TRUE]
+  x[[Y]] <- coords[,"Y",drop = TRUE]
+  x[[sfc_name]] <- NULL
+
+  x
+}
+
+#' Convert sf (active geometry) to pair of coordinates column.
+#'
+#' @param x The object with columns
+#' @param sf_name A string of the sf name.
+#' @param X A string of the name of the X coordinate.
+#' @param Y A string of the name of the Y coordinate.
+#' @return A tibble with the sf column removed
+#' @export
+ps_sf_to_coords <- function(x, sf_name = "geometry", X = "X", Y = "Y") {
+  if (!is.data.frame(x)) ps_error("x must inherit from a data.frame")
+  check_string(sf_name)
+
+  if (!sf_name %in% ps_sf_name(x))
+    ps_error("sf_name '", sf_name, "' is not the active geometry column")
+
+  x %<>% ps_deactivate_sf()
+
+  ps_sfc_to_coords(x, sfc_name = sf_name, X = X, Y = Y)
 }
 
