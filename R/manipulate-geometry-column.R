@@ -133,8 +133,7 @@ ps_coords_to_sfc <- function(x, coords = c("X", "Y"), crs = 4326, new_name = "ge
   check_string(new_name)
   check_cols(x, coords)
 
-  sfc <- magrittr::extract(x, coords) %>%
-    as.matrix() %>%
+  sfc <- matrix(c(x[[coords[1]]], x[[coords[2]]]), ncol = 2) %>%
     sf::st_multipoint(dim = "XY") %>%
     sf::st_sfc(crs = crs) %>%
     sf::st_cast("POINT")
