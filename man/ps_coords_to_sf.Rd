@@ -4,8 +4,7 @@
 \alias{ps_coords_to_sf}
 \title{Convert point coordinates to sf (active geometry) column.}
 \usage{
-ps_coords_to_sf(x, coords = c("X", "Y"), crs = 4326,
-  new_name = "geometry")
+ps_coords_to_sf(x, coords = c("X", "Y"), crs = 4326, sf_name = "geometry")
 }
 \arguments{
 \item{x}{The object with columns}
@@ -14,7 +13,7 @@ ps_coords_to_sf(x, coords = c("X", "Y"), crs = 4326,
 
 \item{crs}{An integer with the EPSG code, or character with proj4string.}
 
-\item{new_name}{A string of the name of the sf column.}
+\item{sf_name}{A string of the name of the sf column.}
 }
 \value{
 The modified object with the coordinates removed

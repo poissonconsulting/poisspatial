@@ -4,12 +4,12 @@
 \alias{ps_rename_sf}
 \title{Rename sf column}
 \usage{
-ps_rename_sf(x, new_name = "geometry")
+ps_rename_sf(x, sf_name = "geometry")
 }
 \arguments{
 \item{x}{The object.}
 
-\item{new_name}{A string of the new column name.}
+\item{sf_name}{A string of the new column name.}
 }
 \value{
 The modified object

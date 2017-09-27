@@ -33,7 +33,7 @@ test_that("manipulate geometry column", {
   expect_identical(colnames(z), c("Row", "geometry", "X", "Y", "X1", "Y1"))
 
   z <- ps_coords_to_sf(z, crs = 28992)
-  z <- ps_coords_to_sfc(z, c("X1", "Y1"), crs = 28992, new_name = "geometry.z")
+  z <- ps_coords_to_sfc(z, c("X1", "Y1"), crs = 28992, sfc_name = "geometry.z")
 
   expect_identical(colnames(z), c("Row", "geometry", "geometry.z"))
 

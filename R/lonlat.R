@@ -3,11 +3,11 @@
 #' Assumes Longitude and Latitude are in WGS84.
 #'
 #' @param x The object with columns Latitude and Longitude.
-#' @param new_name A string of the name of the sf column.
+#' @param sfc_name A string of the name of the sf column.
 #' @return The modified object with Longitude and Latitude removed
 #' @export
-ps_lonlat_to_sfc <- function(x, new_name = "geometry") {
-  ps_coords_to_sfc(x, coords = c("Longitude", "Latitude"), crs = 4326, new_name = new_name)
+ps_lonlat_to_sfc <- function(x, sfc_name = "geometry") {
+  ps_coords_to_sfc(x, coords = c("Longitude", "Latitude"), crs = 4326, sfc_name = sfc_name)
 }
 
 #' Convert Longitude and Latitude coordinates to sf (active geometry) column.
@@ -15,11 +15,11 @@ ps_lonlat_to_sfc <- function(x, new_name = "geometry") {
 #' Assumes Longitude and Latitude are in WGS84.
 #'
 #' @param x The object with columns Latitude and Longitude.
-#' @param new_name A string of the name of the sf column.
+#' @param sf_name A string of the name of the sf column.
 #' @return The modified object with Longitude and Latitude removed
 #' @export
-ps_lonlat_to_sf <- function(x, new_name = "geometry") {
-  ps_coords_to_sf(x, coords = c("Longitude", "Latitude"), crs = 4326, new_name = new_name)
+ps_lonlat_to_sf <- function(x, sf_name = "geometry") {
+  ps_coords_to_sf(x, coords = c("Longitude", "Latitude"), crs = 4326, sf_name = sf_name)
 }
 
 #' Convert sf (active geometry) column to Longitude and Latitude in WGS84.

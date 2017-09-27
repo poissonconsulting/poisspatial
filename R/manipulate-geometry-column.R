@@ -30,23 +30,23 @@ ps_sfc_names <- function(x) {
 #' Renames the active geometry column.
 #'
 #' @param x The object.
-#' @param new_name A string of the new column name.
+#' @param sf_name A string of the new column name.
 #' @return The modified object
 #' @export
-ps_rename_sf <- function(x, new_name = "geometry") {
+ps_rename_sf <- function(x, sf_name = "geometry") {
   if (!is.sf(x)) ps_error("x must be an sf object")
-  check_string(new_name)
+  check_string(sf_name)
 
   old_name <- ps_sf_name(x)
 
   stopifnot(!identical(old_name, character(0)))
 
-  if (identical(new_name, old_name))
+  if (identical(sf_name, old_name))
     return(x)
 
-  x[new_name] <- x[old_name]
+  x[sf_name] <- x[old_name]
   x[old_name] <- NULL
-  sf::st_geometry(x) <- new_name
+  sf::st_geometry(x) <- sf_name
   x
 }
 
@@ -124,13 +124,13 @@ ps_remove_sfcs <- function(x, sfc_names = ps_sfc_names(x)){
 #' @param x The object with columns
 #' @param coords A character vector of specifying the two columns with the point information.
 #' @param crs An integer with the EPSG code, or character with proj4string.
-#' @param new_name A string of the name of the sfc column.
+#' @param sfc_name A string of the name of the sfc column.
 #' @return The modified object with the coordinates removed
 #' @export
-ps_coords_to_sfc <- function(x, coords = c("X", "Y"), crs = 4326, new_name = "geometry") {
+ps_coords_to_sfc <- function(x, coords = c("X", "Y"), crs = 4326, sfc_name = "geometry") {
   if (!is.data.frame(x)) ps_error("x must inherit from a data.frame")
   check_vector(coords, "", min_length = 2L, max_length = 2L)
-  check_string(new_name)
+  check_string(sfc_name)
   check_cols(x, coords)
 
   sfc <- matrix(c(x[[coords[1]]], x[[coords[2]]]), ncol = 2) %>%
@@ -141,7 +141,7 @@ ps_coords_to_sfc <- function(x, coords = c("X", "Y"), crs = 4326, new_name = "ge
   x[coords[1]] <- NULL
   x[coords[2]] <- NULL
 
-  x[[new_name]] <- sfc
+  x[[sfc_name]] <- sfc
 
   x
 }
@@ -151,12 +151,12 @@ ps_coords_to_sfc <- function(x, coords = c("X", "Y"), crs = 4326, new_name = "ge
 #' @param x The object with columns
 #' @param coords A character vector of specifying the two columns with the point information.
 #' @param crs An integer with the EPSG code, or character with proj4string.
-#' @param new_name A string of the name of the sf column.
+#' @param sf_name A string of the name of the sf column.
 #' @return The modified object with the coordinates removed
 #' @export
-ps_coords_to_sf <- function(x, coords = c("X", "Y"), crs = 4326, new_name = "geometry") {
-  x %<>% ps_coords_to_sfc(coords = coords, crs = crs, new_name = new_name)
-  x %<>% ps_set_sf(new_name)
+ps_coords_to_sf <- function(x, coords = c("X", "Y"), crs = 4326, sf_name = "geometry") {
+  x %<>% ps_coords_to_sfc(coords = coords, crs = crs, sfc_name = sf_name)
+  x %<>% ps_set_sf(sf_name)
   x
 }
 

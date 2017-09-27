@@ -5,7 +5,7 @@
 \title{Convert point coordinates to sfc (inactive geometry) column.}
 \usage{
 ps_coords_to_sfc(x, coords = c("X", "Y"), crs = 4326,
-  new_name = "geometry")
+  sfc_name = "geometry")
 }
 \arguments{
 \item{x}{The object with columns}
@@ -14,7 +14,7 @@ ps_coords_to_sfc(x, coords = c("X", "Y"), crs = 4326,
 
 \item{crs}{An integer with the EPSG code, or character with proj4string.}
 
-\item{new_name}{A string of the name of the sfc column.}
+\item{sfc_name}{A string of the name of the sfc column.}
 }
 \value{
 The modified object with the coordinates removed
