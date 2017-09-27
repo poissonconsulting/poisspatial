@@ -4,12 +4,10 @@
 \alias{ps_sf_to_coords}
 \title{Convert sf (active geometry) to pair of coordinates column.}
 \usage{
-ps_sf_to_coords(x, sf_name = "geometry", X = "X", Y = "Y")
+ps_sf_to_coords(x, X = "X", Y = "Y")
 }
 \arguments{
 \item{x}{The object with columns}
-
-\item{sf_name}{A string of the sf name.}
 
 \item{X}{A string of the name of the X coordinate.}
 

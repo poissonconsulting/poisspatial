@@ -189,20 +189,16 @@ ps_sfc_to_coords <- function(x, sfc_name = "geometry", X = "X", Y = "Y") {
 #' Convert sf (active geometry) to pair of coordinates column.
 #'
 #' @param x The object with columns
-#' @param sf_name A string of the sf name.
 #' @param X A string of the name of the X coordinate.
 #' @param Y A string of the name of the Y coordinate.
 #' @return A tibble with the sf column removed
 #' @export
-ps_sf_to_coords <- function(x, sf_name = "geometry", X = "X", Y = "Y") {
-  if (!is.data.frame(x)) ps_error("x must inherit from a data.frame")
-  check_string(sf_name)
+ps_sf_to_coords <- function(x, X = "X", Y = "Y") {
+  if (!is.sf(x)) ps_error("x must be an sf object")
 
-  if (!sf_name %in% ps_sf_name(x))
-    ps_error("sf_name '", sf_name, "' is not the active geometry column")
+  sfc_name <- ps_sf_name(x)
 
   x %<>% ps_deactivate_sf()
 
-  ps_sfc_to_coords(x, sfc_name = sf_name, X = X, Y = Y)
+  ps_sfc_to_coords(x, sfc_name = sfc_name, X = X, Y = Y)
 }
-
