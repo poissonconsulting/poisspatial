@@ -6,7 +6,7 @@
 #' The column(s) to use when calculating the distances are converted to numeric values.
 #' Missing values are currently not permitted.
 #'
-#' sf objects have their sf_column_name renamed to geometry.
+#' sf objects have their sf (active geometry) column renamed to geometry.
 #'
 #' @param x A data.frame, data.table, tibble or sf object.
 #' @param y A data.frame, data.table, tibble or sf object.
@@ -62,7 +62,7 @@ ps_nearest.data.frame <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) 
     bx <- by
 
   if (is.sf(y))
-    y %<>% ps_rename_sf()
+    y %<>% ps_rename_active_sfc()
 
   x %<>% as_data_frame()
   y %<>% as_data_frame()
@@ -93,7 +93,7 @@ ps_nearest.data.frame <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) 
 #' @export
 ps_nearest.tbl_df <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
   if (is.sf(y))
-    y %<>% ps_rename_sf()
+    y %<>% ps_rename_active_sfc()
 
   x %<>%
     as_data_frame() %>%
@@ -105,7 +105,7 @@ ps_nearest.tbl_df <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
 #' @export
 ps_nearest.data.table <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
   if (is.sf(y))
-    y %<>% ps_rename_sf()
+    y %<>% ps_rename_active_sfc()
 
   x %<>%
     as_data_frame() %>%
@@ -116,9 +116,9 @@ ps_nearest.data.table <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) 
 
 #' @export
 ps_nearest.sf <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
-  x %<>% ps_rename_sf()
+  x %<>% ps_rename_active_sfc()
   if (is.sf(y))
-    y %<>% ps_rename_sf()
+    y %<>% ps_rename_active_sfc()
 
   colnames <- c(colnames(x), colnames(y))
 

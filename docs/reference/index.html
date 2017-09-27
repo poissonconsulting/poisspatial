@@ -82,7 +82,7 @@
     <div class="page-header">
       <h1>
         Reference
-        <small>version&nbsp;0.0.0.9009</small>
+        <small>version&nbsp;0.0.0.9010</small>
       </h1>
     </div>
 
@@ -122,6 +122,18 @@
         </tr><tr>
           <!--  -->
           <td>
+            <p><code><a href="ps_activate_sfc.html">ps_activate_sfc</a></code> </p>
+          </td>
+          <td><p>Activate sfc column</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="ps_active_sfc_name.html">ps_active_sfc_name</a></code> </p>
+          </td>
+          <td><p>Name of active sfc column</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
             <p><code><a href="ps_batch_transform.html">ps_batch_transform</a></code> </p>
           </td>
           <td><p>Batch transform</p></td>
@@ -130,13 +142,13 @@
           <td>
             <p><code><a href="ps_coords_to_sfc.html">ps_coords_to_sfc</a></code> </p>
           </td>
-          <td><p>Convert point coordinates to sfc (inactive geometry) column.</p></td>
+          <td><p>Convert point coordinates to sfc column.</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="ps_deactivate_sf.html">ps_deactivate_sf</a></code> </p>
+            <p><code><a href="ps_deactivate_sfc.html">ps_deactivate_sfc</a></code> </p>
           </td>
-          <td><p>Deactivate sf column</p></td>
+          <td><p>Deactivate active sf column</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -149,6 +161,18 @@
             <p><code><a href="ps_get_proj4string.html">ps_get_proj4string</a></code> </p>
           </td>
           <td><p>Get EPSG</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="ps_inactive_sfc_names.html">ps_inactive_sfc_names</a></code> </p>
+          </td>
+          <td><p>Name of inactive sfc column(s)</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="ps_longlat_to_sfc.html">ps_longlat_to_sfc</a></code> </p>
+          </td>
+          <td><p>Convert Longitude and Latitude coordinates to sfc column.</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -170,39 +194,15 @@
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="ps_remove_sf.html">ps_remove_sf</a></code> </p>
-          </td>
-          <td><p>Remove sf column</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
             <p><code><a href="ps_remove_sfcs.html">ps_remove_sfcs</a></code> </p>
           </td>
           <td><p>Remove sfc columns</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="ps_rename_sf.html">ps_rename_sf</a></code> </p>
+            <p><code><a href="ps_rename_active_sfc.html">ps_rename_active_sfc</a></code> </p>
           </td>
-          <td><p>Rename sf column</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="ps_set_sf.html">ps_set_sf</a></code> </p>
-          </td>
-          <td><p>Set sf column</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="ps_sf_name.html">ps_sf_name</a></code> </p>
-          </td>
-          <td><p>Name of sf column</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="ps_sf_to_coords.html">ps_sf_to_coords</a></code> </p>
-          </td>
-          <td><p>Convert sf (active geometry) to pair of coordinates column.</p></td>
+          <td><p>Rename active sfc column</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -214,7 +214,31 @@
           <td>
             <p><code><a href="ps_sfc_to_coords.html">ps_sfc_to_coords</a></code> </p>
           </td>
-          <td><p>Convert sfc (inactive geometry) to pair of coordinates column.</p></td>
+          <td><p>Convert sfc (geometry) to pair of coordinates column.</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="ps_sfc_to_longlat.html">ps_sfc_to_longlat</a></code> </p>
+          </td>
+          <td><p>Convert sfc column to Longitude and Latitude in WGS84.</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="ps_sfcs_to_crs.html">ps_sfcs_to_crs</a></code> </p>
+          </td>
+          <td><p>Reproject sfc columns</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="ps_sfcs_to_utm.html">ps_sfcs_to_utm</a></code> </p>
+          </td>
+          <td><p>Reproject sfcs column to UTMs.</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="ps_sfcs_to_wgs84.html">ps_sfcs_to_wgs84</a></code> </p>
+          </td>
+          <td><p>Reproject sfc columns to WGS84</p></td>
         </tr>
       </tbody>
       </table>

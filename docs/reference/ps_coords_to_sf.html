@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Rename sf column — ps_rename_sf • poisspatial</title>
+<title>Convert point coordinates to sf (active geometry) column. — ps_coords_to_sf • poisspatial</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -80,31 +80,40 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Rename sf column</h1>
+    <h1>Convert point coordinates to sf (active geometry) column.</h1>
     </div>
 
     
-    <p>Renames the active geometry column.</p>
+    <p>Convert point coordinates to sf (active geometry) column.</p>
     
 
-    <pre class="usage"><span class='fu'>ps_rename_sf</span>(<span class='no'>x</span>, <span class='kw'>sf_name</span> <span class='kw'>=</span> <span class='st'>"geometry"</span>)</pre>
+    <pre class="usage"><span class='fu'>ps_coords_to_sf</span>(<span class='no'>x</span>, <span class='kw'>coords</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"X"</span>, <span class='st'>"Y"</span>), <span class='kw'>crs</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"ps.crs"</span>, <span class='fl'>4326</span>),
+  <span class='kw'>sf_name</span> <span class='kw'>=</span> <span class='st'>"geometry"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>The object.</p></td>
+      <td><p>The object with columns</p></td>
+    </tr>
+    <tr>
+      <th>coords</th>
+      <td><p>A character vector of specifying the two columns with the point information.</p></td>
+    </tr>
+    <tr>
+      <th>crs</th>
+      <td><p>An integer with the EPSG code, or character with proj4string.</p></td>
     </tr>
     <tr>
       <th>sf_name</th>
-      <td><p>A string of the new column name.</p></td>
+      <td><p>A string of the name of the sf column.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The modified object</p>
+    <p>The modified object with the coordinates removed</p>
     
 
   </div>

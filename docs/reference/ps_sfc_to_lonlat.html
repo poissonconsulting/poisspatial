@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Rename sf column — ps_rename_sf • poisspatial</title>
+<title>Convert sf (active geometry) column to Longitude and Latitude in WGS84. — ps_sfc_to_lonlat • poisspatial</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -80,31 +80,31 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Rename sf column</h1>
+    <h1>Convert sf (active geometry) column to Longitude and Latitude in WGS84.</h1>
     </div>
 
     
-    <p>Renames the active geometry column.</p>
+    <p>Convert sf (active geometry) column to Longitude and Latitude in WGS84.</p>
     
 
-    <pre class="usage"><span class='fu'>ps_rename_sf</span>(<span class='no'>x</span>, <span class='kw'>sf_name</span> <span class='kw'>=</span> <span class='st'>"geometry"</span>)</pre>
+    <pre class="usage"><span class='fu'>ps_sfc_to_lonlat</span>(<span class='no'>x</span>, <span class='no'>sfc_name</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>The object.</p></td>
+      <td><p>The sf object.</p></td>
     </tr>
     <tr>
-      <th>sf_name</th>
-      <td><p>A string of the new column name.</p></td>
+      <th>sfc_name</th>
+      <td><p>A string of the sfc column name.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The modified object</p>
+    <p>A tibble with Longitude and Latitude.</p>
     
 
   </div>
