@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Reproject sfc columns — ps_sfcs_to_crs • poisspatial</title>
+<title>Deactivate active sf column — ps_deactivate_sfc • poisspatial</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -80,36 +80,23 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Reproject sfc columns</h1>
+    <h1>Deactivate active sf column</h1>
     </div>
 
     
-    <p>Reproject sfc columns</p>
+    <p>Deactives active geometry column ('sf column').</p>
     
 
-    <pre class="usage"><span class='fu'>ps_sfcs_to_crs</span>(<span class='no'>x</span>, <span class='kw'>sfc_names</span> <span class='kw'>=</span> <span class='fu'><a href='ps_sfc_names.html'>ps_sfc_names</a></span>(<span class='no'>x</span>), <span class='kw'>crs</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"ps.crs"</span>,
-  <span class='fl'>4326</span>))</pre>
+    <pre class="usage"><span class='fu'>ps_deactivate_sfc</span>(<span class='no'>x</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>The object</p></td>
-    </tr>
-    <tr>
-      <th>sfc_names</th>
-      <td><p>A character vector of the sfc column names</p></td>
-    </tr>
-    <tr>
-      <th>crs</th>
-      <td><p>The projection to use.</p></td>
+      <td><p>A sf object.</p></td>
     </tr>
     </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>The modified object</p>
     
 
   </div>
@@ -117,9 +104,7 @@
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-          </ul>
+                </ul>
 
   </div>
 </div>

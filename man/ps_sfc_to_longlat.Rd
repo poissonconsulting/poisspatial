@@ -2,9 +2,9 @@
 % Please edit documentation in R/longlat.R
 \name{ps_sfc_to_longlat}
 \alias{ps_sfc_to_longlat}
-\title{Convert sf (active geometry) column to Longitude and Latitude in WGS84.}
+\title{Convert sfc column to Longitude and Latitude in WGS84.}
 \usage{
-ps_sfc_to_longlat(x, sfc_name)
+ps_sfc_to_longlat(x, sfc_name = ps_active_sfc_name(x))
 }
 \arguments{
 \item{x}{The sf object.}
@@ -15,5 +15,5 @@ ps_sfc_to_longlat(x, sfc_name)
 A tibble with Longitude and Latitude.
 }
 \description{
-Convert sf (active geometry) column to Longitude and Latitude in WGS84.
+Convert sfc column to Longitude and Latitude in WGS84.
 }

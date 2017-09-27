@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Reproject sf (active geometry) column to UTMs. — ps_sfcs_to_utm • poisspatial</title>
+<title>Reproject sfcs column to UTMs. — ps_sfcs_to_utm • poisspatial</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -80,11 +80,11 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Reproject sf (active geometry) column to UTMs.</h1>
+    <h1>Reproject sfcs column to UTMs.</h1>
     </div>
 
     
-    <p>The UTM zone is that for the centroid of the column.</p>
+    <p>The UTM zone is that for the centroid of the centroids of the column.</p>
     
 
     <pre class="usage"><span class='fu'>ps_sfcs_to_utm</span>(<span class='no'>x</span>, <span class='kw'>sfc_names</span> <span class='kw'>=</span> <span class='fu'><a href='ps_sfc_names.html'>ps_sfc_names</a></span>(<span class='no'>x</span>))</pre>
@@ -95,6 +95,10 @@
     <tr>
       <th>x</th>
       <td><p>The object</p></td>
+    </tr>
+    <tr>
+      <th>sfc_names</th>
+      <td><p>A character vector of the sfc column names</p></td>
     </tr>
     </table>
     

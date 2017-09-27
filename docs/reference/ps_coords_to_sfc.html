@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Convert point coordinates to sfc (inactive geometry) column. — ps_coords_to_sfc • poisspatial</title>
+<title>Convert point coordinates to sfc column. — ps_coords_to_sfc • poisspatial</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -80,11 +80,12 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Convert point coordinates to sfc (inactive geometry) column.</h1>
+    <h1>Convert point coordinates to sfc column.</h1>
     </div>
 
     
-    <p>Convert point coordinates to sfc (inactive geometry) column.</p>
+    <p>If sfc_name is the active then the new sfc column replaces it and becomes the
+active one.</p>
     
 
     <pre class="usage"><span class='fu'>ps_coords_to_sfc</span>(<span class='no'>x</span>, <span class='kw'>coords</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"X"</span>, <span class='st'>"Y"</span>), <span class='kw'>crs</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"ps.crs"</span>, <span class='fl'>4326</span>),
@@ -95,7 +96,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>The object with columns</p></td>
+      <td><p>The object.</p></td>
     </tr>
     <tr>
       <th>coords</th>
@@ -107,7 +108,7 @@
     </tr>
     <tr>
       <th>sfc_name</th>
-      <td><p>A string of the name of the sfc column.</p></td>
+      <td><p>A string of the name of the sfc column to create.</p></td>
     </tr>
     </table>
     

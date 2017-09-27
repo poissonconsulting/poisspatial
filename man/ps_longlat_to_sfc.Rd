@@ -2,7 +2,7 @@
 % Please edit documentation in R/longlat.R
 \name{ps_longlat_to_sfc}
 \alias{ps_longlat_to_sfc}
-\title{Convert Longitude and Latitude coordinates to sfc (inactive geometry) column.}
+\title{Convert Longitude and Latitude coordinates to sfc column.}
 \usage{
 ps_longlat_to_sfc(x, sfc_name = "geometry")
 }
