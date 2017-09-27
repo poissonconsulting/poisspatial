@@ -25,12 +25,11 @@ ps_lonlat_to_sf <- function(x, new_name = "geometry") {
 #' Convert sf (active geometry) column to Longitude and Latitude in WGS84.
 #'
 #' @param x The sf object.
-#' @param sfc_column A string of the sfc column name.
-#' @sfc_column A string of the sfc column name.
+#' @param sfc_name A string of the sfc column name.
 #' @return A tibble with Longitude and Latitude.
 #' @export
-ps_sfc_to_lonlat <- function(x, sfc_column) {
-  x %<>% ps_sfcs_to_wgs84(sfc_columns = sfc_column)
+ps_sfc_to_lonlat <- function(x, sfc_name) {
+  x %<>% ps_sfcs_to_wgs84(sfc_names = sfc_name)
   ps_sf_to_coords(x, X = "Longitude", Y = "Latitude")
 }
 

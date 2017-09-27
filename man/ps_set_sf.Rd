@@ -4,12 +4,12 @@
 \alias{ps_set_sf}
 \title{Set sf column}
 \usage{
-ps_set_sf(x, sfc_column = "geometry")
+ps_set_sf(x, sfc_name = "geometry")
 }
 \arguments{
 \item{x}{A sf object.}
 
-\item{sfc_column}{A string indicating the name of the sf column to set.}
+\item{sfc_name}{A string indicating the name of the sf column to set.}
 }
 \description{
 Set active geometry column ('sf column').

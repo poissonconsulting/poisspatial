@@ -4,12 +4,12 @@
 \alias{ps_remove_sfcs}
 \title{Remove sfc columns}
 \usage{
-ps_remove_sfcs(x, sfc_columns = ps_sfc_names(x))
+ps_remove_sfcs(x, sfc_names = ps_sfc_names(x))
 }
 \arguments{
 \item{x}{An sf object.}
 
-\item{sfc_columns}{A character vector indicating the name of the sfc column(s) to remove.}
+\item{sfc_names}{A character vector indicating the name of the sfc column(s) to remove.}
 }
 \description{
 Remove sfc (inactive geometry) column(s). Active sfc column ('sf column') will not be removed even if specified.

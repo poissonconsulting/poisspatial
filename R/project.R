@@ -3,7 +3,7 @@ ps_sf_to_wgs84 <- function(x) {
   stop("need to project")
 }
 
-ps_sfcs_to_wgs84 <- function(x, sfc_columns = ps_sfc_names(x)) {
+ps_sfcs_to_wgs84 <- function(x, sfc_names = ps_sfc_names(x)) {
    stop("need to project")
 }
 
@@ -15,7 +15,7 @@ ps_sfcs_to_wgs84 <- function(x, sfc_columns = ps_sfc_names(x)) {
 #   stop("need to project")
 # }
 #
-# ps_sfcs_to_utm <- function(x, sfc_columns = ps_sfc_names(x)) {
+# ps_sfcs_to_utm <- function(x, sfc_names = ps_sfc_names(x)) {
 #   x %<>% ps_sfcs_to_wgs84()
 #   stop("need to project")
 # }

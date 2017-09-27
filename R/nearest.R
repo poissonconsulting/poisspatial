@@ -6,7 +6,7 @@
 #' The column(s) to use when calculating the distances are converted to numeric values.
 #' Missing values are currently not permitted.
 #'
-#' sf objects have their sf_column_name renamed to geometry.
+#' sf objects have their sf (active geometry) column renamed to geometry.
 #'
 #' @param x A data.frame, data.table, tibble or sf object.
 #' @param y A data.frame, data.table, tibble or sf object.

@@ -55,19 +55,19 @@ ps_rename_sf <- function(x, new_name = "geometry") {
 #' Set active geometry column ('sf column').
 #'
 #' @param x A sf object.
-#' @param sfc_column A string indicating the name of the sf column to set.
+#' @param sfc_name A string indicating the name of the sf column to set.
 #' @export
 #'
-ps_set_sf <- function(x, sfc_column = "geometry"){
-  check_string(sfc_column)
-  if (identical(sfc_column, ps_sf_name(x))) return(x)
+ps_set_sf <- function(x, sfc_name = "geometry"){
+  check_string(sfc_name)
+  if (identical(sfc_name, ps_sf_name(x))) return(x)
 
-  if (!sfc_column %in% ps_sfc_names(x)) ps_error("sfc_column must be an sfc column.")
+  if (!sfc_name %in% ps_sfc_names(x)) ps_error("sfc_name must be an sfc column.")
 
   if (is.sf(x)) {
-    x %<>% sf::st_set_geometry(sfc_column)
+    x %<>% sf::st_set_geometry(sfc_name)
   } else {
-    x %<>% sf::st_sf(sf_column_name = sfc_column)
+    x %<>% sf::st_sf(sf_column_name = sfc_name)
   }
   x
 }
@@ -107,15 +107,15 @@ ps_remove_sf <- function(x){
 #' Remove sfc (inactive geometry) column(s). Active sfc column ('sf column') will not be removed even if specified.
 #'
 #' @param x An sf object.
-#' @param sfc_columns A character vector indicating the name of the sfc column(s) to remove.
+#' @param sfc_names A character vector indicating the name of the sfc column(s) to remove.
 #' @export
 #'
-ps_remove_sfcs <- function(x, sfc_columns = ps_sfc_names(x)){
+ps_remove_sfcs <- function(x, sfc_names = ps_sfc_names(x)){
   if (!is.data.frame(x)) ps_error("x must be a data.frame")
-  check_vector(sfc_columns, "", min_length = 0L)
+  check_vector(sfc_names, "", min_length = 0L)
 
-  sfc_columns %<>% intersect(ps_sfc_names(x))
-  x <- x[ , setdiff(colnames(x), sfc_columns)]
+  sfc_names %<>% intersect(ps_sfc_names(x))
+  x <- x[ , setdiff(colnames(x), sfc_names)]
   x
 }
 

@@ -4,12 +4,12 @@
 \alias{ps_sfc_to_lonlat}
 \title{Convert sf (active geometry) column to Longitude and Latitude in WGS84.}
 \usage{
-ps_sfc_to_lonlat(x, sfc_column)
+ps_sfc_to_lonlat(x, sfc_name)
 }
 \arguments{
 \item{x}{The sf object.}
 
-\item{sfc_column}{A string of the sfc column name.}
+\item{sfc_name}{A string of the sfc column name.}
 }
 \value{
 A tibble with Longitude and Latitude.
