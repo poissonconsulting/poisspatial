@@ -4,7 +4,7 @@
 \alias{ps_coords_to_sfc}
 \title{Convert point coordinates to sfc (inactive geometry) column.}
 \usage{
-ps_coords_to_sfc(x, coords = c("X", "Y"), crs = 4326,
+ps_coords_to_sfc(x, coords = c("X", "Y"), crs = getOption("ps.crs", 4326),
   sfc_name = "geometry")
 }
 \arguments{

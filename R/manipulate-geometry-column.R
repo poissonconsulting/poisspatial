@@ -109,7 +109,6 @@ ps_remove_sf <- function(x){
 #' @param x An sf object.
 #' @param sfc_names A character vector indicating the name of the sfc column(s) to remove.
 #' @export
-#'
 ps_remove_sfcs <- function(x, sfc_names = ps_sfc_names(x)){
   if (!is.data.frame(x)) ps_error("x must be a data.frame")
   check_vector(sfc_names, "", min_length = 0L)
@@ -127,7 +126,9 @@ ps_remove_sfcs <- function(x, sfc_names = ps_sfc_names(x)){
 #' @param sfc_name A string of the name of the sfc column.
 #' @return The modified object with the coordinates removed
 #' @export
-ps_coords_to_sfc <- function(x, coords = c("X", "Y"), crs = 4326, sfc_name = "geometry") {
+ps_coords_to_sfc <- function(x, coords = c("X", "Y"),
+                             crs = getOption("ps.crs", 4326),
+                             sfc_name = "geometry") {
   if (!is.data.frame(x)) ps_error("x must inherit from a data.frame")
   check_vector(coords, "", min_length = 2L, max_length = 2L)
   check_string(sfc_name)
@@ -154,7 +155,9 @@ ps_coords_to_sfc <- function(x, coords = c("X", "Y"), crs = 4326, sfc_name = "ge
 #' @param sf_name A string of the name of the sf column.
 #' @return The modified object with the coordinates removed
 #' @export
-ps_coords_to_sf <- function(x, coords = c("X", "Y"), crs = 4326, sf_name = "geometry") {
+ps_coords_to_sf <- function(x, coords = c("X", "Y"),
+                            crs = getOption("ps.crs", 4326),
+                            sf_name = "geometry") {
   x %<>% ps_coords_to_sfc(coords = coords, crs = crs, sfc_name = sf_name)
   x %<>% ps_set_sf(sf_name)
   x

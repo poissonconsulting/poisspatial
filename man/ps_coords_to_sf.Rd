@@ -4,7 +4,8 @@
 \alias{ps_coords_to_sf}
 \title{Convert point coordinates to sf (active geometry) column.}
 \usage{
-ps_coords_to_sf(x, coords = c("X", "Y"), crs = 4326, sf_name = "geometry")
+ps_coords_to_sf(x, coords = c("X", "Y"), crs = getOption("ps.crs", 4326),
+  sf_name = "geometry")
 }
 \arguments{
 \item{x}{The object with columns}

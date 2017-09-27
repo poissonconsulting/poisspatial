@@ -87,7 +87,8 @@
     <p>Convert point coordinates to sf (active geometry) column.</p>
     
 
-    <pre class="usage"><span class='fu'>ps_coords_to_sf</span>(<span class='no'>x</span>, <span class='kw'>coords</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"X"</span>, <span class='st'>"Y"</span>), <span class='kw'>crs</span> <span class='kw'>=</span> <span class='fl'>4326</span>, <span class='kw'>sf_name</span> <span class='kw'>=</span> <span class='st'>"geometry"</span>)</pre>
+    <pre class="usage"><span class='fu'>ps_coords_to_sf</span>(<span class='no'>x</span>, <span class='kw'>coords</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"X"</span>, <span class='st'>"Y"</span>), <span class='kw'>crs</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"ps.crs"</span>, <span class='fl'>4326</span>),
+  <span class='kw'>sf_name</span> <span class='kw'>=</span> <span class='st'>"geometry"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
