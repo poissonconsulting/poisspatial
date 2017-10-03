@@ -16,9 +16,9 @@ test_that("manipulate geometry column", {
 
   y <- ps_rename_active_sfc(x, "GEOMETRY")
   expect_identical(ps_active_sfc_name(y), "GEOMETRY")
+  y <- ps_activate_sfc(x)
   y <- ps_rename_active_sfc(y)
   expect_equivalent(y, x)
-  y <- ps_activate_sfc(x)
   expect_true(identical(ps_active_sfc_name(y), "geometry"))
   x$geometry.y <- x$geometry
   x$geometry.z <- x$geometry

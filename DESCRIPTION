@@ -20,7 +20,10 @@ Imports: datacheckr,
          sf,
          stats,
          tibble,
-         XML
+         XML,
+         dplyr,
+         plyr,
+         rgdal
 Suggests: testthat,
           covr
 Remotes: poissonconsulting/datacheckr,

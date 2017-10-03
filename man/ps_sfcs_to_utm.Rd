@@ -2,7 +2,7 @@
 % Please edit documentation in R/proj.R
 \name{ps_sfcs_to_utm}
 \alias{ps_sfcs_to_utm}
-\title{Reproject sfcs column to UTMs.}
+\title{Reproject sfc columns to UTMs.}
 \usage{
 ps_sfcs_to_utm(x, sfc_names = ps_sfc_names(x))
 }
@@ -15,5 +15,5 @@ ps_sfcs_to_utm(x, sfc_names = ps_sfc_names(x))
 The modified object
 }
 \description{
-The UTM zone is that for the centroid of the centroids of the column.
+The UTM zone is that for the centroid of the centroids of the columns.
 }
