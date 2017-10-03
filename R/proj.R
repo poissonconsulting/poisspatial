@@ -36,7 +36,6 @@ ps_sfcs_to_wgs84 <- function(x, sfc_names = ps_sfc_names(x)) {
 #' @param x The object
 #' @param sfc_names A character vector of the sfc column names
 #' @return Logical
-
 ps_equal_crs <- function(x, sfc_names = ps_sfc_names(x)) {
   x %<>% ps_deactivate_sfc()
   x <- x[sfc_names]
@@ -50,17 +49,19 @@ ps_equal_crs <- function(x, sfc_names = ps_sfc_names(x)) {
 #' Get UTM zone
 #'
 #' @param x A sf object
-#' @param sfc_name A character string indicating name of sfc column with crs of WGS84.
-#'
+#' @param sfc_name A character string indicating name of sfc column.
 #' @return A numeric vector of UTM zone(s).
-
 ps_utm_zone <- function(x, sfc_name = "geometry") {
+  check_string(sfc_name)
 
-  if(is.na(sf::st_crs(x))) ps_error("sfc column must have a valid crs.")
-  x %<>% ps_sfcs_to_wgs84()
+  if (!sfc_name %in% ps_sfc_names(x)) ps_error("column '", sfc_name,"' is not an sfc column")
 
-  long <- ps_sfc_to_coords(x[sfc_name])$X
-  lat <- ps_sfc_to_coords(x[sfc_name])$Y
+  x %<>% ps_sfcs_to_wgs84(sfc_names = sfc_name)
+
+  coords <- ps_sfc_to_coords(x, sfc_name = sfc_name)
+
+  long <- coords$X
+  lat <- coords$Y
 
   zone <- if(lat >= 56 && lat < 64 && long >= 3 && long < 12){x <- 32} else if(
     lat >= 72 && lat < 84 && long >= 0 && long < 9) {x <- 31} else if(
@@ -80,12 +81,11 @@ ps_utm_zone <- function(x, sfc_name = "geometry") {
 #'
 #' @return A numeric vector of UTM zone(s).
 ps_utm_proj4string <- function(x, sfc_name = "geometry", datum = "WGS84") {
-
   zone <- ps_utm_zone(x, sfc_name)
   lat <- ps_sfc_to_coords(x[sfc_name])$Y
 
   prj <- purrr::map2_chr(zone, lat, function(y, z){
-    if(z >= 0){
+    if (z >= 0){
       paste0("+proj=utm +zone=", y, " +datum=", datum, " +units=m +no_defs")
     } else{
       paste0("+proj=utm +zone=", y, " +south", " +datum=", datum, " +units=m +no_defs")

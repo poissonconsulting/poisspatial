@@ -9,7 +9,7 @@ ps_utm_zone(x, sfc_name = "geometry")
 \arguments{
 \item{x}{A sf object}
 
-\item{sfc_name}{A character string indicating name of sfc column with crs of WGS84.}
+\item{sfc_name}{A character string indicating name of sfc column.}
 }
 \value{
 A numeric vector of UTM zone(s).
