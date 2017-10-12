@@ -1,7 +1,7 @@
 Package: poisspatial
 Title: Spatial Functions
-Version: 0.0.0.9011
-Date: 2017-10-02
+Version: 0.0.0.9012
+Date: 2017-10-11
 Authors@R: c(
     person("Joe", "Thorley", email = "joe@poissonconsulting.ca", role = c("aut", "cre")),
     person("Seb", "Dalgarno", role = "aut"))
@@ -23,7 +23,9 @@ Imports: datacheckr,
          XML,
          dplyr,
          plyr,
-         rgdal
+         rgdal,
+         ggmap,
+         raster
 Suggests: testthat,
           covr
 Remotes: poissonconsulting/datacheckr,

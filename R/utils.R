@@ -31,6 +31,17 @@ is.sfc <- function(x) {
   inherits(x, "sfc")
 }
 
+#' Is long/lat
+#'
+#' @param x The object to test.
+#'
+#' @return A flag.
+#' @export
+is_longlat <- function(x) {
+  prj <- ps_get_proj4string(x)
+  prj == "+proj=longlat +datum=WGS84 +no_defs"
+}
+
 #' Get EPSG
 #'
 #' @param x The object to get the epsg code from
