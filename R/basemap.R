@@ -106,6 +106,7 @@ ps_bbox_ggmap <- function(x, source, maptype){
 #'
 #' @param x A ggmap object
 #' @return A raster object
+#' @export
 ps_ggmap_to_raster <- function(x){
   if(!inherits(x, "ggmap")) ps_error("x must be a ggmap object (e.g. from ps_bbox_ggmap)")
 
@@ -127,6 +128,7 @@ ps_ggmap_to_raster <- function(x){
 #'
 #' @param x A RasterStack object
 #' @return A data.frame object which can be plotted using: ggplot2::geom_point(data = x, aes(x = x, y = y, col = rgb(layer.1/255, layer.2/255, layer.3/255)))
+#' @export
 ps_raster_to_df <- function(x){
   if(!inherits(x, "RasterStack")) ps_error("x must be a RasterStack object (e.g. from ps_ggmap_raster)")
 
