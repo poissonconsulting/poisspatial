@@ -54,6 +54,9 @@ test_that("basemap related functions work", {
   expect_identical(names(df), c("x", "y", "layer.1", "layer.2", "layer.3"))
 
   ggmap2 <- ps_sf_ggmap(poly, 500, "google", "satellite")
-  expect_is(ggmap2, "data.frame")
-  expect_identical(names(ggmap2), c("x", "y", "layer.1", "layer.2", "layer.3"))
+  expect_is(ggmap2, "ggmap")
+
+  ggmap3 <- ps_sf_ggmap_df(poly, 500, "google", "satellite")
+  expect_is(ggmap3, "data.frame")
+  expect_identical(names(ggmap3), c("x", "y", "layer.1", "layer.2", "layer.3"))
 })

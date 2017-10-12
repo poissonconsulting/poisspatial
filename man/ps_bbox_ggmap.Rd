@@ -2,7 +2,7 @@
 % Please edit documentation in R/basemap.R
 \name{ps_bbox_ggmap}
 \alias{ps_bbox_ggmap}
-\title{Get clipped basemap}
+\title{Ggmap from bbox}
 \usage{
 ps_bbox_ggmap(x, source, maptype)
 }
@@ -18,5 +18,5 @@ ps_bbox_ggmap(x, source, maptype)
 A ggmap object
 }
 \description{
-Get ggmap basemap from bbox
+Get ggmap basemap from (padded) bbox
 }

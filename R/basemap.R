@@ -79,9 +79,9 @@ ps_create_bounds <- function(x, pad){
   sfc
 }
 
-#' Get clipped basemap
+#' Ggmap from bbox
 #'
-#' Get ggmap basemap from bbox
+#' Get ggmap basemap from (padded) bbox
 #'
 #' @param x A bbox object (or numeric vector of length 4 indicating xmin, ymin, xmax, ymax). Must be long/lat.
 #' @param source Google Maps ("google"), OpenStreetMap ("osm"), Stamen Maps ("stamen"), or CloudMade maps ("cloudmade")
@@ -136,15 +136,15 @@ ps_raster_to_df <- function(x){
   df
 }
 
-#' Get clipped basemap
+#' Ggmap from sf
 #'
-#' Convenience function to get plottable ggmap basemap clipped to padded bbox of sf object
+#' Get ggmap basemap from (padded) sf object
 #'
 #' @param x A sf object
 #' @param pad A numeric vector indicating amount in metres to pad bbox. If vector of length 1, that amount is added to all sides; if vector of length 4 amount is added to left, top, right and bottom, respectively.
 #' @param source Google Maps ("google"), OpenStreetMap ("osm"), Stamen Maps ("stamen"), or CloudMade maps ("cloudmade")
 #' @param maptype Character string providing map theme. Options available are "terrain", "terrain-background", "satellite", "roadmap", and "hybrid" (google maps), "terrain", "watercolor", and "toner" (stamen maps), or a positive integer for cloudmade maps (see ?get_cloudmademap)
-#' @return A data.frame which may be used to plot basemap with ggplot2 using: geom_point(data = x, aes(x = x, y = y, col = rgb(layer.1/255, layer.2/255, layer.3/255)))
+#' @return ggmap object
 #' @export
 ps_sf_ggmap <- function(x, pad, source, maptype){
 
@@ -160,7 +160,24 @@ ps_sf_ggmap <- function(x, pad, source, maptype){
 
   map <- ggmap::get_map(location = bbox,
                         source = source,
-                        maptype = maptype) %>%
+                        maptype = maptype)
+
+  map
+}
+
+#' Ggmap from sf to data.frame
+#'
+#' A wrapper function to quickly get plottable ggmap basemap clipped to padded bbox of sf object
+#'
+#' @param x A sf object
+#' @param pad A numeric vector indicating amount in metres to pad bbox. If vector of length 1, that amount is added to all sides; if vector of length 4 amount is added to left, top, right and bottom, respectively.
+#' @param source Google Maps ("google"), OpenStreetMap ("osm"), Stamen Maps ("stamen"), or CloudMade maps ("cloudmade")
+#' @param maptype Character string providing map theme. Options available are "terrain", "terrain-background", "satellite", "roadmap", and "hybrid" (google maps), "terrain", "watercolor", and "toner" (stamen maps), or a positive integer for cloudmade maps (see ?get_cloudmademap)
+#' @return A data.frame which may be used to plot basemap with ggplot2 using: geom_point(data = x, aes(x = x, y = y, col = rgb(layer.1/255, layer.2/255, layer.3/255)))
+#' @export
+ps_sf_ggmap_df <- function(x, pad, source, maptype){
+
+  map <- ps_sf_ggmap(x = x, pad = pad, source = source, maptype = maptype) %>%
     ps_ggmap_to_raster() %>%
     ps_raster_to_df()
 
