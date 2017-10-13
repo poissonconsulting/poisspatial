@@ -3,7 +3,7 @@
 #' @param x object to test.
 #' @return flag.
 is_pad <- function(x){
-  ((length(x) == 1L | length(x) == 4L) & inherits(x, "numeric"))
+  (length(x) == 1L || length(x) == 4L) & inherits(x, "numeric")
 }
 
 #' Test if object is raster
@@ -11,7 +11,7 @@ is_pad <- function(x){
 #' @param x object to test.
 #' @return flag.
 is_raster <- function(x){
-  class(x) == "RasterBrick" | class(x) == "RasterStack" | class(x) == "RasterLayer"
+  inherits(x, "RasterBrick") || inherits(x, "RasterStack") || inherits(x, "RasterLayer")
 }
 
 #' Test if numeric vector is long/lat
@@ -77,7 +77,7 @@ ps_create_bounds <- function(x, pad){
 
   if(is_longlat(x)) {
     y <- ps_sfcs_to_utm(x)
-  } else {y <- x}
+  } else y <- x
 
   bbox <- sf::st_bbox(y) %>%
     ps_pad_bbox(pad)
