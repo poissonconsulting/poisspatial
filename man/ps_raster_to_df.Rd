@@ -2,16 +2,17 @@
 % Please edit documentation in R/basemap.R
 \name{ps_raster_to_df}
 \alias{ps_raster_to_df}
-\title{Convert raster object to data.frame}
+\title{Convert raster to data.frame}
 \usage{
 ps_raster_to_df(x)
 }
 \arguments{
-\item{x}{A RasterStack object}
+\item{x}{A raster object.}
 }
 \value{
-A data.frame object which can be plotted using: ggplot2::geom_point(data = x, aes(x = x, y = y, col = rgb(layer.1/255, layer.2/255, layer.3/255)))
+A data.frame object which can be plotted using:
+ggplot2::geom_point(data = x, aes(x = x, y = y, col = rgb(layer.1/255, layer.2/255, layer.3/255))).
 }
 \description{
-Convert raster object to data.frame
+Convert raster to data.frame
 }

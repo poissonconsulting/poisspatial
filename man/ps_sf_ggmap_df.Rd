@@ -13,11 +13,14 @@ ps_sf_ggmap_df(x, pad, source, maptype)
 
 \item{source}{Google Maps ("google"), OpenStreetMap ("osm"), Stamen Maps ("stamen"), or CloudMade maps ("cloudmade")}
 
-\item{maptype}{Character string providing map theme. Options available are "terrain", "terrain-background", "satellite", "roadmap", and "hybrid" (google maps), "terrain", "watercolor", and "toner" (stamen maps), or a positive integer for cloudmade maps (see ?get_cloudmademap)}
+\item{maptype}{Character string providing map theme. Options available are "terrain", "terrain-background", "satellite", "roadmap", and "hybrid" (google maps),
+"terrain", "watercolor", and "toner" (stamen maps),
+or a positive integer for cloudmade maps (see ?get_cloudmademap).}
 }
 \value{
-A data.frame which may be used to plot basemap with ggplot2 using: geom_point(data = x, aes(x = x, y = y, col = rgb(layer.1/255, layer.2/255, layer.3/255)))
+A data.frame object which can be plotted using:
+ggplot2::geom_point(data = x, aes(x = x, y = y, col = rgb(layer.1/255, layer.2/255, layer.3/255))).
 }
 \description{
-A wrapper function to quickly get plottable ggmap basemap clipped to padded bbox of sf object
+A wrapper function to quickly get plottable ggmap basemap clipped to padded bbox of sf object.
 }

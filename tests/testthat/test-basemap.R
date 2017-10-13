@@ -47,11 +47,13 @@ test_that("basemap related functions work", {
   expect_is(ggmap, "ggmap")
 
   ras <- ps_ggmap_to_raster(ggmap)
-  expect_is(ras, "RasterStack")
+  expect_true(is_raster(ras))
+  expect_error(ps_ggmap_to_raster(poly))
 
   df <- ps_raster_to_df(ras)
   expect_is(df, "data.frame")
   expect_identical(names(df), c("x", "y", "layer.1", "layer.2", "layer.3"))
+  expect_error(ps_raster_to_df(poly))
 
   ggmap2 <- ps_sf_ggmap(poly, 500, "google", "satellite")
   expect_is(ggmap2, "ggmap")

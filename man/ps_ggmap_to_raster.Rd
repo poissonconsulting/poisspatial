@@ -2,16 +2,16 @@
 % Please edit documentation in R/basemap.R
 \name{ps_ggmap_to_raster}
 \alias{ps_ggmap_to_raster}
-\title{Convert ggmap object to raster}
+\title{Convert ggmap to raster}
 \usage{
 ps_ggmap_to_raster(x)
 }
 \arguments{
-\item{x}{A ggmap object}
+\item{x}{A ggmap object.}
 }
 \value{
-A raster object
+raster object.
 }
 \description{
-Convert ggmap object to raster
+Convert ggmap to raster
 }

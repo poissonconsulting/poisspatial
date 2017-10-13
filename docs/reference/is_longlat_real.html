@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Test if object without crs is long/lat (longitude between 180 and -180). Object assumed to be in format c(long, lat, long, lat) as in bbox. — is_longlat_real • poisspatial</title>
+<title>Test if numeric vector is long/lat — is_longlat_real • poisspatial</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -80,11 +80,11 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Test if object without crs is long/lat (longitude between 180 and -180). Object assumed to be in format c(long, lat, long, lat) as in bbox.</h1>
+    <h1>Test if numeric vector is long/lat</h1>
     </div>
 
     
-    <p>Test if object without crs is long/lat (longitude between 180 and -180). Object assumed to be in format c(long, lat, long, lat) as in bbox.</p>
+    <p>Tests if longitude is between 180 and -180. Object assumed to be in format c(long, lat, long, lat) as in bbox.</p>
     
 
     <pre class="usage"><span class='fu'>is_longlat_real</span>(<span class='no'>x</span>)</pre>
@@ -94,13 +94,13 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>object to test</p></td>
+      <td><p>object to test.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>flag</p>
+    <p>flag.</p>
     
 
   </div>

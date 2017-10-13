@@ -7,10 +7,10 @@
 ps_sfg_rectangle(x)
 }
 \arguments{
-\item{x}{A bbox object (or numeric vector of length 4 indicating xmin, ymin, xmax, ymax)}
+\item{x}{A bbox object (or numeric vector of length 4 indicating xmin, ymin, xmax, ymax).}
 }
 \value{
-sfg polygon
+sfg polygon.
 }
 \description{
 Create sfg rectangle

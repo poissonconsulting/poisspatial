@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create sfg rectangle — ps_sfg_rectangle • poisspatial</title>
+<title>Ggmap from sf to data.frame — ps_sf_ggmap_df • poisspatial</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -80,27 +80,42 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create sfg rectangle</h1>
+    <h1>Ggmap from sf to data.frame</h1>
     </div>
 
     
-    <p>Create sfg rectangle</p>
+    <p>A wrapper function to quickly get plottable ggmap basemap clipped to padded bbox of sf object.</p>
     
 
-    <pre class="usage"><span class='fu'>ps_sfg_rectangle</span>(<span class='no'>x</span>)</pre>
+    <pre class="usage"><span class='fu'>ps_sf_ggmap_df</span>(<span class='no'>x</span>, <span class='no'>pad</span>, <span class='no'>source</span>, <span class='no'>maptype</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>A bbox object (or numeric vector of length 4 indicating xmin, ymin, xmax, ymax).</p></td>
+      <td><p>A sf object</p></td>
+    </tr>
+    <tr>
+      <th>pad</th>
+      <td><p>A numeric vector indicating amount in metres to pad bbox. If vector of length 1, that amount is added to all sides; if vector of length 4 amount is added to left, top, right and bottom, respectively.</p></td>
+    </tr>
+    <tr>
+      <th>source</th>
+      <td><p>Google Maps ("google"), OpenStreetMap ("osm"), Stamen Maps ("stamen"), or CloudMade maps ("cloudmade")</p></td>
+    </tr>
+    <tr>
+      <th>maptype</th>
+      <td><p>Character string providing map theme. Options available are "terrain", "terrain-background", "satellite", "roadmap", and "hybrid" (google maps),
+"terrain", "watercolor", and "toner" (stamen maps),
+or a positive integer for cloudmade maps (see ?get_cloudmademap).</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>sfg polygon.</p>
+    <p>A data.frame object which can be plotted using:
+ggplot2::geom_point(data = x, aes(x = x, y = y, col = rgb(layer.1/255, layer.2/255, layer.3/255))).</p>
     
 
   </div>

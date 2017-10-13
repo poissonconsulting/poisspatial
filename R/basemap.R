@@ -1,15 +1,25 @@
 #' Test if object is vector of length 1 or 4
 #'
-#' @param x object to test
-#' @return flag
+#' @param x object to test.
+#' @return flag.
 is_pad <- function(x){
   ((length(x) == 1L | length(x) == 4L) & inherits(x, "numeric"))
 }
 
-#' Test if object without crs is long/lat (longitude between 180 and -180). Object assumed to be in format c(long, lat, long, lat) as in bbox.
+#' Test if object is raster
 #'
-#' @param x object to test
-#' @return flag
+#' @param x object to test.
+#' @return flag.
+is_raster <- function(x){
+  class(x) == "RasterBrick" | class(x) == "RasterStack" | class(x) == "RasterLayer"
+}
+
+#' Test if numeric vector is long/lat
+#'
+#' Tests if longitude is between 180 and -180. Object assumed to be in format c(long, lat, long, lat) as in bbox.
+#'
+#' @param x object to test.
+#' @return flag.
 is_longlat_real <- function(x){
   (x[1] < 180 & x[1] > -180)
 }
@@ -17,8 +27,8 @@ is_longlat_real <- function(x){
 
 #' Create sfg rectangle
 #'
-#' @param x A bbox object (or numeric vector of length 4 indicating xmin, ymin, xmax, ymax)
-#' @return sfg polygon
+#' @param x A bbox object (or numeric vector of length 4 indicating xmin, ymin, xmax, ymax).
+#' @return sfg polygon.
 #' @export
 ps_sfg_rectangle <- function(x){
   x %<>% as.vector()
@@ -35,7 +45,7 @@ ps_sfg_rectangle <- function(x){
 #' @param pad A numeric vector indicating amount in metres to pad bbox.
 #' If vector of length 1, amount is added to all sides;
 #' if vector of length 4 amount is added to left, top, right and bottom, respectively.
-#' @return modified object
+#' @return modified object.
 #' @export
 ps_pad_bbox <- function(x, pad){
 
@@ -58,7 +68,7 @@ ps_pad_bbox <- function(x, pad){
 #' @param pad A numeric vector indicating amount in metres to pad bounds.
 #' If vector of length 1, amount is added to all sides;
 #' if vector of length 4 amount is added to left, top, right and bottom, respectively.
-#' @return sfc polygon
+#' @return sfc polygon.
 #' @export
 ps_create_bounds <- function(x, pad){
 
@@ -81,13 +91,13 @@ ps_create_bounds <- function(x, pad){
 
 #' Ggmap from bbox
 #'
-#' Get ggmap basemap from (padded) bbox
+#' Get ggmap basemap from (padded) bbox.
 #'
 #' @param x A bbox object (or numeric vector of length 4 indicating xmin, ymin, xmax, ymax). Must be long/lat.
-#' @param source Google Maps ("google"), OpenStreetMap ("osm"), Stamen Maps ("stamen"), or CloudMade maps ("cloudmade")
+#' @param source Google Maps ("google"), OpenStreetMap ("osm"), Stamen Maps ("stamen"), or CloudMade maps ("cloudmade").
 #' @param maptype Character string providing map theme. Options available are "terrain", "terrain-background",
-#' "satellite", "roadmap", and "hybrid" (google maps), "terrain", "watercolor", and "toner" (stamen maps), or a positive integer for cloudmade maps (see ?get_cloudmademap)
-#' @return A ggmap object
+#' "satellite", "roadmap", and "hybrid" (google maps), "terrain", "watercolor", and "toner" (stamen maps), or a positive integer for cloudmade maps (see ?get_cloudmademap).
+#' @return ggmap object.
 #' @export
 ps_bbox_ggmap <- function(x, source, maptype){
 
@@ -102,10 +112,10 @@ ps_bbox_ggmap <- function(x, source, maptype){
   map
 }
 
-#' Convert ggmap object to raster
+#' Convert ggmap to raster
 #'
-#' @param x A ggmap object
-#' @return A raster object
+#' @param x A ggmap object.
+#' @return raster object.
 #' @export
 ps_ggmap_to_raster <- function(x){
   if(!inherits(x, "ggmap")) ps_error("x must be a ggmap object (e.g. from ps_bbox_ggmap)")
@@ -124,13 +134,14 @@ ps_ggmap_to_raster <- function(x){
   ras
 }
 
-#' Convert raster object to data.frame
+#' Convert raster to data.frame
 #'
-#' @param x A RasterStack object
-#' @return A data.frame object which can be plotted using: ggplot2::geom_point(data = x, aes(x = x, y = y, col = rgb(layer.1/255, layer.2/255, layer.3/255)))
+#' @param x A raster object.
+#' @return A data.frame object which can be plotted using:
+#' ggplot2::geom_point(data = x, aes(x = x, y = y, col = rgb(layer.1/255, layer.2/255, layer.3/255))).
 #' @export
 ps_raster_to_df <- function(x){
-  if(!inherits(x, "RasterStack")) ps_error("x must be a RasterStack object (e.g. from ps_ggmap_raster)")
+  if(!is_raster(x)) ps_error("x must be a raster object (e.g. from ps_ggmap_raster)")
 
   df <- data.frame(raster::rasterToPoints(x))
   df
@@ -138,13 +149,15 @@ ps_raster_to_df <- function(x){
 
 #' Ggmap from sf
 #'
-#' Get ggmap basemap from (padded) sf object
+#' Get ggmap basemap from (padded) sf object.
 #'
-#' @param x A sf object
+#' @param x A sf object.
 #' @param pad A numeric vector indicating amount in metres to pad bbox. If vector of length 1, that amount is added to all sides; if vector of length 4 amount is added to left, top, right and bottom, respectively.
-#' @param source Google Maps ("google"), OpenStreetMap ("osm"), Stamen Maps ("stamen"), or CloudMade maps ("cloudmade")
-#' @param maptype Character string providing map theme. Options available are "terrain", "terrain-background", "satellite", "roadmap", and "hybrid" (google maps), "terrain", "watercolor", and "toner" (stamen maps), or a positive integer for cloudmade maps (see ?get_cloudmademap)
-#' @return ggmap object
+#' @param source Google Maps ("google"), OpenStreetMap ("osm"), Stamen Maps ("stamen"), or CloudMade maps ("cloudmade").
+#' @param maptype Character string providing map theme. Options available are "terrain", "terrain-background", "satellite", "roadmap", and "hybrid" (google maps),
+#' "terrain", "watercolor", and "toner" (stamen maps),
+#' or a positive integer for cloudmade maps (see ?get_cloudmademap).
+#' @return ggmap object.
 #' @export
 ps_sf_ggmap <- function(x, pad, source, maptype){
 
@@ -167,13 +180,16 @@ ps_sf_ggmap <- function(x, pad, source, maptype){
 
 #' Ggmap from sf to data.frame
 #'
-#' A wrapper function to quickly get plottable ggmap basemap clipped to padded bbox of sf object
+#' A wrapper function to quickly get plottable ggmap basemap clipped to padded bbox of sf object.
 #'
 #' @param x A sf object
 #' @param pad A numeric vector indicating amount in metres to pad bbox. If vector of length 1, that amount is added to all sides; if vector of length 4 amount is added to left, top, right and bottom, respectively.
 #' @param source Google Maps ("google"), OpenStreetMap ("osm"), Stamen Maps ("stamen"), or CloudMade maps ("cloudmade")
-#' @param maptype Character string providing map theme. Options available are "terrain", "terrain-background", "satellite", "roadmap", and "hybrid" (google maps), "terrain", "watercolor", and "toner" (stamen maps), or a positive integer for cloudmade maps (see ?get_cloudmademap)
-#' @return A data.frame which may be used to plot basemap with ggplot2 using: geom_point(data = x, aes(x = x, y = y, col = rgb(layer.1/255, layer.2/255, layer.3/255)))
+#' @param maptype Character string providing map theme. Options available are "terrain", "terrain-background", "satellite", "roadmap", and "hybrid" (google maps),
+#' "terrain", "watercolor", and "toner" (stamen maps),
+#' or a positive integer for cloudmade maps (see ?get_cloudmademap).
+#' @return A data.frame object which can be plotted using:
+#' ggplot2::geom_point(data = x, aes(x = x, y = y, col = rgb(layer.1/255, layer.2/255, layer.3/255))).
 #' @export
 ps_sf_ggmap_df <- function(x, pad, source, maptype){
 

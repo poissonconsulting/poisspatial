@@ -14,7 +14,7 @@ If vector of length 1, amount is added to all sides;
 if vector of length 4 amount is added to left, top, right and bottom, respectively.}
 }
 \value{
-modified object
+modified object.
 }
 \description{
 Pad bbox

@@ -6,5 +6,4 @@
 #' @importFrom stats setNames
 #' @importFrom ggmap get_map
 
-
 NULL

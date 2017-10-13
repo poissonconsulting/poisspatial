@@ -2,16 +2,16 @@
 % Please edit documentation in R/basemap.R
 \name{is_longlat_real}
 \alias{is_longlat_real}
-\title{Test if object without crs is long/lat (longitude between 180 and -180). Object assumed to be in format c(long, lat, long, lat) as in bbox.}
+\title{Test if numeric vector is long/lat}
 \usage{
 is_longlat_real(x)
 }
 \arguments{
-\item{x}{object to test}
+\item{x}{object to test.}
 }
 \value{
-flag
+flag.
 }
 \description{
-Test if object without crs is long/lat (longitude between 180 and -180). Object assumed to be in format c(long, lat, long, lat) as in bbox.
+Tests if longitude is between 180 and -180. Object assumed to be in format c(long, lat, long, lat) as in bbox.
 }

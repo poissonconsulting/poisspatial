@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get clipped basemap — ps_sf_ggmap • poisspatial</title>
+<title>Ggmap from sf — ps_sf_ggmap • poisspatial</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -80,11 +80,11 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get clipped basemap</h1>
+    <h1>Ggmap from sf</h1>
     </div>
 
     
-    <p>Convenience function to get plottable ggmap basemap clipped to padded bbox of sf object</p>
+    <p>Get ggmap basemap from (padded) sf object.</p>
     
 
     <pre class="usage"><span class='fu'>ps_sf_ggmap</span>(<span class='no'>x</span>, <span class='no'>pad</span>, <span class='no'>source</span>, <span class='no'>maptype</span>)</pre>
@@ -94,7 +94,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>A sf object</p></td>
+      <td><p>A sf object.</p></td>
     </tr>
     <tr>
       <th>pad</th>
@@ -102,17 +102,19 @@
     </tr>
     <tr>
       <th>source</th>
-      <td><p>Google Maps ("google"), OpenStreetMap ("osm"), Stamen Maps ("stamen"), or CloudMade maps ("cloudmade")</p></td>
+      <td><p>Google Maps ("google"), OpenStreetMap ("osm"), Stamen Maps ("stamen"), or CloudMade maps ("cloudmade").</p></td>
     </tr>
     <tr>
       <th>maptype</th>
-      <td><p>Character string providing map theme. Options available are "terrain", "terrain-background", "satellite", "roadmap", and "hybrid" (google maps), "terrain", "watercolor", and "toner" (stamen maps), or a positive integer for cloudmade maps (see ?get_cloudmademap)</p></td>
+      <td><p>Character string providing map theme. Options available are "terrain", "terrain-background", "satellite", "roadmap", and "hybrid" (google maps),
+"terrain", "watercolor", and "toner" (stamen maps),
+or a positive integer for cloudmade maps (see ?get_cloudmademap).</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data.frame which may be used to plot basemap with ggplot2 using: geom_point(data = x, aes(x = x, y = y, col = rgb(layer.1/255, layer.2/255, layer.3/255)))</p>
+    <p>ggmap object.</p>
     
 
   </div>
