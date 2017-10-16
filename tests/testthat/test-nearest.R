@@ -15,20 +15,6 @@ test_that("nearest data.frame 1", {
   expect_identical(n$Row2, c(1L, 1L, 2L) + 1.5)
 })
 
-test_that("nearest data.table 1", {
-
-  x <- data.table::data.table(Date = ISOdate(2000, 1, c(1, 4, 9)))
-  y <- data.frame(Date = ISOdate(2000, 1, c(5, 6, 12)))
-  y$Row <- 1:nrow(x)
-
-  n <- ps_nearest(x, y, "Date", dist_col = "Distance")
-  expect_is(n, "data.frame")
-  expect_identical(class(n), c("data.table", "data.frame"))
-  expect_identical(n$Date, x$Date)
-  expect_identical(n$Row, c(1L, 1L, 2L))
-  expect_identical(n$Distance, c(345600, 86400, 259200))
-})
-
 test_that("nearest tbl_df 1", {
 
   x <- tibble::tibble(Date = ISOdate(2000, 1, c(9, 1, 4)))

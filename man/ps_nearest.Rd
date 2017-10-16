@@ -7,9 +7,9 @@
 ps_nearest(x, y, by = c("X", "Y"), dist_col = NULL, ...)
 }
 \arguments{
-\item{x}{A data.frame, data.table, tibble or sf object.}
+\item{x}{A data.frame, tibble or sf object.}
 
-\item{y}{A data.frame, data.table, tibble or sf object.}
+\item{y}{A data.frame, tibble or sf object.}
 
 \item{by}{A possibly named character vector specifying the column(s) to calculate the distance over.}
 
