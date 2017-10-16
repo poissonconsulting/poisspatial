@@ -8,8 +8,8 @@
 #'
 #' sf objects have their sf (active geometry) column renamed to geometry.
 #'
-#' @param x A data.frame, data.table, tibble or sf object.
-#' @param y A data.frame, data.table, tibble or sf object.
+#' @param x A data.frame, tibble or sf object.
+#' @param y A data.frame, tibble or sf object.
 #' @param by A possibly named character vector specifying the column(s) to calculate the distance over.
 #' @param dist_col A string indicating the name of the column to save the distance in.
 #' @param ... Not used
@@ -99,18 +99,6 @@ ps_nearest.tbl_df <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
     as_data_frame() %>%
     ps_nearest(y = y, by = by, dist_col = dist_col) %>%
     tibble::as_tibble()
-  x
-}
-
-#' @export
-ps_nearest.data.table <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
-  if (is.sf(y))
-    y %<>% ps_rename_active_sfc()
-
-  x %<>%
-    as_data_frame() %>%
-    ps_nearest(y = y, by = by, dist_col = dist_col) %>%
-    as.data.table()
   x
 }
 

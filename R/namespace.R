@@ -1,4 +1,4 @@
-#' @import datacheckr data.table
+#' @import datacheckr
 #' @importFrom poisutils ps_error
 #' @importFrom magrittr %<>% %>%
 #' @import sf
