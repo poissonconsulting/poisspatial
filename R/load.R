@@ -25,33 +25,30 @@ ps_load_spatial <- function(dir = ".", pattern = NULL, recursive = FALSE,
 
   if (!dir.exists(dir)) ps_error("directory '", dir, "' does not exist")
 
-  removeExt <- function(x){
-    ext <- paste0(".", tools::file_ext(x))
-    x %<>% gsub(ext, "", .)
-    x
-  }
-
   file_names <- list.files(dir, pattern = pattern, full.names = TRUE,
                            recursive = recursive)
-  files <- list.files(dir, pattern = pattern, full.names = FALSE,
-                      recursive = recursive) %>%
-    basename()
 
-  files %<>% purrr::modify(function(x){
-    ext <- paste0(".", tools::file_ext(x))
-    x %<>% gsub(ext, "", .)
-  }) %>% unlist()
-
-  if (!length(files)) {
-    ps_warning("no files matching that extension found.")
+   if (!length(file_names)) {
+    poisutils::ps_warning("no files matching that extension found.")
     return(invisible(character(0)))
   }
 
-  data <- purrr::map(file_names, function(x){
-    tryCatch(sf::st_read(x, ...), error = function(e) NULL)
+  df <- data.frame(file_names,
+                   files = basename(file_names))
+  df$ext <- tools::file_ext(df$files)
+  df %<>% purrr::modify(as.character)
+
+  df <- df[!df$ext %in% c("sbn", "dbf", "sbx", "shx", "xlsx", "csv", "pdf", "docx", "prj"),]
+
+  df$names <- purrr::map2(df$files, df$ext, function(x, y){
+    x %<>% gsub(paste0(".", y), "", .)
   })
 
-  names(data) <- files %>%
+  data <- purrr::map(df$file_names, function(x){
+    tryCatch(sf::st_read(x), error = function(e) NULL)
+  })
+
+  names(data) <- df$names %>%
     rename() %>%
     make.names(unique = TRUE)
 
@@ -60,23 +57,22 @@ ps_load_spatial <- function(dir = ".", pattern = NULL, recursive = FALSE,
   # set crs
   if(!is.null(crs)){
     data %<>% purrr::map(function(x){
-      if(is.null(sf::st_crs(x))){sf::st_set_crs(x, crs)}
-      x
+      if(is.na(sf::st_crs(x))){
+        x %<>% sf::st_set_crs(crs)} else {
+          x <- x
+        }
     })
   }
 
   data %<>% purrr::map(fun)
 
   purrr::imap(data, function(x, name) {assign(name, x, envir = envir)})
-  invisible(files)
+  invisible(df$files)
 }
-
-
 
 #' Watershed Codes
 #'
 #' @return A factor of the 13 watershed codes for the Kootenay Region of British Columbia.
-#' @seealso \code{\link{kootfwa}}
 #' @export
 #' @examples
 #' ps_ws_codes()
@@ -91,7 +87,7 @@ ps_ws_codes <- function() {
 #'
 #' Internal function that uses shared Poisson dropbox folder.
 #'
-#' @param layer A character string indicating which dataset to read. Options are "lakes", "rivers", "watersheds", "riverpoly",
+#' @param layer A character string indicating which dataset to read. Options are "lakes", "rivers", "watersheds", "riverpoly"
 #' @param path A character string indicating path to FWA data.
 #' @return sf object.
 #' @export
@@ -110,7 +106,7 @@ ps_read_fwa <- function(layer, path = "~/Poisson/Data/spatial/fwa/") {
 #' If ws_code argument not used, this is simply a wrapper on st_intersection.
 #'
 #' @param x A sf object to subset.
-#' @param ws_code A character vector specifying the watershed codes.
+#' @param ws_codes A character vector specifying the watershed codes.
 #' @param clip A sf/sfc object to clip dataset to.
 #' @return sf object.
 #' @export
@@ -119,10 +115,10 @@ ps_subset_fwa <- function(x, ws_codes = c(
   "KOTL", "KOTR", "LARL",  "REVL", "SLOC", "SMAR", "UARL"), clip = NULL) {
 
   if(!is.sf(x)) ps_error("x must be a sf object (e.g. from ps_read_fwa() function.")
-  check_string(ws_code)
+  check_string(ws_codes)
 
-  if (!all(ws_codes %in% ws_codes()))
-    stop("permitted wscodes are: ", punctuate_strings(ws_codes, "and"))
+  if (!all(ws_codes %in% ps_ws_codes()))
+    stop("permitted wscodes are: ", punctuate_strings(ps_ws_codes(), "and"))
 
   x <- x[x$WTRSHDGRPC %in% ws_codes,]
 

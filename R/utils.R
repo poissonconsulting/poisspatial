@@ -76,6 +76,13 @@ as_data_frame <- function(x) {
   x
 }
 
+punctuate_strings <- function(x, qualifier = "or") {
+  if (length(x) == 1)
+    return(x)
+  n <- length(x)
+  paste(paste(x[-n], collapse = ", "), qualifier, x[n])
+}
+
 xml_value <- function(x, name) {
   XML::xmlValue(x[[name]], recursive = FALSE)
 }
