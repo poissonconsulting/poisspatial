@@ -2,10 +2,10 @@ context("basemap")
 
 test_that("basemap related functions work", {
 
-  pt <- readRDS(system.file("sf/sf-pt.Rds", package = "poisspatial")) %>%
+  pt <- readRDS(system.file("sf/pt.rds", package = "poisspatial")) %>%
     ps_sfcs_to_wgs84()
 
-  poly <- readRDS(system.file("sf/sf-poly.Rds", package = "poisspatial")) %>%
+  poly <- readRDS(system.file("sf/poly.rds", package = "poisspatial")) %>%
     ps_sfcs_to_wgs84()
 
   bbox <- sf::st_bbox(sf::st_transform(pt, 26911))

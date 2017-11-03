@@ -1,7 +1,7 @@
 context("add-z")
 
 test_that("elevation data can be added to a specified sfc column", {
-  ptz <- readRDS(system.file("sf/sf-ptz.rds", package = "poisspatial"))
+  ptz <- readRDS(system.file("sf/ptz.rds", package = "poisspatial"))
   # check that error when no active sfc name and sfc_column not specified
   expect_error(ptz %<>% ps_sfc_add_z())
   # check remove_z arg
@@ -19,9 +19,12 @@ test_that("elevation data can be added to a specified sfc column", {
   expect_error(ptz %<>% rename(Elev = Elvation) %>%
     ps_sfc_add_z())
   # check works if units not set
-  pt <- readRDS(system.file("sf/sf-pt.rds", package = "poisspatial"))
+  pt <- readRDS(system.file("sf/pt.rds", package = "poisspatial"))
   pt$Elevation <- c(1, 100, 200)
   pt %<>% ps_sfc_add_z()
   expect_true(ncol(ptz2) == 5)
   expect_true(inherits(pt$geometry[[1]], "XYZ"))
 })
+
+
+

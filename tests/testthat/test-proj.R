@@ -2,13 +2,13 @@ context("proj")
 
 test_that("works", {
 
-  pt <- readRDS(system.file("sf/sf-pt.Rds", package = "poisspatial"))
+  pt <- readRDS(system.file("sf/pt.rds", package = "poisspatial"))
   expect_true(!ps_equal_crs(pt))
   pt %<>% ps_sfcs_to_wgs84()
   expect_true(ps_equal_crs(pt))
   expect_identical(ps_get_proj4string(pt$geometry), "+proj=longlat +datum=WGS84 +no_defs")
 
-  poly <- readRDS(system.file("sf/sf-poly.Rds", package = "poisspatial")) %>%
+  poly <- readRDS(system.file("sf/poly.rds", package = "poisspatial")) %>%
     ps_sfcs_to_wgs84()
 
   cent <- ps_sfcs_centroid(pt)
