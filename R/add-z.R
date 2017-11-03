@@ -29,7 +29,7 @@ ps_sfc_add_z <- function(x, sfc_column = ps_active_sfc_name(x), z_column = "Elev
 
   if(remove_z){x <- x[, setdiff(names(x), z_column)]}
 
-  x %<>% dplyr::select(-X, -Y)
+  x %<>% dplyr::select_(~-X, ~-Y)
   x
 }
 
