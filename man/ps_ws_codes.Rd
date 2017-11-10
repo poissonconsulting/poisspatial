@@ -12,6 +12,3 @@ A factor of the 13 watershed codes for the Kootenay Region of British Columbia.
 \description{
 Watershed Codes
 }
-\examples{
-ps_ws_codes()
-}

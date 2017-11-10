@@ -28,3 +28,7 @@ test_that("rename and fun arguments work", {
   files <- ps_load_spatial(dir, recursive = T, pattern = ".shp", crs = 26911, rename = rename, fun = trans)
   expect_identical(sf::st_crs(yna)$epsg, 4326L)
 })
+
+# test_that("geodatabase loads", {
+#
+# })

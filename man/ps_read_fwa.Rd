@@ -4,12 +4,18 @@
 \alias{ps_read_fwa}
 \title{Read a FWA layer.}
 \usage{
-ps_read_fwa(layer, path = "~/Poisson/Data/spatial/fwa/")
+ps_read_fwa(shortcut = NULL, gdb = "FWA_BC.gdb",
+  layer = "FWA_COASTLINES_SP", dir = "~/Poisson/Data/spatial/fwa/gdb/")
 }
 \arguments{
-\item{layer}{A character string indicating which dataset to read. Options are "lakes", "rivers", "watersheds", "riverpoly"}
+\item{shortcut}{A character string indicating shortcut name of layer to read (layer stripped of 'FWA_' and '_POLY' or '_SP').
+Any value of shortcut other than NULL will override layer argument.}
 
-\item{path}{A character string indicating path to FWA data.}
+\item{gdb}{A character string indicating which geodatabase to read. See ps_fwa_gdbs() for options.}
+
+\item{layer}{A character string indicating which layer to read. See ps_fwa_layers() for options.}
+
+\item{dir}{A character string indicating path to directory holding fwa geodatabases.}
 }
 \value{
 sf object.

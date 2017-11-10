@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Watershed Codes — ps_ws_codes • poisspatial</title>
+<title>Load spatial files — ps_load_gdb • poisspatial</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -80,24 +80,60 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Watershed Codes</h1>
+    <h1>Load spatial files</h1>
     </div>
 
     
-    <p>Watershed Codes</p>
+    <p>Load spatial files</p>
     
 
-    <pre class="usage"><span class='fu'>ps_ws_codes</span>()</pre>
-        
+    <pre class="usage"><span class='fu'>ps_load_gdb</span>(<span class='kw'>dir</span> <span class='kw'>=</span> <span class='st'>"~/Poisson/Data/spatial/fwa/gdb/FWA_BC.gdb"</span>,
+  <span class='kw'>layers</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>crs</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rename</span> <span class='kw'>=</span> <span class='no'>identity</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(),
+  <span class='kw'>fun</span> <span class='kw'>=</span> <span class='no'>identity</span>, <span class='no'>...</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>dir</th>
+      <td><p>A string of the geodatabase directory.</p></td>
+    </tr>
+    <tr>
+      <th>layers</th>
+      <td><p>A character string vector indicating which layers to load.</p></td>
+    </tr>
+    <tr>
+      <th>crs</th>
+      <td><p>Default crs of layer if missing.</p></td>
+    </tr>
+    <tr>
+      <th>rename</th>
+      <td><p>A function that is used to rename files (after removing extension .csv) before they are passed to make.names.</p></td>
+    </tr>
+    <tr>
+      <th>envir</th>
+      <td><p>The environment to assign the data frames.</p></td>
+    </tr>
+    <tr>
+      <th>fun</th>
+      <td><p>A function that is applied to all sf objects before they are assigned to envir.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments passed to <code>st_read</code>.</p></td>
+    </tr>
+    </table>
+    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A factor of the 13 watershed codes for the Kootenay Region of British Columbia.</p>
+    <p>An invisible character vector of the layer names.</p>
     
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
           </ul>

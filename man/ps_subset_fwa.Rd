@@ -4,8 +4,7 @@
 \alias{ps_subset_fwa}
 \title{Filter/clip a FWA dataset.}
 \usage{
-ps_subset_fwa(x, ws_codes = c("BULL", "CLRH", "COLR", "DUNC", "ELKR", "KHOR",
-  "KOTL", "KOTR", "LARL", "REVL", "SLOC", "SMAR", "UARL"), clip = NULL)
+ps_subset_fwa(x, ws_codes = ps_ws_codes(), clip = NULL)
 }
 \arguments{
 \item{x}{A sf object to subset.}
