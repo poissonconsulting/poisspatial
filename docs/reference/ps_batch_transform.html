@@ -90,7 +90,7 @@ to output directory with specified extension and file format (allows any extensi
     
 
     <pre class="usage"><span class='fu'>ps_batch_transform</span>(<span class='no'>in_dir</span>, <span class='no'>out_dir</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='kw'>in_pattern</span> <span class='kw'>=</span> <span class='st'>"[.]shp$"</span>,
-  <span class='kw'>out_extension</span> <span class='kw'>=</span> <span class='st'>".sqlite"</span>, <span class='no'>in_crs</span>, <span class='no'>out_crs</span>)</pre>
+  <span class='kw'>out_pattern</span> <span class='kw'>=</span> <span class='st'>".sqlite"</span>, <span class='kw'>in_crs</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>out_crs</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -112,7 +112,7 @@ to output directory with specified extension and file format (allows any extensi
       <td><p>A string of the pattern to use when searching for input files.</p></td>
     </tr>
     <tr>
-      <th>out_extension</th>
+      <th>out_pattern</th>
       <td><p>A string of the extension specifying which file format output files will be saved to.</p></td>
     </tr>
     <tr>

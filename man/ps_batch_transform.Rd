@@ -5,7 +5,7 @@
 \title{Batch transform}
 \usage{
 ps_batch_transform(in_dir, out_dir, recursive = T, in_pattern = "[.]shp$",
-  out_extension = ".sqlite", in_crs, out_crs)
+  out_pattern = ".sqlite", in_crs = NULL, out_crs = NULL)
 }
 \arguments{
 \item{in_dir}{A string of the path to the directory containing spatial files.}
@@ -16,7 +16,7 @@ ps_batch_transform(in_dir, out_dir, recursive = T, in_pattern = "[.]shp$",
 
 \item{in_pattern}{A string of the pattern to use when searching for input files.}
 
-\item{out_extension}{A string of the extension specifying which file format output files will be saved to.}
+\item{out_pattern}{A string of the extension specifying which file format output files will be saved to.}
 
 \item{in_crs}{An integer of the EPSG that files are currently in (only set if crs not currently already present).}
 

@@ -13,6 +13,21 @@ test_that("batch transform", {
   z <- sf::st_read("out/x.sqlite")
   expect_true(is.sf(z))
   expect_true(sf::st_crs(z)$epsg == 4326)
+
+  # still works when in_crs and out_crs are NULL (default)
+  ps_batch_transform(in_dir = "in/", out_dir = "out2/")
+  l <- list.files("out2")
+  expect_true(!identical(length(l), 0L))
+  expect_true(any(grep(".sqlite", l)))
+  # still works when forward slash missing
+  ps_batch_transform(in_dir = "in/", out_dir = "out3")
+  l <- list.files("out3")
+  expect_true(!identical(length(l), 0L))
+  expect_true(any(grep(".sqlite", l)))
+
   unlink("in", recursive = T)
   unlink("out", recursive = T)
+  unlink("out2", recursive = T)
+  unlink("out3", recursive = T)
+
 })
