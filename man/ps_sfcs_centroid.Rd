@@ -4,7 +4,7 @@
 \alias{ps_sfcs_centroid}
 \title{Find centroid of sfcs}
 \usage{
-ps_sfcs_centroid(x, sfc_names = ps_sfc_names(x))
+ps_sfcs_centroid(x = sf, sfc_names = ps_sfc_names(x))
 }
 \arguments{
 \item{x}{The object}
@@ -17,5 +17,5 @@ Sf object of centroid
 \description{
 Centroid can be found for multiple sfc columns and any geometry type.
 For polygon and linestring data, centroid is calculated from vertices.
-Sfc columsn must have same crs and should not be longitude/latitude.
+Sfc columns must have same crs and should not be longitude/latitude.
 }

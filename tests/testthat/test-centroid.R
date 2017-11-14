@@ -29,3 +29,5 @@ test_that("works", {
   expect_identical(sf::st_crs(cent.1), sf::st_crs(pt))
 
 })
+
+

@@ -1,5 +1,5 @@
 #' @import datacheckr
-#' @importFrom poisutils ps_error
+#' @importFrom poisutils ps_error ps_warning
 #' @importFrom magrittr %<>% %>%
 #' @import sf
 #' @importFrom grDevices col2rgb

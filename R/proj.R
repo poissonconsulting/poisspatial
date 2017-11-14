@@ -124,7 +124,7 @@ ps_utm_note <- function(x, sfc_name = ps_active_sfc_name(x), datum = "WGS84") {
 ps_sfcs_to_utm <- function(x, sfc_names = ps_sfc_names(x)) {
   x %<>% ps_sfcs_to_wgs84(sfc_names = sfc_names)
 
-  c <- ps_sfcs_centroid(x, sfc_names = sfc_names)
+  c <- suppressWarnings(ps_sfcs_centroid(x, sfc_names = sfc_names))
 
   prj <- ps_utm_proj4string(c)
 
