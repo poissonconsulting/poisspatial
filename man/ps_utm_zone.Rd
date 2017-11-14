@@ -4,7 +4,7 @@
 \alias{ps_utm_zone}
 \title{Get UTM zone}
 \usage{
-ps_utm_zone(x, sfc_name = "geometry")
+ps_utm_zone(x, sfc_name = ps_active_sfc_name(x))
 }
 \arguments{
 \item{x}{A sf object}

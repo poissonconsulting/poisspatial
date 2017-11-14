@@ -4,12 +4,12 @@
 \alias{ps_utm_note}
 \title{Get UTM zone description.}
 \usage{
-ps_utm_note(x, sfc_name = "geometry", datum = "WGS84")
+ps_utm_note(x, sfc_name = ps_active_sfc_name(x), datum = "WGS84")
 }
 \arguments{
 \item{x}{A sf object}
 
-\item{sfc_name}{A character string indicating name of sfc column with with valid crs.}
+\item{sfc_name}{A character string indicating name of sfc column with valid crs.}
 
 \item{datum}{A character string indicating desired datum of UTM proj4string.}
 }

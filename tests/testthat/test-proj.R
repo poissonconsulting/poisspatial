@@ -14,6 +14,7 @@ test_that("works", {
   cent <- ps_sfcs_centroid(pt)
 
   expect_is(ps_utm_note(cent), "character")
+  expect_true(!is.na(ps_utm_note(cent)))
   expect_is(ps_utm_proj4string(cent), "character")
   expect_is(ps_utm_zone(cent), "numeric")
 

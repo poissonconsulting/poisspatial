@@ -29,7 +29,6 @@ ps_sfcs_to_crs <- function(x, sfc_names = ps_sfc_names(x),
 #' @export
 ps_sfcs_to_wgs84 <- function(x, sfc_names = ps_sfc_names(x)) {
   ps_sfcs_to_crs(x, sfc_names, crs = 4326)
-  invisible(sfc_names)
 }
 
 #' Check that sfcs have same crs
