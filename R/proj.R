@@ -29,6 +29,7 @@ ps_sfcs_to_crs <- function(x, sfc_names = ps_sfc_names(x),
 #' @export
 ps_sfcs_to_wgs84 <- function(x, sfc_names = ps_sfc_names(x)) {
   ps_sfcs_to_crs(x, sfc_names, crs = 4326)
+  invisible(sfc_names)
 }
 
 #' Check that sfcs have same crs
@@ -51,7 +52,7 @@ ps_equal_crs <- function(x, sfc_names = ps_sfc_names(x)) {
 #' @param x A sf object
 #' @param sfc_name A character string indicating name of sfc column.
 #' @return A numeric vector of UTM zone(s).
-ps_utm_zone <- function(x, sfc_name = "geometry") {
+ps_utm_zone <- function(x, sfc_name = ps_active_sfc_name(x)) {
   check_string(sfc_name)
 
   if (!sfc_name %in% ps_sfc_names(x)) ps_error("column '", sfc_name,"' is not an sfc column")
@@ -80,7 +81,7 @@ ps_utm_zone <- function(x, sfc_name = "geometry") {
 #' @param datum A character string indicating desired datum of UTM proj4string.
 #'
 #' @return A numeric vector of UTM zone(s).
-ps_utm_proj4string <- function(x, sfc_name = "geometry", datum = "WGS84") {
+ps_utm_proj4string <- function(x, sfc_name = ps_active_sfc_name(x), datum = "WGS84") {
   zone <- ps_utm_zone(x, sfc_name)
   lat <- ps_sfc_to_coords(x[sfc_name])$Y
 
@@ -96,19 +97,20 @@ ps_utm_proj4string <- function(x, sfc_name = "geometry", datum = "WGS84") {
 #' Get UTM zone description.
 #'
 #' @param x A sf object
-#' @param sfc_name A character string indicating name of sfc column with with valid crs.
+#' @param sfc_name A character string indicating name of sfc column with valid crs.
 #' @param datum A character string indicating desired datum of UTM proj4string.
 #'
 #' @return A character vector of UTM zone description(s).
-ps_utm_note <- function(x, sfc_name = "geometry", datum = "WGS84") {
+ps_utm_note <- function(x, sfc_name = ps_active_sfc_name(x), datum = "WGS84") {
 
   prj <- ps_utm_proj4string(x)
 
   epsg <- rgdal::make_EPSG()
   chr <-  purrr::map_chr(prj, function(y){
-    note <- epsg[epsg$prj4 == prj, "note"][1] %>%
+    note <- epsg[epsg$prj4 == y, "note"]
+    note <- note[!is.na(note)] %>%
       sub("# ", "",.)
-  }) %>% unlist()
+  })
   chr
 }
 
