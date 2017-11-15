@@ -218,7 +218,7 @@ ps_ws_codes <- function() {
 ps_subset_fwa <- function(x, ws_codes = ps_ws_codes(), clip = NULL) {
 
   if(!is.sf(x)) ps_error("x must be a sf object (e.g. from ps_read_fwa() function.")
-  check_string(ws_codes)
+  check_string(ws_codes[1])
 
   if (!all(ws_codes %in% ps_ws_codes()))
     stop("permitted wscodes are: ", punctuate_strings(ps_ws_codes(), "and"))
