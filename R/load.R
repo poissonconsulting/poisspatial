@@ -206,30 +206,5 @@ ps_ws_codes <- function() {
   x
 }
 
-#' Filter/clip a FWA dataset.
-#'
-#' If ws_code argument not used, this is simply a wrapper on st_intersection.
-#'
-#' @param x A sf object to subset.
-#' @param ws_codes A character vector specifying the watershed codes.
-#' @param clip A sf/sfc object to clip dataset to.
-#' @return sf object.
-#' @export
-ps_subset_fwa <- function(x, ws_codes = ps_ws_codes(), clip = NULL) {
 
-  if(!is.sf(x)) ps_error("x must be a sf object (e.g. from ps_read_fwa() function.")
-  check_string(ws_codes[1])
-
-  if (!all(ws_codes %in% ps_ws_codes()))
-    stop("permitted wscodes are: ", punctuate_strings(ps_ws_codes(), "and"))
-
-  x <- x[x$WTRSHDGRPC %in% ws_codes,]
-
-  if(!is.null(clip)) {
-    clip <- sf::st_geometry(clip)
-    if(!is.sfc(clip)) ps_error("clip must be a sf or sfc object.")
-    x %<>% sf::st_intersection(clip)
-  } else {x <- x}
-  x
-}
 
