@@ -70,9 +70,10 @@ ps_load_spatial <- function(dir = ".", pattern = NULL, recursive = FALSE,
   invisible(df$files)
 }
 
-#' Load spatial files
+#' Load spatial database
+#' Any spatial database format readable by sf::st_read is acceptable.
 #'
-#' @param dir A string of the geodatabase directory.
+#' @param path A string of the path to the spatial database.
 #' @param layers A character string vector indicating which layers to load.
 #' @param crs Default crs of layer if missing.
 #' @param rename A function that is used to rename files (after removing extension .csv) before they are passed to make.names.
@@ -81,21 +82,21 @@ ps_load_spatial <- function(dir = ".", pattern = NULL, recursive = FALSE,
 #' @param ... Additional arguments passed to \code{st_read}.
 #' @return An invisible character vector of the layer names.
 #' @export
-ps_load_gdb <- function(dir = "~/Poisson/Data/spatial/fwa/gdb/FWA_BC.gdb", layers = NULL, crs = NULL, rename = identity,
+ps_load_spatial_db <- function(path = "~/Poisson/Data/spatial/fwa/gdb/FWA_BC.gdb", layers = NULL, crs = NULL, rename = identity,
                             envir = parent.frame(), fun = identity, ...) {
 
   check_string(dir)
   if(!is_crs(crs)) ps_error("must provide a valid crs.")
   if (!is.function(rename)) ps_error("rename must be a function")
   if (!is.function(fun)) ps_error("fun must be a function")
-  if (!dir.exists(dir)) ps_error(dir, "' does not exist.")
-  if(tools::file_ext(dir) != "gdb") ps_error("dir must have extension .gdb")
+  if (!file.exists(path)) ps_error(path, "' does not exist.")
+  if(tools::file_ext(path) %in% c("gdb", "gpkg", "sqlite")) ps_error("dir must have extension .gdb, .gpkg, or .sqlite")
 
-  l <- sf::st_layers(dir)$name
+  l <- sf::st_layers(path)$name
   if(is.null(layers)){layers <- l} else {layers <- layers}
   # if(!l %in% layers) ps_error("Layers do not exist in geodatabase.")
 
-  g <- purrr::map(layers, ~ tryCatch(sf::st_read(dsn = dir, layer = .), error = function(e) NULL))
+  g <- purrr::map(layers, ~ tryCatch(sf::st_read(dsn = path, layer = .), error = function(e) NULL))
 
   names(g) <- layers %>%
     rename() %>%
@@ -115,17 +116,6 @@ ps_load_gdb <- function(dir = "~/Poisson/Data/spatial/fwa/gdb/FWA_BC.gdb", layer
 
   purrr::imap(g, function(x, name) {assign(name, x, envir = envir)})
   invisible(l)
-}
-
-#' FWA gdbs
-#'
-#' @param dir A character string indicating path to directory holding fwa geodatabases.
-#' @return A factor of the geodatabase names.
-#' @export
-ps_fwa_gdbs <- function(dir = "~/Poisson/Data/spatial/fwa/gdb") {
-  if (!dir.exists(dir)) ps_error("directory '", dir, "' does not exist.")
-  x <- list.files(dir, full.names = F, recursive = F, pattern = ".gdb")
-  x
 }
 
 #' FWA layers
