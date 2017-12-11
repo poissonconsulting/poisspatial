@@ -85,12 +85,12 @@ ps_load_spatial <- function(dir = ".", pattern = NULL, recursive = FALSE,
 ps_load_spatial_db <- function(path = "~/Poisson/Data/spatial/fwa/gdb/FWA_BC.gdb", layers = NULL, crs = NULL, rename = identity,
                             envir = parent.frame(), fun = identity, ...) {
 
-  check_string(dir)
+  check_string(path)
   if(!is_crs(crs)) ps_error("must provide a valid crs.")
   if (!is.function(rename)) ps_error("rename must be a function")
   if (!is.function(fun)) ps_error("fun must be a function")
   if (!file.exists(path)) ps_error(path, "' does not exist.")
-  if(tools::file_ext(path) %in% c("gdb", "gpkg", "sqlite")) ps_error("dir must have extension .gdb, .gpkg, or .sqlite")
+  if(!(tools::file_ext(path) %in% c("gdb", "gpkg", "sqlite"))) ps_error("dir must have extension .gdb, .gpkg, or .sqlite")
 
   l <- sf::st_layers(path)$name
   if(is.null(layers)){layers <- l} else {layers <- layers}
@@ -116,6 +116,17 @@ ps_load_spatial_db <- function(path = "~/Poisson/Data/spatial/fwa/gdb/FWA_BC.gdb
 
   purrr::imap(g, function(x, name) {assign(name, x, envir = envir)})
   invisible(l)
+}
+
+#' FWA gdbs
+#'
+#' @param dir A character string indicating path to directory holding fwa geodatabases.
+#' @return A factor of the geodatabase names.
+#' @export
+ps_fwa_gdbs <- function(dir = "~/Poisson/Data/spatial/fwa/gdb") {
+  if (!dir.exists(dir)) ps_error("directory '", dir, "' does not exist.")
+  x <- list.files(dir, full.names = F, recursive = F, pattern = ".gdb")
+  x
 }
 
 #' FWA layers
