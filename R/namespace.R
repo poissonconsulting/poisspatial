@@ -1,4 +1,4 @@
-#' @import datacheckr
+#' @import checkr
 #' @importFrom poisutils ps_error ps_warning
 #' @importFrom magrittr %<>% %>%
 #' @import sf

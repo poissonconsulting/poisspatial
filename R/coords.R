@@ -13,9 +13,9 @@ ps_coords_to_sfc <- function(x, coords = c("X", "Y"),
                              crs = getOption("ps.crs", 4326),
                              sfc_name = "geometry") {
   if (!is.data.frame(x)) ps_error("x must inherit from a data.frame")
-  check_vector(coords, "", min_length = 2L, max_length = 2L)
+  check_vector(coords, "", length = 2L)
   check_string(sfc_name)
-  check_cols(x, coords)
+  check_colnames(x, coords)
 
   active_sfc_name <- ps_active_sfc_name(x)
 
