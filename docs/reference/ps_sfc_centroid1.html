@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Find centroid of sfcs — ps_sfcs_centroid • poisspatial</title>
+<title>Find centroid of POINT sfc — ps_sfc_centroid1 • poisspatial</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -80,16 +80,15 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Find centroid of sfcs</h1>
+    <h1>Find centroid of POINT sfc</h1>
     </div>
 
     
-    <p>Centroid can be found for multiple sfc columns and any geometry type.
-For polygon and linestring data, centroid is calculated from vertices.
-Sfc columns must have same crs and should not be longitude/latitude.</p>
+    <p>Find centroid of POINT sfc</p>
     
 
-    <pre class="usage"><span class='fu'>ps_sfcs_centroid</span>(<span class='no'>x</span>, <span class='kw'>sfc_names</span> <span class='kw'>=</span> <span class='fu'><a href='ps_sfc_names.html'>ps_sfc_names</a></span>(<span class='no'>x</span>))</pre>
+    <pre class="usage"><span class='fu'>ps_sfc_centroid1</span>(<span class='no'>x</span>, <span class='kw'>sfc_name</span> <span class='kw'>=</span> <span class='fu'><a href='ps_active_sfc_name.html'>ps_active_sfc_name</a></span>(<span class='no'>x</span>), <span class='kw'>by</span> <span class='kw'>=</span> <span class='fu'>character</span>(<span class='fl'>0</span>),
+  <span class='kw'>nearest</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -99,8 +98,16 @@ Sfc columns must have same crs and should not be longitude/latitude.</p>
       <td><p>The object</p></td>
     </tr>
     <tr>
-      <th>sfc_names</th>
-      <td><p>A character vector of the sfc column names</p></td>
+      <th>sfc_name</th>
+      <td><p>A string of the sfc column name</p></td>
+    </tr>
+    <tr>
+      <th>by</th>
+      <td><p>A character vector of the columns to get the centroid by.</p></td>
+    </tr>
+    <tr>
+      <th>nearest</th>
+      <td><p>A flag indicating whether to return the point closest to the centroid (as opposed to the actual centroid)</p></td>
     </tr>
     </table>
     

@@ -8,6 +8,7 @@ test_that("works", {
   poly <- readRDS(system.file("sf/poly.rds", package = "poisspatial")) %>%
     ps_sfcs_to_wgs84()
 
+  cent.pt1 <- ps_sfcs_centroid(pt, sfc_names = "geometry")
   cent.pt <- ps_sfcs_centroid(x = pt)
   cent.poly <- ps_sfcs_centroid(poly)
   cent.1 <- ps_sfcs_centroid(poly, sfc_names = "geometry")
@@ -50,4 +51,27 @@ test_that("works", {
   expect_identical(sf::st_crs(cent.pt), sf::st_crs(pt))
   expect_identical(sf::st_crs(cent.poly), sf::st_crs(poly))
   expect_identical(sf::st_crs(cent.1), sf::st_crs(pt))
+})
+
+test_that("centroid1", {
+
+  pt <- readRDS(system.file("sf/pt.rds", package = "poisspatial")) %>%
+    ps_sfcs_to_wgs84()
+
+  pt$color[2:3] <- "indigo"
+
+  cent.pt <- ps_sfc_centroid1(pt)
+  expect_true(inherits(cent.pt$geometry, "sfc_POINT"))
+  expect_true(inherits(cent.pt, "sf"))
+  expect_identical(sf::st_crs(cent.pt), sf::st_crs(pt))
+  expect_identical(colnames(cent.pt), "geometry")
+  expect_equal(ps_sfc_to_coords(cent.pt)$X, -117.0649, tolerance = 0.0001)
+
+  cent.pt <- ps_sfc_centroid1(pt, by = "color")
+  expect_true(inherits(cent.pt$geometry, "sfc_POINT"))
+  expect_true(inherits(cent.pt, "sf"))
+  expect_identical(sf::st_crs(cent.pt), sf::st_crs(pt))
+  expect_identical(colnames(cent.pt), c("color", "geometry"))
+  expect_equal(ps_sfc_to_coords(cent.pt)$X, c(-117.0646, -117.0651), tolerance = 0.0001)
+  expect_equal(ps_sfc_to_coords(cent.pt)$Y, c(50.00692, 50.00524), tolerance = 0.0001)
 })

@@ -4,7 +4,7 @@
 \alias{ps_sfcs_centroid}
 \title{Find centroid of sfcs}
 \usage{
-ps_sfcs_centroid(x = sf, sfc_names = ps_sfc_names(x))
+ps_sfcs_centroid(x, sfc_names = ps_sfc_names(x))
 }
 \arguments{
 \item{x}{The object}

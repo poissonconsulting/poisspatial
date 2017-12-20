@@ -122,6 +122,7 @@ ps_nearest.sf <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
     colnames %<>% setdiff(dist_col)
     colnames %<>% c(dist_col)
   }
+
   x <- x[colnames]
 
   x %<>% sf::st_as_sf()
