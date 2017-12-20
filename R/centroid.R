@@ -11,11 +11,16 @@
 
 ps_sfcs_centroid <- function(x = sf, sfc_names = ps_sfc_names(x)){
 
+  check_vector(sfc_names, "", length = c(1L, .Machine$integer.max),
+               unique = TRUE)
+
   x <- x[sfc_names] %>%
     ps_deactivate_sfc()
 
   if(!ps_equal_crs(x)) ps_error("Sfcs must have same crs.")
   if(any(purrr::map_lgl(x, is_longlat))) ps_warning("Centroids not accurate for long/lat data.")
+
+  crs <- ps_get_proj4string(x[[sfc_names[1]]])
 
   suppressWarnings(c <- purrr::map(x, function(y){
     y %<>% sf::st_cast("POINT") %>%
@@ -23,7 +28,7 @@ ps_sfcs_centroid <- function(x = sf, sfc_names = ps_sfc_names(x)){
   }) %>%
     plyr::ldply() %>%
     dplyr::select(X = 2, Y = 3) %>%
-    ps_coords_to_sfc() %>%
+    ps_coords_to_sfc(crs = crs) %>%
     ps_activate_sfc() %>%
     sf::st_union() %>%
     sf::st_centroid())
