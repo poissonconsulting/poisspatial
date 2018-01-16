@@ -39,6 +39,18 @@ ps_sfg_rectangle <- function(x){
   poly
 }
 
+#' Create sfc rectangle
+#'
+#' @param x A bbox object (or numeric vector of length 4 indicating xmin, ymin, xmax, ymax).
+#' @inheritParams sf::st_sfc
+#' @return sfc polygon.
+#' @export
+ps_sfc_rectangle <- function(x, ...){
+  sfg <- ps_sfg_rectangle(x)
+  sfc <- st_sfc(sfg)
+  sfc
+}
+
 #' Pad bbox
 #'
 #' @param x A bbox object (or numeric vector of length 4 indicating xmin, ymin, xmax, ymax). Object should not be long/lat.

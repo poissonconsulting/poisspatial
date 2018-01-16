@@ -14,6 +14,9 @@ test_that("basemap related functions work", {
   sfg <- ps_sfg_rectangle(bbox)
   expect_is(sfg, "sfg")
 
+  sfc <- ps_sfc_rectangle(bbox, crs = 4326)
+  expect_is(sfc, "sfc")
+
   pad <- ps_pad_bbox(bbox, 500)
   expect_is(pad, "numeric")
   expect_identical(length(pad), 4L)
@@ -43,22 +46,22 @@ test_that("basemap related functions work", {
   expect_identical(sf::st_bbox(sf::st_transform(poly, 26911))[[1]] -10, sf::st_coordinates(sfc2)[1,1][[1]])
   expect_identical(sf::st_bbox(sf::st_transform(poly, 26911))[[3]] + 200, sf::st_coordinates(sfc2)[3,1][[1]])
 
-  ggmap <- ps_bbox_ggmap(x = bbox2, "google", "satellite")
-  expect_is(ggmap, "ggmap")
-
-  ras <- ps_ggmap_to_raster(ggmap)
-  expect_true(is_raster(ras))
-  expect_error(ps_ggmap_to_raster(poly))
-
-  df <- ps_raster_to_df(ras)
-  expect_is(df, "data.frame")
-  expect_identical(names(df), c("x", "y", "layer.1", "layer.2", "layer.3"))
-  expect_error(ps_raster_to_df(poly))
-
-  ggmap2 <- ps_sf_ggmap(poly, 500, "google", "satellite")
-  expect_is(ggmap2, "ggmap")
-
-  ggmap3 <- ps_sf_ggmap_df(poly, 500, "google", "satellite")
-  expect_is(ggmap3, "data.frame")
-  expect_identical(names(ggmap3), c("x", "y", "layer.1", "layer.2", "layer.3"))
+  # ggmap <- ps_bbox_ggmap(x = bbox2, "google", "satellite")
+  # expect_is(ggmap, "ggmap")
+  #
+  # ras <- ps_ggmap_to_raster(ggmap)
+  # expect_true(is_raster(ras))
+  # expect_error(ps_ggmap_to_raster(poly))
+  #
+  # df <- ps_raster_to_df(ras)
+  # expect_is(df, "data.frame")
+  # expect_identical(names(df), c("x", "y", "layer.1", "layer.2", "layer.3"))
+  # expect_error(ps_raster_to_df(poly))
+  #
+  # ggmap2 <- ps_sf_ggmap(poly, 500, "google", "satellite")
+  # expect_is(ggmap2, "ggmap")
+  #
+  # ggmap3 <- ps_sf_ggmap_df(poly, 500, "google", "satellite")
+  # expect_is(ggmap3, "data.frame")
+  # expect_identical(names(ggmap3), c("x", "y", "layer.1", "layer.2", "layer.3"))
 })

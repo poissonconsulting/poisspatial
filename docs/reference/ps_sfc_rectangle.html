@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Name of sfc column(s) — ps_sfc_names • poisspatial</title>
+<title>Create sfc rectangle — ps_sfc_rectangle • poisspatial</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -80,27 +80,31 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Name of sfc column(s)</h1>
+    <h1>Create sfc rectangle</h1>
     </div>
 
     
-    <p>Name of sfc column(s)</p>
+    <p>Create sfc rectangle</p>
     
 
-    <pre class="usage"><span class='fu'>ps_sfc_names</span>(<span class='no'>x</span>)</pre>
+    <pre class="usage"><span class='fu'>ps_sfc_rectangle</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>The object.</p></td>
+      <td><p>A bbox object (or numeric vector of length 4 indicating xmin, ymin, xmax, ymax).</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>zero or more simple feature geometries (objects of class <code>sfg</code>), or a single list of such objects; <code>NULL</code> values will get replaced by empty geometries.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A character vector of the name of the sfc column(s).</p>
+    <p>sfc polygon.</p>
     
 
   </div>
