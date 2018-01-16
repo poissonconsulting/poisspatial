@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Rename sf column — ps_rename_sf • poisspatial</title>
+<title>Degrees and Decimal Minutes to Decimal Degrees — ps_ddm2dd • poisspatial</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -52,7 +52,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="..//index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -80,33 +80,31 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Rename sf column</h1>
+    <h1>Degrees and Decimal Minutes to Decimal Degrees</h1>
     </div>
 
     
-    <p>Renames the active geometry column.</p>
+    <p>Degrees and Decimal Minutes to Decimal Degrees</p>
     
 
-    <pre class="usage"><span class='fu'>ps_rename_sf</span>(<span class='no'>x</span>, <span class='kw'>sf_name</span> <span class='kw'>=</span> <span class='st'>"geometry"</span>)</pre>
+    <pre class="usage"><span class='fu'>ps_ddm2dd</span>(<span class='no'>x</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>The object.</p></td>
-    </tr>
-    <tr>
-      <th>sf_name</th>
-      <td><p>A string of the new column name.</p></td>
+      <td><p>A character vector.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The modified object</p>
+    <p>A numeric vector.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>ps_ddm2dd</span>(<span class='fu'>c</span>(<span class='st'>"70 39.24"</span>, <span class='fl'>NA</span>, <span class='st'>"-56 39.24"</span>))</div><div class='output co'>#&gt; [1]  70.654      NA -56.654</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -114,7 +112,9 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

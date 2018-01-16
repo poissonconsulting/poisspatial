@@ -1,7 +1,7 @@
 Package: poisspatial
 Title: Spatial Functions
-Version: 0.0.0.9018
-Date: 2017-11-14
+Version: 0.0.0.9019
+Date: 2017-01-08
 Authors@R: c(
     person("Joe", "Thorley", email = "joe@poissonconsulting.ca", role = c("aut", "cre")),
     person("Seb", "Dalgarno", role = "aut"))
@@ -10,7 +10,7 @@ License: MIT + file LICENSE
 URL: https://github.com/poissonconsulting/poisspatial
 BugReports: https://github.com/poissonconsulting/poisspatial/issues
 Depends: R (>= 3.3.0)
-Imports: datacheckr,
+Imports: checkr,
          lubridate,
          magrittr,
          nabor,
@@ -27,8 +27,7 @@ Imports: datacheckr,
          raster
 Suggests: testthat,
           covr
-Remotes: poissonconsulting/datacheckr,
-         poissonconsulting/poisutils
+Additional_Repositories: http://poissonconsulting.github.io/drat
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1

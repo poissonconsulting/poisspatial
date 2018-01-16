@@ -87,7 +87,7 @@
     <p>Assumes Longitude and Latitude are in WGS84.</p>
     
 
-    <pre class="usage"><span class='fu'>ps_longlat_to_sfc</span>(<span class='no'>x</span>, <span class='kw'>sfc_name</span> <span class='kw'>=</span> <span class='st'>"geometry"</span>)</pre>
+    <pre class="usage"><span class='fu'>ps_longlat_to_sfc</span>(<span class='no'>x</span>, <span class='kw'>sfc_name</span> <span class='kw'>=</span> <span class='st'>"geometry"</span>, <span class='kw'>activate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -98,7 +98,11 @@
     </tr>
     <tr>
       <th>sfc_name</th>
-      <td><p>A string of the name of the sf column.</p></td>
+      <td><p>A string of the name of the sfc column to create.</p></td>
+    </tr>
+    <tr>
+      <th>activate</th>
+      <td><p>A flag indicating whether to activate the sfc.</p></td>
     </tr>
     </table>
     

@@ -2,12 +2,12 @@
 #'
 #' Assumes Longitude and Latitude are in WGS84.
 #'
+#' @inheritParams ps_coords_to_sfc
 #' @param x The object with columns Latitude and Longitude.
-#' @param sfc_name A string of the name of the sf column.
 #' @return The modified object with Longitude and Latitude removed
 #' @export
-ps_longlat_to_sfc <- function(x, sfc_name = "geometry") {
-  ps_coords_to_sfc(x, coords = c("Longitude", "Latitude"), crs = 4326, sfc_name = sfc_name)
+ps_longlat_to_sfc <- function(x, sfc_name = "geometry", activate = TRUE) {
+  ps_coords_to_sfc(x, coords = c("Longitude", "Latitude"), crs = 4326, sfc_name = sfc_name, activate = activate)
 }
 
 #' Convert sfc column to Longitude and Latitude in WGS84.

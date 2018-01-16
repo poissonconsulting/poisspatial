@@ -4,9 +4,9 @@ test_that("manipulate geometry column", {
   x <- data.frame(X = c(1,1,10), Y = c(1,10,1))
   x$Row <- 2:4
 
-  x <- ps_coords_to_sfc(x, crs = 28992)
+  x <- ps_coords_to_sfc(x, crs = 28992, activate = FALSE)
   expect_identical(ps_sfc_names(x), "geometry")
-  expect_identical(ps_active_sfc_name(x), character(0))
+  expect_identical(ps_active_sfc_name(x) ,character(0))
 
   expect_false(is.sf(x))
   x <- ps_activate_sfc(x, "geometry")

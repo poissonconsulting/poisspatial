@@ -104,7 +104,7 @@ ps_rename_active_sfc <- function(x, new_name = "geometry") {
 #' @export
 ps_remove_sfcs <- function(x, sfc_names = ps_sfc_names(x)){
   if (!is.data.frame(x)) ps_error("x must be a data.frame")
-  check_vector(sfc_names, "", min_length = 0L)
+  check_vector(sfc_names, "")
   if (!any(sfc_names %in% ps_sfc_names(x))) return(x)
 
   if (ps_active_sfc_name(x) %in% sfc_names) x %<>% ps_deactivate_sfc()

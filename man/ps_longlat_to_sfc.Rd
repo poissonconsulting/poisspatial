@@ -4,12 +4,14 @@
 \alias{ps_longlat_to_sfc}
 \title{Convert Longitude and Latitude coordinates to sfc column.}
 \usage{
-ps_longlat_to_sfc(x, sfc_name = "geometry")
+ps_longlat_to_sfc(x, sfc_name = "geometry", activate = TRUE)
 }
 \arguments{
 \item{x}{The object with columns Latitude and Longitude.}
 
-\item{sfc_name}{A string of the name of the sf column.}
+\item{sfc_name}{A string of the name of the sfc column to create.}
+
+\item{activate}{A flag indicating whether to activate the sfc.}
 }
 \value{
 The modified object with Longitude and Latitude removed

@@ -50,7 +50,7 @@ nn1 <- function(x, y) {
 
 #' @export
 ps_nearest.data.frame <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
-  check_vector(by, "")
+  check_vector(by, "", length = c(1, .Machine$integer.max))
   check_unique(by)
   checkor(check_string(dist_col), check_null(dist_col))
 
@@ -67,10 +67,10 @@ ps_nearest.data.frame <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) 
   x %<>% as_data_frame()
   y %<>% as_data_frame()
 
-  check_cols(x, bx)
-  check_cols(y, by)
-  check_rows(x)
-  check_rows(y)
+  check_colnames(x, bx)
+  check_colnames(y, by)
+  check_nrow(x)
+  check_nrow(y)
 
   mx <- d2nm(x, bx)
   my <- d2nm(y, by)
@@ -122,6 +122,7 @@ ps_nearest.sf <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
     colnames %<>% setdiff(dist_col)
     colnames %<>% c(dist_col)
   }
+
   x <- x[colnames]
 
   x %<>% sf::st_as_sf()

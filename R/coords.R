@@ -7,15 +7,17 @@
 #' @param coords A character vector of specifying the two columns with the point information.
 #' @param crs An integer with the EPSG code, or character with proj4string.
 #' @param sfc_name A string of the name of the sfc column to create.
+#' @param activate A flag indicating whether to activate the sfc.
 #' @return The modified object with the coordinates removed
 #' @export
 ps_coords_to_sfc <- function(x, coords = c("X", "Y"),
                              crs = getOption("ps.crs", 4326),
-                             sfc_name = "geometry") {
+                             sfc_name = "geometry",
+                             activate = TRUE) {
   if (!is.data.frame(x)) ps_error("x must inherit from a data.frame")
-  check_vector(coords, "", min_length = 2L, max_length = 2L)
+  check_vector(coords, "", length = 2L)
   check_string(sfc_name)
-  check_cols(x, coords)
+  check_colnames(x, coords)
 
   active_sfc_name <- ps_active_sfc_name(x)
 
@@ -31,8 +33,11 @@ ps_coords_to_sfc <- function(x, coords = c("X", "Y"),
 
   x[[sfc_name]] <- sfc
 
-  if (length(active_sfc_name))
+  if(activate) {
+    x %<>% ps_activate_sfc(sfc_name)
+  } else if (length(active_sfc_name))
     x %<>% ps_activate_sfc(active_sfc_name)
+
   x
 }
 
