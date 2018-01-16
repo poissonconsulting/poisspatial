@@ -98,6 +98,5 @@ test_that("centroid1", {
   expect_true(inherits(cent.pt, "sf"))
   expect_identical(sf::st_crs(cent.pt), sf::st_crs(pt))
   expect_identical(colnames(cent.pt), c("color", "geometry"))
-  # expect_identical(sort(ps_sfc_to_coords(cent.pt)$X), sort(ps_sfc_to_coords(pt)$X))
-  # expect_identical(sort(ps_sfc_to_coords(cent.pt)$Y), sort(ps_sfc_to_coords(pt)$Y))
+  expect_identical(round(ps_sfc_to_coords(cent.pt)$X, 1), round(ps_sfc_to_coords(pt)$X[1:2], 1))
 })
