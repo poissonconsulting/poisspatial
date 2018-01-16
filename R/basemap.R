@@ -41,14 +41,25 @@ ps_sfg_rectangle <- function(x){
 
 #' Create sfc rectangle
 #'
-#' @param x A bbox object (or numeric vector of length 4 indicating xmin, ymin, xmax, ymax).
+#' @inheritParams ps_sfg_rectangle
 #' @inheritParams sf::st_sfc
 #' @return sfc polygon.
 #' @export
-ps_sfc_rectangle <- function(x, ...){
+ps_sfc_rectangle <- function(x, crs){
   sfg <- ps_sfg_rectangle(x)
-  sfc <- st_sfc(sfg)
-  sfc
+  st_sfc(sfg, crs = crs)
+}
+
+#' Create sf rectangle
+#'
+#' @inheritParams ps_sfg_rectangle
+#' @param crs coordinate reference system: integer with the EPSG code, or character with proj4string
+#' @inheritParams sf::st_sfc
+#' @return sfc polygon.
+#' @export
+ps_sf_rectangle <- function(x, crs){
+  sfc <- ps_sfc_rectangle(x, crs = crs)
+  st_sf(sfc)
 }
 
 #' Pad bbox
