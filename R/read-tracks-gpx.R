@@ -65,6 +65,6 @@ ps_read_tracks_gpxs <- function(dir, pattern = "[.]gpx$", recursive = FALSE,
     purrr::imap(function(x, name) {x$file <- name; x}) %>%
     do.call(rbind, .)
 
-  gpx <- gpx[,c("file", "track", "datetime", "geometry")]
+  gpx <- gpx[,c("File", "Track", "DateTime", "geometry")]
   gpx
 }
