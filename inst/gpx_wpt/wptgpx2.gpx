@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<gpx version="1.1" creator="GDAL 2.1.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ogr="http://osgeo.org/gdal" xmlns="http://www.topografix.com/GPX/1/1" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<metadata><bounds minlat="50.243019410000002" minlon="-116.952714909999997" maxlat="50.245365917999997" maxlon="-116.950793070000003"/></metadata>              
+<wpt lat="50.24301941" lon="-116.950886976">
+  <time>0000-00-00T12:04:04Z</time>
+  <name>301</name>
+  <extensions>
+    <ogr:tessellate>-1</ogr:tessellate>
+    <ogr:extrude>0</ogr:extrude>
+    <ogr:visibility>-1</ogr:visibility>
+    <ogr:Date>May 9, 2017</ogr:Date>
+  </extensions>
+</wpt>
+<wpt lat="50.243886199" lon="-116.952396221">
+  <time>0000-00-00T12:00:54Z</time>
+  <name>300</name>
+  <extensions>
+    <ogr:tessellate>-1</ogr:tessellate>
+    <ogr:extrude>0</ogr:extrude>
+    <ogr:visibility>-1</ogr:visibility>
+    <ogr:Date>May 9, 2017</ogr:Date>
+  </extensions>
+</wpt>
+<wpt lat="50.243886199" lon="-116.952396221">
+  <time>0000-00-00T11:59:43Z</time>
+  <name>299</name>
+  <extensions>
+    <ogr:tessellate>-1</ogr:tessellate>
+    <ogr:extrude>0</ogr:extrude>
+    <ogr:visibility>-1</ogr:visibility>
+    <ogr:Date>May 9, 2017</ogr:Date>
+  </extensions>
+</wpt>
+<wpt lat="50.24490345" lon="-116.95271491">
+  <time>0000-00-00T11:55:57Z</time>
+  <name>298</name>
+  <extensions>
+    <ogr:tessellate>-1</ogr:tessellate>
+    <ogr:extrude>0</ogr:extrude>
+    <ogr:visibility>-1</ogr:visibility>
+    <ogr:Date>May 9, 2017</ogr:Date>
+  </extensions>
+</wpt>
+<wpt lat="50.24448488099999" lon="-116.95238659499999">
+  <time>0000-00-00T12:28:51Z</time>
+  <name>297</name>
+  <extensions>
+    <ogr:tessellate>-1</ogr:tessellate>
+    <ogr:extrude>0</ogr:extrude>
+    <ogr:visibility>-1</ogr:visibility>
+    <ogr:Date>Apr 29, 2017</ogr:Date>
+  </extensions>
+</wpt>
+<wpt lat="50.245365918" lon="-116.950862696">
+  <time>0000-00-00T12:20:39Z</time>
+  <name>296</name>
+  <extensions>
+    <ogr:tessellate>-1</ogr:tessellate>
+    <ogr:extrude>0</ogr:extrude>
+    <ogr:visibility>-1</ogr:visibility>
+    <ogr:Date>Apr 29, 2017</ogr:Date>
+  </extensions>
+</wpt>
+<wpt lat="50.245339085" lon="-116.950814071">
+  <time>0000-00-00T12:16:16Z</time>
+  <name>295</name>
+  <extensions>
+    <ogr:tessellate>-1</ogr:tessellate>
+    <ogr:extrude>0</ogr:extrude>
+    <ogr:visibility>-1</ogr:visibility>
+    <ogr:Date>Apr 29, 2017</ogr:Date>
+  </extensions>
+</wpt>
+<wpt lat="50.24522398" lon="-116.95079307">
+  <time>0000-00-00T12:15:13Z</time>
+  <name>294</name>
+  <extensions>
+    <ogr:tessellate>-1</ogr:tessellate>
+    <ogr:extrude>0</ogr:extrude>
+    <ogr:visibility>-1</ogr:visibility>
+    <ogr:Date>Apr 29, 2017</ogr:Date>
+  </extensions>
+</wpt>
+<wpt lat="50.24529274" lon="-116.95083045">
+  <time>0000-00-00T12:15:07Z</time>
+  <name>293</name>
+  <extensions>
+    <ogr:tessellate>-1</ogr:tessellate>
+    <ogr:extrude>0</ogr:extrude>
+    <ogr:visibility>-1</ogr:visibility>
+    <ogr:Date>Apr 29, 2017</ogr:Date>
+  </extensions>
+</wpt>
+<wpt lat="50.24438952500001" lon="-116.952535315">
+  <time>0000-00-00T01:12:12Z</time>
+  <name>292</name>
+  <extensions>
+    <ogr:tessellate>-1</ogr:tessellate>
+    <ogr:extrude>0</ogr:extrude>
+    <ogr:visibility>-1</ogr:visibility>
+    <ogr:Date>Apr 20, 2017</ogr:Date>
+  </extensions>
+</wpt>
+<wpt lat="50.244445718257538" lon="-116.951418620465603">
+  <time>0000-00-00T01:04:38Z</time>
+  <name>291</name>
+  <extensions>
+    <ogr:tessellate>-1</ogr:tessellate>
+    <ogr:extrude>0</ogr:extrude>
+    <ogr:visibility>-1</ogr:visibility>
+    <ogr:Date>Apr 20, 2017</ogr:Date>
+  </extensions>
+</wpt>
+<wpt lat="50.24391552" lon="-116.95087072">
+  <time>0000-00-00T12:17:57Z</time>
+  <name>290</name>
+  <extensions>
+    <ogr:tessellate>-1</ogr:tessellate>
+    <ogr:extrude>0</ogr:extrude>
+    <ogr:visibility>-1</ogr:visibility>
+    <ogr:Date>Apr 11, 2017</ogr:Date>
+  </extensions>
+</wpt>
+<wpt lat="50.24444408" lon="-116.95198169">
+  <time>0000-00-00T12:25:59Z</time>
+  <name>289</name>
+  <extensions>
+    <ogr:tessellate>-1</ogr:tessellate>
+    <ogr:extrude>0</ogr:extrude>
+    <ogr:visibility>-1</ogr:visibility>
+    <ogr:Date>Apr 5, 2017</ogr:Date>
+  </extensions>
+</wpt>
+<wpt lat="50.24432563" lon="-116.95211185">
+  <time>0000-00-00T01:10:18Z</time>
+  <name>288</name>
+  <extensions>
+    <ogr:tessellate>-1</ogr:tessellate>
+    <ogr:extrude>0</ogr:extrude>
+    <ogr:visibility>-1</ogr:visibility>
+    <ogr:Date>Mar 29, 2017</ogr:Date>
+  </extensions>
+</wpt>
+<wpt lat="50.24448211" lon="-116.95242788">
+  <time>0000-00-00T01:08:04Z</time>
+  <name>287</name>
+  <extensions>
+    <ogr:tessellate>-1</ogr:tessellate>
+    <ogr:extrude>0</ogr:extrude>
+    <ogr:visibility>-1</ogr:visibility>
+    <ogr:Date>Mar 29, 2017</ogr:Date>
+  </extensions>
+</wpt>
+<wpt lat="50.24454207" lon="-116.95240762">
+  <time>0000-00-00T12:53:53Z</time>
+  <name>286</name>
+  <extensions>
+    <ogr:tessellate>-1</ogr:tessellate>
+    <ogr:extrude>0</ogr:extrude>
+    <ogr:visibility>-1</ogr:visibility>
+    <ogr:Date>Mar 22, 2017</ogr:Date>
+  </extensions>
+</wpt>
+</gpx>

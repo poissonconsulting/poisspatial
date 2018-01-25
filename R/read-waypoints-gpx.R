@@ -1,14 +1,14 @@
 #' Read GPX
 #'
-#' Reads tracks from a gpx file.
+#' Reads waypoints from a gpx file.
 #'
 #' @param file A string of the path to the file.
 #' @param tz A string of the tz for the date times.
 #' @param crs An integer of the EPSG for the projection of the points.
 #' @return An sf object with a tibble of the datetime and a sfc_POINT geometry of three dimensional points where the third dimension is the elevation in m.
-#' @seealso ps_read_tracks_gpxs
+#' @seealso ps_read_waypoints_gpxs
 #' @export
-ps_read_tracks_gpx <- function(file, tz = getOption("ps.tz", "UTC"), crs = getOption("ps.crs", 4326)) {
+ps_read_waypoints_gpx <- function(file, tz = getOption("ps.tz", "UTC"), crs = getOption("ps.crs", 4326)) {
   check_string(file)
 
   if (!file.exists(file))
@@ -16,37 +16,34 @@ ps_read_tracks_gpx <- function(file, tz = getOption("ps.tz", "UTC"), crs = getOp
 
   gpx <- XML::xmlTreeParse(file, useInternalNodes = TRUE) %>%
     XML::xmlRoot() %>%
-    magrittr::extract("trk")
+    magrittr::extract("wpt")
 
   if (!length(gpx))
-    stop("file '", file, "' does not contain tracks", call. = FALSE)
+    stop("file '", file, "' does not contain waypoints", call. = FALSE)
 
   names(gpx) <- vapply(gpx, xml_value, character(1), name = "name",
                        USE.NAMES = FALSE)
   gpx %<>%
-    lapply(magrittr::extract2, "trkseg") %>%
-    purrr::imap(xml_trkseg_data_frame) %>%
+    purrr::imap(xml_wpt_data_frame) %>%
     do.call(rbind, .) %>%
-    sf::st_as_sf(coords = c("longitude", "latitude", "elevation"), crs = 4326) %>%
+    sf::st_as_sf(coords = c("longitude", "latitude"), crs = 4326) %>%
     sf::st_transform(crs = crs)
 
-  gpx$datetime %<>% lubridate::with_tz(tz)
   gpx
 }
 
 #' Read GPX
 #'
-#' Reads tracks from a gpx file.
+#' Reads waypoints from a gpx file.
 #'
 #' @param dir A string of the directory name.
 #' @param pattern A string of the pattern to use when searching for files.
 #' @param recursive A flag indicating whether to recurse into subdirectories.
-#' @inheritParams ps_read_tracks_gpx
+#' @inheritParams ps_read_waypoints_gpx
 #' @return An sf object with a tibble of the datetime (POSIXct) and the file path (character) and a sfc_POINT geometry of three dimensional points where the third dimension is the elevation in m.
-#' @seealso ps_read_tracks_gpx
+#' @seealso ps_read_waypoints_gpx
 #' @export
-ps_read_tracks_gpxs <- function(dir, pattern = "[.]gpx$", recursive = FALSE,
-                                tz = getOption("ps.tz", "UTC"),
+ps_read_waypoints_gpxs <- function(dir, pattern = "[.]gpx$", recursive = FALSE,
                                 crs = getOption("ps.crs", 4326)) {
   check_string(dir)
   check_string(pattern)
@@ -60,12 +57,13 @@ ps_read_tracks_gpxs <- function(dir, pattern = "[.]gpx$", recursive = FALSE,
 
   if (!length(files)) stop("there are no gpx files", call. = FALSE)
 
-  gpx <- lapply(files, ps_read_tracks_gpx, tz = tz, crs = crs) %>%
+  gpx <- lapply(files, ps_read_waypoints_gpx, crs = crs) %>%
     stats::setNames(sfiles) %>%
     purrr::imap(function(x, name) {x$file <- name; x}) %>%
     do.call(rbind, .)
 
-  gpx <- gpx[,c("file", "track", "datetime", "geometry")] %>%
-    stats::setNames(c("File", "Track", "DateTime", "geometry"))
+  gpx <- gpx[,c("file", "wpt", "geometry")] %>%
+    stats::setNames(c("File", "Waypoint", "geometry"))
   gpx
 }
+

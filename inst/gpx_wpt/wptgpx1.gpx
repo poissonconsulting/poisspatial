@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx version="1.1" xmlns="http://www.topografix.com/GPX/1/1" creator="Canada Maps" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<metadata>
+<name>Waypoints.gpx</name>
+<link href="http://www.atlogis.com">
+<text>ATLOGIS</text>
+</link>
+</metadata>
+<wpt lat="50.244600747" lon="-116.95142077">
+<name>001</name>
+<desc></desc>
+</wpt>
+
+<wpt lat="50.244600747" lon="-116.95142077">
+<name>002</name>
+<desc></desc>
+</wpt>
+
+<wpt lat="50.2446" lon="-116.95142">
+<name>003</name>
+<desc></desc>
+</wpt>
+
+<wpt lat="50.2446" lon="-116.95142">
+<name>004</name>
+<desc></desc>
+</wpt>
+
+<wpt lat="50.2446" lon="-116.95142">
+<name>005</name>
+<desc></desc>
+</wpt>
+
+<wpt lat="50.2446" lon="-116.95142">
+<name>006</name>
+<desc></desc>
+</wpt>
+
+<wpt lat="50.2446" lon="-116.95142">
+<name>007</name>
+<desc></desc>
+</wpt>
+
+<wpt lat="50.2446" lon="-116.951511">
+<name>008</name>
+<desc></desc>
+</wpt>
+
+<wpt lat="50.24329125" lon="-116.95100191">
+<name>009</name>
+<desc></desc>
+</wpt>
+
+<wpt lat="50.24389534" lon="-116.95205181">
+<name>010</name>
+<desc></desc>
+</wpt>
+
+</gpx>

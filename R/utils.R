@@ -112,3 +112,12 @@ xml_trkseg_data_frame <- function(x, track) {
 
   tibble::tibble(track, datetime, elevation, latitude, longitude)
 }
+
+xml_wpt_data_frame <- function(x, wpt) {
+  longitude <- xml_attr(x, "lon") %>%
+    as.numeric()
+  latitude <- xml_attr(x, "lat") %>%
+    as.numeric()
+
+  tibble::tibble(wpt, latitude, longitude)
+}
