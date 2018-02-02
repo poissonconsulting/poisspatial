@@ -1,5 +1,8 @@
 {
-  "@context": ["http://purl.org/codemeta/2.0", "http://schema.org"],
+  "@context": [
+    "http://purl.org/codemeta/2.0",
+    "http://schema.org"
+  ],
   "@type": "SoftwareSourceCode",
   "identifier": "poisspatial",
   "description": "Spatial functions for Poisson Consulting scripts and packages.",
@@ -222,5 +225,5 @@
   ],
   "contIntegration": "https://travis-ci.org/poissonconsulting/poisspatial",
   "readme": "https://github.com/poissonconsulting/poisspatial/blob/master/README.md",
-  "fileSize": "356.328KB"
+  "fileSize": "356.352KB"
 }
