@@ -1,7 +1,6 @@
 language: R
 sudo: required
 cache: packages
-dist: trusty
 
 addons:
   postgresql: "9.6"
