@@ -96,6 +96,13 @@ test_that("centroid1", {
   pt <- rbind(pt, pt[pt$id == 2,])
 
   pt <- ps_sfcs_to_utm(pt)
+  cent.pt <- ps_sfc_centroid1(pt, by = "color")
+  expect_true(inherits(cent.pt$geometry, "sfc_POINT"))
+  expect_true(inherits(cent.pt, "sf"))
+  expect_identical(sf::st_crs(cent.pt), sf::st_crs(pt))
+  expect_identical(colnames(cent.pt), c("color", "geometry"))
+  expect_equal(ps_sfc_to_coords(cent.pt)$X, c(495371, 495334), tolerance = 0.000001)
+
   cent.pt <- ps_sfc_centroid1(pt, by = "color", nearest = TRUE)
   expect_true(inherits(cent.pt$geometry, "sfc_POINT"))
   expect_true(inherits(cent.pt, "sf"))
