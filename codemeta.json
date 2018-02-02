@@ -9,9 +9,9 @@
   "name": "poisspatial: Spatial Functions",
   "codeRepository": "https://github.com/poissonconsulting/poisspatial",
   "issueTracker": "https://github.com/poissonconsulting/poisspatial/issues",
-  "datePublished": "2017-01-25",
+  "datePublished": "2018-02-02",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.0.0.9022",
+  "version": "0.0.0.9023",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
