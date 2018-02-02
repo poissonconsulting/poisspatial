@@ -32,8 +32,10 @@ ps_sfc_centroid1 <- function(x, sfc_name = ps_active_sfc_name(x), by = character
         sf::st_sf(geometry = .))
     if(nearest) {
       x <- x[sfc_name]
+      print(x)
       c %<>% ps_nearest(x) %>%
         ps_deactivate_sfc()
+      print(c)
       c <- c[paste0(sfc_name, ".y")]
       names(c) <- sfc_name
       c %<>% ps_activate_sfc(sfc_name = sfc_name)
