@@ -11,7 +11,7 @@ test_that("works", {
   cent.pt1 <- ps_sfcs_centroid(pt, sfc_names = "geometry")
   cent.pt <- ps_sfcs_centroid(x = pt)
   cent.poly <- ps_sfcs_centroid(poly)
-  cent.1 <- ps_sfcs_centroid(poly, sfc_names = "geometry")
+  cent.1 <- ps_sfcs_centroid(poly, sfc_names = "geometry", union = FALSE)
 
   expect_true(inherits(cent.pt$geometry, "sfc_POINT"))
   expect_true(inherits(cent.poly$geometry, "sfc_POINT"))

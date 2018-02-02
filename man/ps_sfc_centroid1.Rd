@@ -20,5 +20,5 @@ ps_sfc_centroid1(x, sfc_name = ps_active_sfc_name(x), by = character(0),
 Sf object of centroid
 }
 \description{
-Find centroid of POINT sfc
+Uses st_combine as opposed to st_union.
 }

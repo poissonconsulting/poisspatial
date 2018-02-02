@@ -1,5 +1,7 @@
 #' Find centroid of POINT sfc
 #'
+#' Uses st_combine as opposed to st_union.
+#'
 #' @param x The object
 #' @param sfc_name A string of the sfc column name
 #' @param by A character vector of the columns to get the centroid by.
@@ -56,12 +58,14 @@ ps_sfc_centroid1 <- function(x, sfc_name = ps_active_sfc_name(x), by = character
 #'
 #' @param x The object
 #' @param sfc_names A character vector of the sfc column names
+#' @param union A flag indicating whether to use st_union() (the default) versus st_combine()
+#' prior to st_centroid()
 #' @return Sf object of centroid
 #' @export
-ps_sfcs_centroid <- function(x, sfc_names = ps_sfc_names(x)){
+ps_sfcs_centroid <- function(x, sfc_names = ps_sfc_names(x), union = TRUE){
 
-  check_vector(sfc_names, "", length = c(1L, .Machine$integer.max),
-               unique = TRUE)
+  check_vector(sfc_names, "", length = TRUE, unique = TRUE)
+  check_flag(union)
 
   x <- x[sfc_names] %>%
     ps_deactivate_sfc()
@@ -78,9 +82,13 @@ ps_sfcs_centroid <- function(x, sfc_names = ps_sfc_names(x)){
     plyr::ldply() %>%
     dplyr::select(X = 2, Y = 3) %>%
     ps_coords_to_sfc(crs = crs) %>%
-    ps_activate_sfc() %>%
-    sf::st_union() %>%
-    sf::st_centroid())
+    ps_activate_sfc())
+
+    if(union) {
+      c %<>% sf::st_union()
+    } else
+      c %<>% sf::st_combine()
+  c %<>% sf::st_centroid()
 
   sf <- sf::st_sf(geometry = c)
   sf

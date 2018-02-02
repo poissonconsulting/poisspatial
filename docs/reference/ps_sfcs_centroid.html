@@ -89,7 +89,7 @@ For polygon and linestring data, centroid is calculated from vertices.
 Sfc columns must have same crs and should not be longitude/latitude.</p>
     
 
-    <pre class="usage"><span class='fu'>ps_sfcs_centroid</span>(<span class='no'>x</span>, <span class='kw'>sfc_names</span> <span class='kw'>=</span> <span class='fu'><a href='ps_sfc_names.html'>ps_sfc_names</a></span>(<span class='no'>x</span>))</pre>
+    <pre class="usage"><span class='fu'>ps_sfcs_centroid</span>(<span class='no'>x</span>, <span class='kw'>sfc_names</span> <span class='kw'>=</span> <span class='fu'><a href='ps_sfc_names.html'>ps_sfc_names</a></span>(<span class='no'>x</span>), <span class='kw'>union</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -101,6 +101,11 @@ Sfc columns must have same crs and should not be longitude/latitude.</p>
     <tr>
       <th>sfc_names</th>
       <td><p>A character vector of the sfc column names</p></td>
+    </tr>
+    <tr>
+      <th>union</th>
+      <td><p>A flag indicating whether to use st_union() (the default) versus st_combine()
+prior to st_centroid()</p></td>
     </tr>
     </table>
     

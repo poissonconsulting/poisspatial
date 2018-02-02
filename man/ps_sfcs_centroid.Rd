@@ -4,12 +4,15 @@
 \alias{ps_sfcs_centroid}
 \title{Find centroid of sfcs}
 \usage{
-ps_sfcs_centroid(x, sfc_names = ps_sfc_names(x))
+ps_sfcs_centroid(x, sfc_names = ps_sfc_names(x), union = TRUE)
 }
 \arguments{
 \item{x}{The object}
 
 \item{sfc_names}{A character vector of the sfc column names}
+
+\item{union}{A flag indicating whether to use st_union() (the default) versus st_combine()
+prior to st_centroid()}
 }
 \value{
 Sf object of centroid
