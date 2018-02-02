@@ -27,19 +27,13 @@ ps_sfc_centroid1 <- function(x, sfc_name = ps_active_sfc_name(x), by = character
 
   if(!length(by)) {
     suppressWarnings(
-      c <- sf::st_union(x) %>%
+      c <- sf::st_combine(x) %>%
         sf::st_centroid() %>%
         sf::st_sf(geometry = .))
     if(nearest) {
-      print("c")
-      print(c)
       x <- x[sfc_name]
-      print("x")
-      print(x)
       c %<>% ps_nearest(x) %>%
         ps_deactivate_sfc()
-      print("x2")
-      print(c)
       c <- c[paste0(sfc_name, ".y")]
       names(c) <- sfc_name
       c %<>% ps_activate_sfc(sfc_name = sfc_name)
@@ -64,7 +58,6 @@ ps_sfc_centroid1 <- function(x, sfc_name = ps_active_sfc_name(x), by = character
 #' @param sfc_names A character vector of the sfc column names
 #' @return Sf object of centroid
 #' @export
-
 ps_sfcs_centroid <- function(x, sfc_names = ps_sfc_names(x)){
 
   check_vector(sfc_names, "", length = c(1L, .Machine$integer.max),
