@@ -21,8 +21,9 @@ ps_read_waypoints_gpx <- function(file, tz = getOption("ps.tz", "UTC"), crs = ge
   if (!length(gpx))
     stop("file '", file, "' does not contain waypoints", call. = FALSE)
 
-  names(gpx) <- vapply(gpx, xml_value, character(1), name = "name",
+  names(gpx) <- vapply(gpx, xml_value, character(1), name = "time",
                        USE.NAMES = FALSE)
+
   gpx %<>%
     purrr::imap(xml_wpt_data_frame) %>%
     do.call(rbind, .) %>%
