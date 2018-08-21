@@ -118,6 +118,10 @@ xml_wpt_data_frame <- function(x, wpt) {
     as.numeric()
   latitude <- xml_attr(x, "lat") %>%
     as.numeric()
+  datetime <- xml_value(x, "time") %>%
+    strptime("0000-00-00T%H:%M:%SZ", tz = "UTC") %>%
+    as.POSIXct()
 
-  tibble::tibble(wpt, latitude, longitude)
+  tibble::tibble(wpt, datetime, latitude, longitude)
 }
+
