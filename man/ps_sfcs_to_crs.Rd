@@ -4,8 +4,8 @@
 \alias{ps_sfcs_to_crs}
 \title{Reproject sfc columns}
 \usage{
-ps_sfcs_to_crs(x, sfc_names = ps_sfc_names(x), crs = getOption("ps.crs",
-  4326))
+ps_sfcs_to_crs(x, sfc_names = ps_sfc_names(x),
+  crs = getOption("ps.crs", 4326))
 }
 \arguments{
 \item{x}{The object}

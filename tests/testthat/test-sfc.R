@@ -44,5 +44,24 @@ test_that("manipulate geometry column", {
   expect_identical(length(ps_sfc_names(y)), 0L)
   expect_identical(colnames(y), c("Row"))
   expect_true(!is.sf(y))
+
+  ### test when Z column
+  x <- data.frame(X = c(1,1,10), Y = c(1,10,1), Z = c(1, 1, 1))
+  x$Row <- 2:4
+  x <- ps_coords_to_sfc(x, crs = 28992,  coords = c("X", "Y", "Z"), activate = TRUE)
+  expect_length(colnames(sf::st_coordinates(x)), 3L)
+  y <- ps_sfc_to_coords(x)
+  expect_true("Z" %in% names(y))
+  expect_identical(y$Z, c(1, 1, 1))
+
+  ### test when linestring
+  x <- st_linestring(rbind(c(1, 2), c(2, 3), c(9, 7) )) %>%
+    st_sfc(crs = 4326) %>%
+    st_sf()
+  x$Row <- 2
+  y <- ps_sfc_to_coords(x)
+  expect_length(colnames(y), 3L)
+  expect_identical(y$Row, c(2,2,2))
+
 })
 

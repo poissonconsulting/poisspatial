@@ -4,8 +4,8 @@
 \alias{ps_coords_to_sfc}
 \title{Convert point coordinates to sfc column.}
 \usage{
-ps_coords_to_sfc(x, coords = c("X", "Y"), crs = getOption("ps.crs", 4326),
-  sfc_name = "geometry", activate = TRUE)
+ps_coords_to_sfc(x, coords = c("X", "Y"), crs = getOption("ps.crs",
+  4326), sfc_name = "geometry", activate = TRUE)
 }
 \arguments{
 \item{x}{The object.}

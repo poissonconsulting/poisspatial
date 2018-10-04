@@ -4,7 +4,8 @@
 \alias{ps_sfc_to_coords}
 \title{Convert sfc (geometry) to pair of coordinates column.}
 \usage{
-ps_sfc_to_coords(x, sfc_name = ps_active_sfc_name(x), X = "X", Y = "Y")
+ps_sfc_to_coords(x, sfc_name = ps_active_sfc_name(x), X = "X",
+  Y = "Y", Z = "Z")
 }
 \arguments{
 \item{x}{The object with columns}
@@ -14,6 +15,8 @@ ps_sfc_to_coords(x, sfc_name = ps_active_sfc_name(x), X = "X", Y = "Y")
 \item{X}{A string of the name of the X coordinate.}
 
 \item{Y}{A string of the name of the Y coordinate.}
+
+\item{Z}{A string of the name of the Z coordinate.}
 }
 \value{
 The modified object with the sfc column removed

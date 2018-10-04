@@ -5,8 +5,8 @@
 \title{Load spatial files}
 \usage{
 ps_load_spatial(dir = ".", pattern = NULL, recursive = FALSE,
-  crs = NULL, rename = identity, envir = parent.frame(), fun = identity,
-  ...)
+  crs = NULL, rename = identity, envir = parent.frame(),
+  fun = identity, ...)
 }
 \arguments{
 \item{dir}{A string of the directory.}

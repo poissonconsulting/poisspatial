@@ -4,8 +4,9 @@
 \alias{ps_batch_transform}
 \title{Batch transform}
 \usage{
-ps_batch_transform(in_dir, out_dir, recursive = T, in_pattern = "[.]shp$",
-  out_pattern = ".sqlite", in_crs = NULL, out_crs = NULL)
+ps_batch_transform(in_dir, out_dir, recursive = T,
+  in_pattern = "[.]shp$", out_pattern = ".sqlite", in_crs = NULL,
+  out_crs = NULL)
 }
 \arguments{
 \item{in_dir}{A string of the path to the directory containing spatial files.}

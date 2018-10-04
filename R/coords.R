@@ -15,7 +15,7 @@ ps_coords_to_sfc <- function(x, coords = c("X", "Y"),
                              sfc_name = "geometry",
                              activate = TRUE) {
   if (!is.data.frame(x)) ps_error("x must inherit from a data.frame")
-  check_vector(coords, "", length = 2L)
+  check_vector(coords, "", length = 2L:3L)
   check_string(sfc_name)
   check_colnames(x, coords)
 
@@ -23,13 +23,25 @@ ps_coords_to_sfc <- function(x, coords = c("X", "Y"),
 
   x %<>% ps_deactivate_sfc()
 
-  sfc <- matrix(c(x[[coords[1]]], x[[coords[2]]]), ncol = 2) %>%
-    sf::st_multipoint(dim = "XY") %>%
-    sf::st_sfc(crs = crs) %>%
-    sf::st_cast("POINT")
+  if(length(coords) == 2L){
+    sfc <- matrix(c(x[[coords[1]]], x[[coords[2]]]), ncol = 2) %>%
+      sf::st_multipoint(dim = "XY") %>%
+      sf::st_sfc(crs = crs) %>%
+      sf::st_cast("POINT")
+  }
+
+  if(length(coords) == 3L){
+    sfc <- matrix(c(x[[coords[1]]], x[[coords[2]]], x[[coords[3]]]), ncol = 3) %>%
+      sf::st_multipoint(dim = "XYZ") %>%
+      sf::st_sfc(crs = crs) %>%
+      sf::st_cast("POINT")
+  }
 
   x[coords[1]] <- NULL
   x[coords[2]] <- NULL
+  if(length(coords) == 3L){
+    x[coords[3]] <- NULL
+  }
 
   x[[sfc_name]] <- sfc
 
@@ -47,13 +59,23 @@ ps_coords_to_sfc <- function(x, coords = c("X", "Y"),
 #' @param sfc_name A string of the sfc name.
 #' @param X A string of the name of the X coordinate.
 #' @param Y A string of the name of the Y coordinate.
+#' @param Z A string of the name of the Z coordinate.
 #' @return The modified object with the sfc column removed
 #' @export
-ps_sfc_to_coords <- function(x, sfc_name = ps_active_sfc_name(x), X = "X", Y = "Y") {
+ps_sfc_to_coords <- function(x, sfc_name = ps_active_sfc_name(x), X = "X", Y = "Y", Z = "Z") {
   if (!is.data.frame(x)) ps_error("x must inherit from a data.frame")
   check_string(sfc_name)
   check_string(X)
   check_string(Y)
+  check_string(Z)
+
+  if(!(class(x[[sfc_name]])[[1]] %in% c("sfc_LINESTRING", "sfc_MULTILINESTRING", "sfc_POINT", "sfc_MULTIPOINT"))){
+    ps_error("sfc_name '", sfc_name, "' must be point or linestring")
+  }
+
+  if(class(x[[sfc_name]])[[1]] %in% c("sfc_LINESTRING", "sfc_MULTILINESTRING")){
+    x <- st_cast(x, "POINT")
+  }
 
   if (!sfc_name %in% ps_sfc_names(x))
     ps_error("sfc_name '", sfc_name, "' is not an sfc column")
@@ -64,6 +86,11 @@ ps_sfc_to_coords <- function(x, sfc_name = ps_active_sfc_name(x), X = "X", Y = "
 
   x[[X]] <- coords[,"X",drop = TRUE]
   x[[Y]] <- coords[,"Y",drop = TRUE]
+
+  if("Z" %in% colnames(coords)){
+    x[[Z]] <- coords[,"Z",drop = TRUE]
+  }
+
   x[[sfc_name]] <- NULL
 
   x

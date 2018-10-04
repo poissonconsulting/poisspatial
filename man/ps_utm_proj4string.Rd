@@ -4,7 +4,8 @@
 \alias{ps_utm_proj4string}
 \title{Get UTM proj4string}
 \usage{
-ps_utm_proj4string(x, sfc_name = ps_active_sfc_name(x), datum = "WGS84")
+ps_utm_proj4string(x, sfc_name = ps_active_sfc_name(x),
+  datum = "WGS84")
 }
 \arguments{
 \item{x}{A sf object}
