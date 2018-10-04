@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-[![stability-experimental](https://img.shields.io/badge/stability-experimental-orange.svg)](https://github.com/joethorley/stability-badges#experimental)
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![Travis-CI Build
 Status](https://travis-ci.org/poissonconsulting/poisspatial.svg?branch=master)](https://travis-ci.org/poissonconsulting/poisspatial)
 [![AppVeyor Build
@@ -10,7 +10,6 @@ Status](https://ci.appveyor.com/api/projects/status/github/poissonconsulting/poi
 Status](https://img.shields.io/codecov/c/github/poissonconsulting/poisspatial/master.svg)](https://codecov.io/github/poissonconsulting/poisspatial?branch=master)
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/poisspatial)](https://cran.r-project.org/package=poisspatial)
 
 # poisspatial
 

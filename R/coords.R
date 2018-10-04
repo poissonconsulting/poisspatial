@@ -74,7 +74,7 @@ ps_sfc_to_coords <- function(x, sfc_name = ps_active_sfc_name(x), X = "X", Y = "
   }
 
   if(class(x[[sfc_name]])[[1]] %in% c("sfc_LINESTRING", "sfc_MULTILINESTRING")){
-    x <- st_cast(x, "POINT")
+    x <- st_cast(x, warn = FALSE, "POINT")
   }
 
   if (!sfc_name %in% ps_sfc_names(x))
