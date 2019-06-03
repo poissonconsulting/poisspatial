@@ -63,14 +63,17 @@ ps_utm_zone <- function(x, sfc_name = ps_active_sfc_name(x)) {
   long <- coords$X
   lat <- coords$Y
 
-  zone <- if(lat >= 56 && lat < 64 && long >= 3 && long < 12){x <- 32} else if(
-    lat >= 72 && lat < 84 && long >= 0 && long < 9) {x <- 31} else if(
-      lat >= 72 && lat < 84 && long >= 9 && long < 21) {x <- 33} else if(
-        lat >= 72 && lat < 84 && long >= 21 && long < 33) {x <- 35} else if(
-          lat >= 72 && lat < 84 && long >= 33 && long < 42) {x <- 37} else{
-            x <- (floor((long + 180)/6) %% 60) + 1
-          }
-  zone
+  get_zone <- function(lat, long){
+    if(lat >= 56 && lat < 64 && long >= 3 && long < 12){x <- 32} else if(
+      lat >= 72 && lat < 84 && long >= 0 && long < 9) {x <- 31} else if(
+        lat >= 72 && lat < 84 && long >= 9 && long < 21) {x <- 33} else if(
+          lat >= 72 && lat < 84 && long >= 21 && long < 33) {x <- 35} else if(
+            lat >= 72 && lat < 84 && long >= 33 && long < 42) {x <- 37} else{
+              x <- (floor((long + 180)/6) %% 60) + 1
+            }
+  }
+
+  purrr::map2_dbl(lat, long, get_zone)
 }
 
 #' Get UTM proj4string
