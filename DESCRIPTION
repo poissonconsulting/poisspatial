@@ -1,14 +1,11 @@
 Package: poisspatial
 Title: Spatial Functions
-Version: 0.0.0.9025
-Date: 2018-10-04
+Version: 0.0.0.9026
 Authors@R: c(
     person("Joe", "Thorley", email = "joe@poissonconsulting.ca", role = c("aut", "cre")),
     person("Seb", "Dalgarno", role = "aut"))
 Description: Spatial functions for Poisson Consulting scripts and packages.
 License: MIT + file LICENSE
-URL: https://github.com/poissonconsulting/poisspatial
-BugReports: https://github.com/poissonconsulting/poisspatial/issues
 Depends: R (>= 3.3.0)
 Imports: checkr,
          lubridate,
@@ -27,7 +24,9 @@ Imports: checkr,
          raster
 Suggests: testthat,
           covr
-Additional_Repositories: http://poissonconsulting.github.io/drat
+Remotes: poissonconsulting/poisutils
+URL: https://github.com/poissonconsulting/poisspatial
+BugReports: https://github.com/poissonconsulting/poisspatial/issues
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
