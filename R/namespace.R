@@ -6,5 +6,5 @@
 #' @importFrom stats setNames
 #' @importFrom ggmap get_map
 #' @importFrom utils setTxtProgressBar txtProgressBar
-
+#' @importFrom dplyr right_join
 NULL

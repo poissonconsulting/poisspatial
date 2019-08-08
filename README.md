@@ -19,8 +19,8 @@ data.
 ## Installation
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("poissonconsulting/poisspatial")
+# install.packages("remotes")
+remotes::install_github("poissonconsulting/poisspatial")
 ```
 
 ## Contribution

@@ -64,4 +64,3 @@ test_that("manipulate geometry column", {
   expect_identical(y$Row, c(2,2,2))
 
 })
-

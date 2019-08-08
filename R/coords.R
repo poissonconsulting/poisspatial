@@ -23,27 +23,38 @@ ps_coords_to_sfc <- function(x, coords = c("X", "Y"),
 
   x %<>% ps_deactivate_sfc()
 
+  x$..ID_coords <- 1:nrow(x)
+
+  y <- x[!is.na(x[[coords[1]]]) & !is.na(x[[coords[2]]]),]
+
   if(length(coords) == 2L){
-    sfc <- matrix(c(x[[coords[1]]], x[[coords[2]]]), ncol = 2) %>%
+
+    sfc <- matrix(c(y[[coords[1]]], y[[coords[2]]]), ncol = 2) %>%
       sf::st_multipoint(dim = "XY") %>%
       sf::st_sfc(crs = crs) %>%
       sf::st_cast("POINT")
   }
 
   if(length(coords) == 3L){
-    sfc <- matrix(c(x[[coords[1]]], x[[coords[2]]], x[[coords[3]]]), ncol = 3) %>%
+      y <- y[!is.na(y[[coords[3]]]),]
+
+      sfc <- matrix(c(y[[coords[1]]], y[[coords[2]]], y[[coords[3]]]), ncol = 3) %>%
       sf::st_multipoint(dim = "XYZ") %>%
       sf::st_sfc(crs = crs) %>%
       sf::st_cast("POINT")
   }
 
-  x[coords[1]] <- NULL
-  x[coords[2]] <- NULL
+  y[coords[1]] <- NULL
+  y[coords[2]] <- NULL
   if(length(coords) == 3L){
-    x[coords[3]] <- NULL
+    y[coords[3]] <- NULL
   }
 
-  x[[sfc_name]] <- sfc
+  y[[sfc_name]] <- sfc
+  x <- x["..ID_coords"]
+
+  x <- right_join(y, x, by = "..ID_coords")
+  x$..ID_coords <- NULL
 
   if(activate) {
     x %<>% ps_activate_sfc(sfc_name)

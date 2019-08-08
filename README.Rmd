@@ -25,8 +25,8 @@ The `poisspatial` R package provides functions for manipulating spatial data.
 ## Installation
 
 ```{r gh-installation, eval = FALSE}
-# install.packages("devtools")
-devtools::install_github("poissonconsulting/poisspatial")
+# install.packages("remotes")
+remotes::install_github("poissonconsulting/poisspatial")
 ```
 
 ## Contribution
