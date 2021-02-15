@@ -1,5 +1,3 @@
-context("add-z")
-
 test_that("elevation data can be added to a specified sfc column", {
   ptz <- readRDS(system.file("sf/ptz.rds", package = "poisspatial"))
   # check that error when no active sfc name and sfc_column not specified

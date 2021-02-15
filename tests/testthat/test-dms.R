@@ -1,5 +1,3 @@
-context("dms")
-
 test_that("dms", {
   expect_identical(ps_dd2ddm(c(70.654, NA, -56.654)),
                    c("70 39.2399999999998", NA, "-56 39.2400000000002"))

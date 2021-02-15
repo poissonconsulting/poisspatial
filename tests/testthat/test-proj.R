@@ -1,5 +1,3 @@
-context("proj")
-
 test_that("works", {
 
   pt <- readRDS(system.file("sf/pt.rds", package = "poisspatial"))

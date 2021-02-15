@@ -1,5 +1,3 @@
-context("nearest")
-
 test_that("nearest data.frame 1", {
 
   x <- data.frame(Date = ISOdate(2000, 1, c(1, 4, 9)))

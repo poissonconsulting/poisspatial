@@ -1,5 +1,3 @@
-context("read-waypoints-gpxs")
-
 test_that("works", {
 
   wpts <- ps_read_waypoints_gpxs(system.file("gpx_wpt", package = "poisspatial"), recursive = TRUE)

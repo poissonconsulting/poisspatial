@@ -1,5 +1,3 @@
-context("load")
-
 test_that("can load multiple spatial files and files of a certain type", {
   dir <- system.file("files", package = "poisspatial")
 

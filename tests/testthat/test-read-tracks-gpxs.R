@@ -1,5 +1,3 @@
-context("read-tracks-gpxs")
-
 test_that("works", {
 
   tracks <- ps_read_tracks_gpxs(system.file("gpx", package = "poisspatial"), tz = "PST8PDT", recursive = TRUE)

@@ -1,5 +1,3 @@
-context("basemap")
-
 test_that("basemap related functions work", {
 
   pt <- readRDS(system.file("sf/pt.rds", package = "poisspatial")) %>%

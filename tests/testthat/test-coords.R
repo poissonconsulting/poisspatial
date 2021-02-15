@@ -1,5 +1,3 @@
-context("coords")
-
 test_that("ps_coords_to_sfc when missnig values", {
   x <- data.frame(X = c(1,1,10), Y = c(1,10,1))
   x$Row <- 2:4

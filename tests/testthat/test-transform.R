@@ -1,5 +1,3 @@
-context("transform")
-
 test_that("batch transform", {
   x <- data.frame(X = c(1,1,10), Y = c(1,10,1))
   x$Row <- 2:4
