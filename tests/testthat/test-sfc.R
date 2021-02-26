@@ -50,7 +50,7 @@ test_that("manipulate geometry column", {
   expect_length(colnames(sf::st_coordinates(x)), 3L)
   y <- ps_sfc_to_coords(x)
   expect_true("Z" %in% names(y))
-  expect_identical(y$Z, c(1, 1, 1))
+  expect_identical(y$Z, c("1" = 1, "2" = 1, "3" = 1))
 
   ### test when linestring
   x <- st_linestring(rbind(c(1, 2), c(2, 3), c(9, 7) )) %>%
