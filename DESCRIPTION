@@ -22,11 +22,11 @@ Imports:
     plyr,
     rgdal,
     ggmap,
-    raster,
-    units
+    raster
 Suggests: 
     testthat,
-    covr
+    covr,
+    units
 Remotes: 
     poissonconsulting/poisutils
 URL: https://github.com/poissonconsulting/poisspatial
