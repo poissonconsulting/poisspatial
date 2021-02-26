@@ -71,8 +71,9 @@ test_that("centroid1", {
   expect_true(inherits(cent.pt, "sf"))
   expect_identical(sf::st_crs(cent.pt), sf::st_crs(pt))
   expect_identical(colnames(cent.pt), c("color", "geometry"))
-  expect_equal(ps_sfc_to_coords(cent.pt)$X, c(-117.0646, -117.0651), tolerance = 0.000001)
-  expect_equal(ps_sfc_to_coords(cent.pt)$Y, c(50.00692, 50.00524), tolerance = 0.000001)
+
+  expect_equal(ps_sfc_to_coords(cent.pt)$X, c("1" = -117.0646, "2" =-117.0651), tolerance = 0.000001)
+  expect_equal(ps_sfc_to_coords(cent.pt)$Y, c("1" = 50.00692, "2" = 50.00524), tolerance = 0.000001)
 
   cent.pt <- ps_sfc_centroid1(pt, nearest = TRUE)
   expect_true(inherits(cent.pt$geometry, "sfc_POINT"))
@@ -87,8 +88,8 @@ test_that("centroid1", {
   expect_true(inherits(cent.pt, "sf"))
   expect_identical(sf::st_crs(cent.pt), sf::st_crs(pt))
   expect_identical(colnames(cent.pt), c("color", "geometry"))
-  expect_equal(sort(ps_sfc_to_coords(cent.pt)$X), c(-117.0646, -117.0647), tolerance = 0.000001)
-  expect_equal(sort(ps_sfc_to_coords(cent.pt)$Y), c(50.00627, 50.00692),
+  expect_equal(sort(ps_sfc_to_coords(cent.pt)$X), c("2" = -117.0646, "1" =  -117.0647), tolerance = 0.000001)
+  expect_equal(sort(ps_sfc_to_coords(cent.pt)$Y), c("2" = 50.00627, "1" = 50.00692),
                    tolerance = 0.000001)
 
   pt <- rbind(pt, pt[pt$id == 2,])
@@ -99,12 +100,12 @@ test_that("centroid1", {
   expect_true(inherits(cent.pt, "sf"))
   expect_identical(sf::st_crs(cent.pt), sf::st_crs(pt))
   expect_identical(colnames(cent.pt), c("color", "geometry"))
-  expect_equal(ps_sfc_to_coords(cent.pt)$X, c(495371, 495345), tolerance = 0.000001)
+  expect_equal(ps_sfc_to_coords(cent.pt)$X, c("1" = 495371, "2" = 495345), tolerance = 0.000001)
 
   cent.pt <- ps_sfc_centroid1(pt, by = "color", nearest = TRUE)
   expect_true(inherits(cent.pt$geometry, "sfc_POINT"))
   expect_true(inherits(cent.pt, "sf"))
   expect_identical(sf::st_crs(cent.pt), sf::st_crs(pt))
   expect_identical(colnames(cent.pt), c("color", "geometry"))
-  expect_equal(ps_sfc_to_coords(cent.pt)$X, c(495371, 495367), tolerance = 0.000001)
+  expect_equal(ps_sfc_to_coords(cent.pt)$X, c("1" = 495371, "2" = 495367), tolerance = 0.000001)
 })
