@@ -25,7 +25,8 @@ Imports:
     raster
 Suggests: 
     testthat,
-    covr
+    covr,
+    units
 Remotes: 
     poissonconsulting/poisutils
 URL: https://github.com/poissonconsulting/poisspatial
