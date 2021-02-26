@@ -7,24 +7,27 @@ Authors@R: c(
 Description: Spatial functions for Poisson Consulting scripts and packages.
 License: MIT + file LICENSE
 Depends: R (>= 3.3.0)
-Imports: checkr,
-         lubridate,
-         magrittr,
-         nabor,
-         purrr,
-         poisutils,
-         sf,
-         stats,
-         tibble,
-         XML,
-         dplyr,
-         plyr,
-         rgdal,
-         ggmap,
-         raster
-Suggests: testthat,
-          covr
-Remotes: poissonconsulting/poisutils
+Imports: 
+    checkr,
+    lubridate,
+    magrittr,
+    nabor,
+    purrr,
+    poisutils,
+    sf,
+    stats,
+    tibble,
+    XML,
+    dplyr,
+    plyr,
+    rgdal,
+    ggmap,
+    raster
+Suggests: 
+    testthat,
+    covr
+Remotes: 
+    poissonconsulting/poisutils
 URL: https://github.com/poissonconsulting/poisspatial
 BugReports: https://github.com/poissonconsulting/poisspatial/issues
 Encoding: UTF-8
