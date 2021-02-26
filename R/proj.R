@@ -89,9 +89,9 @@ ps_utm_proj4string <- function(x, sfc_name = ps_active_sfc_name(x), datum = "WGS
 
   prj <- purrr::map2_chr(zone, lat, function(y, z){
     if (z >= 0){
-      paste0("+proj=utm +zone=", y, " +datum=", datum, " +units=m +no_defs")
+      paste0("+proj=utm +zone=", y, " +datum=", datum, " +units=m +no_defs +type=crs")
     } else{
-      paste0("+proj=utm +zone=", y, " +south", " +datum=", datum, " +units=m +no_defs")
+      paste0("+proj=utm +zone=", y, " +south", " +datum=", datum, " +units=m +no_defs +type=crs")
     }})
   prj
 }
