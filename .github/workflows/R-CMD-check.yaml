@@ -2,6 +2,7 @@ on:
   push:
     branches:
       - master
+      - fix
   pull_request:
     branches:
       - master
