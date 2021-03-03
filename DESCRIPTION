@@ -21,14 +21,14 @@ Imports:
     dplyr,
     plyr,
     rgdal,
-    raster
+    raster,
+    ggmap
 Suggests: 
     testthat,
     covr,
     units
 Remotes: 
-    poissonconsulting/poisutils,
-    dkahle/ggmap
+    poissonconsulting/poisutils
 URL: https://github.com/poissonconsulting/poisspatial
 BugReports: https://github.com/poissonconsulting/poisspatial/issues
 Encoding: UTF-8
