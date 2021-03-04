@@ -21,8 +21,8 @@ Imports:
     dplyr,
     plyr,
     rgdal,
-    ggmap,
-    raster
+    raster,
+    ggmap
 Suggests: 
     testthat,
     covr,

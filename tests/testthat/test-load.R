@@ -32,7 +32,7 @@ test_that("spatial database loads", {
   rename <- toupper
   trans <- function(x) {sf::st_transform(x, 3005)}
   ikeda <- ps_load_spatial_db(path = path, rename = rename, fun = trans)
-  expect_identical(sf::st_crs(SITE)$proj4string, "+proj=aea +lat_1=50 +lat_2=58.5 +lat_0=45 +lon_0=-126 +x_0=1000000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs")
+  expect_identical(sf::st_crs(SITE)$proj4string, "+proj=aea +lat_0=45 +lon_0=-126 +lat_1=50 +lat_2=58.5 +x_0=1000000 +y_0=0 +datum=NAD83 +units=m +no_defs")
   l <- ls()
   expect_true(any(l %in% c("CREEK", "SITE", "IKEDA")))
 })
