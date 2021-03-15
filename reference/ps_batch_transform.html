@@ -123,9 +123,15 @@ and sets crs if does not already exist. Files are projected to new crs and writt
 to output directory with specified extension and file format (allows any extension recognised by sf::st_write function).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ps_batch_transform</span><span class='op'>(</span><span class='va'>in_dir</span>, <span class='va'>out_dir</span>, recursive <span class='op'>=</span> <span class='cn'>T</span>,
-  in_pattern <span class='op'>=</span> <span class='st'>"[.]shp$"</span>, out_pattern <span class='op'>=</span> <span class='st'>".sqlite"</span>, in_crs <span class='op'>=</span> <span class='cn'>NULL</span>,
-  out_crs <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>ps_batch_transform</span><span class='op'>(</span>
+  <span class='va'>in_dir</span>,
+  <span class='va'>out_dir</span>,
+  recursive <span class='op'>=</span> <span class='cn'>T</span>,
+  in_pattern <span class='op'>=</span> <span class='st'>"[.]shp$"</span>,
+  out_pattern <span class='op'>=</span> <span class='st'>".sqlite"</span>,
+  in_crs <span class='op'>=</span> <span class='cn'>NULL</span>,
+  out_crs <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
