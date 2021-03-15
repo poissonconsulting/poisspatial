@@ -4,8 +4,7 @@
 \alias{ps_fwa_layers}
 \title{FWA layers}
 \usage{
-ps_fwa_layers(gdb = "FWA_BC.gdb",
-  dir = "~/Poisson/Data/spatial/fwa/gdb/")
+ps_fwa_layers(gdb = "FWA_BC.gdb", dir = "~/Poisson/Data/spatial/fwa/gdb/")
 }
 \arguments{
 \item{gdb}{A character string vector indicating FWA geodatabases to extract layers from.

@@ -4,8 +4,12 @@
 \alias{ps_sfc_centroid1}
 \title{Find centroid of POINT sfc}
 \usage{
-ps_sfc_centroid1(x, sfc_name = ps_active_sfc_name(x),
-  by = character(0), nearest = FALSE)
+ps_sfc_centroid1(
+  x,
+  sfc_name = ps_active_sfc_name(x),
+  by = character(0),
+  nearest = FALSE
+)
 }
 \arguments{
 \item{x}{The object}

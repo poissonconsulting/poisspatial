@@ -4,8 +4,12 @@
 \alias{ps_read_waypoints_gpxs}
 \title{Read GPX}
 \usage{
-ps_read_waypoints_gpxs(dir, pattern = "[.]gpx$", recursive = FALSE,
-  crs = getOption("ps.crs", 4326))
+ps_read_waypoints_gpxs(
+  dir,
+  pattern = "[.]gpx$",
+  recursive = FALSE,
+  crs = getOption("ps.crs", 4326)
+)
 }
 \arguments{
 \item{dir}{A string of the directory name.}

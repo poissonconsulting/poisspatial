@@ -4,8 +4,7 @@
 \alias{ps_fwa_shortcuts}
 \title{FWA shortcuts}
 \usage{
-ps_fwa_shortcuts(gdb = "FWA_BC.gdb",
-  dir = "~/Poisson/Data/spatial/fwa/gdb/")
+ps_fwa_shortcuts(gdb = "FWA_BC.gdb", dir = "~/Poisson/Data/spatial/fwa/gdb/")
 }
 \arguments{
 \item{gdb}{A character string vector indicating FWA geodatabases to extract layer shortcuts from.}

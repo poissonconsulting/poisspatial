@@ -5,9 +5,15 @@
 \title{Load spatial database
 Any spatial database format readable by sf::st_read is acceptable.}
 \usage{
-ps_load_spatial_db(path = "~/Poisson/Data/spatial/fwa/gdb/FWA_BC.gdb",
-  layers = NULL, crs = NULL, rename = identity,
-  envir = parent.frame(), fun = identity, ...)
+ps_load_spatial_db(
+  path = "~/Poisson/Data/spatial/fwa/gdb/FWA_BC.gdb",
+  layers = NULL,
+  crs = NULL,
+  rename = identity,
+  envir = parent.frame(),
+  fun = identity,
+  ...
+)
 }
 \arguments{
 \item{path}{A string of the path to the spatial database.}

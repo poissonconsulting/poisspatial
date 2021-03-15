@@ -4,8 +4,12 @@
 \alias{ps_read_fwa}
 \title{Read a FWA layer.}
 \usage{
-ps_read_fwa(shortcut = NULL, gdb = "FWA_BC.gdb",
-  layer = "FWA_COASTLINES_SP", dir = "~/Poisson/Data/spatial/fwa/gdb/")
+ps_read_fwa(
+  shortcut = NULL,
+  gdb = "FWA_BC.gdb",
+  layer = "FWA_COASTLINES_SP",
+  dir = "~/Poisson/Data/spatial/fwa/gdb/"
+)
 }
 \arguments{
 \item{shortcut}{A character string indicating shortcut name of layer to read (layer stripped of 'FWA_' and '_POLY' or '_SP').

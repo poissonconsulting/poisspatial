@@ -4,8 +4,11 @@
 \alias{ps_read_tracks_gpx}
 \title{Read GPX}
 \usage{
-ps_read_tracks_gpx(file, tz = getOption("ps.tz", "UTC"),
-  crs = getOption("ps.crs", 4326))
+ps_read_tracks_gpx(
+  file,
+  tz = getOption("ps.tz", "UTC"),
+  crs = getOption("ps.crs", 4326)
+)
 }
 \arguments{
 \item{file}{A string of the path to the file.}

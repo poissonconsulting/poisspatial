@@ -4,8 +4,13 @@
 \alias{ps_sfc_add_z}
 \title{Add elevation (Z) to sf points.}
 \usage{
-ps_sfc_add_z(x, sfc_column = ps_active_sfc_name(x),
-  z_column = "Elevation", new_column = NULL, remove_z = TRUE)
+ps_sfc_add_z(
+  x,
+  sfc_column = ps_active_sfc_name(x),
+  z_column = "Elevation",
+  new_column = NULL,
+  remove_z = TRUE
+)
 }
 \arguments{
 \item{x}{A sf object.}

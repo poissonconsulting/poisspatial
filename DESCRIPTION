@@ -28,7 +28,8 @@ Suggests:
     covr,
     units
 Remotes: 
-    poissonconsulting/poisutils
+    poissonconsulting/poisutils,
+    dkahle/ggmap
 URL: https://github.com/poissonconsulting/poisspatial
 BugReports: https://github.com/poissonconsulting/poisspatial/issues
 Encoding: UTF-8
