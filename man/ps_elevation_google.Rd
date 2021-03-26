@@ -7,6 +7,7 @@
 ps_elevation_google(
   x,
   sfc_name = ps_active_sfc_name(x),
+  Z = "Z",
   key = Sys.getenv("GOOGLE_MAPS_ELEVATION_API_KEY")
 )
 }
@@ -14,6 +15,8 @@ ps_elevation_google(
 \item{x}{The sf object.}
 
 \item{sfc_name}{A string of the sfc column name.}
+
+\item{Z}{A string of the name of the Z coordinate.}
 
 \item{key}{The string of the google maps elevation api key.}
 }
