@@ -90,6 +90,5 @@ test_that("nearest sf with X and Y and reprojection", {
   expect_identical(class(n), c("sf", "data.frame"))
   expect_identical(colnames(n), c("X", "Row", "D", "geometry", "geometry.y"))
   expect_identical(n$geometry, x$geometry)
-  expect_equal(n$D, c(0.999960142739643, 4.99990310533304, 94.1329294416483))
+  expect_equal(n$D, c(0.999960142739643, 4.99990310533304, 94.1329294416483), tolerance = 1e-05)
 })
-
