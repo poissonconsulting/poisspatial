@@ -126,6 +126,7 @@
     <pre class="usage"><span class='fu'>ps_elevation_google</span><span class='op'>(</span>
   <span class='va'>x</span>,
   sfc_name <span class='op'>=</span> <span class='fu'><a href='ps_active_sfc_name.html'>ps_active_sfc_name</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>,
+  Z <span class='op'>=</span> <span class='st'>"Z"</span>,
   key <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"GOOGLE_MAPS_ELEVATION_API_KEY"</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
@@ -139,6 +140,10 @@
     <tr>
       <th>sfc_name</th>
       <td><p>A string of the sfc column name.</p></td>
+    </tr>
+    <tr>
+      <th>Z</th>
+      <td><p>A string of the name of the Z coordinate.</p></td>
     </tr>
     <tr>
       <th>key</th>
