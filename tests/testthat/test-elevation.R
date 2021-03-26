@@ -31,10 +31,5 @@ test_that("ps_elevation_google missing values", {
   e <- ps_elevation_google(x)
   expect_identical(colnames(e), c("Row", "geometry", "Z"))
   expect_identical(e[c("Row", "geometry")], x[c("Row", "geometry")])
-  expect_equal(e$Z, c(135.154434204102, 135.305969238281, NA))
-
-  e <- ps_elevation_google(x, Z = "thing")
-  expect_identical(colnames(e), c("Row", "geometry", "thing"))
-  expect_identical(e[c("Row", "geometry")], x[c("Row", "geometry")])
-  expect_equal(e$thing, c(135.154434204102, 135.305969238281, NA))
+  expect_equal(e$Z, c(135.154434204102, NA, 135.305969238281))
 })

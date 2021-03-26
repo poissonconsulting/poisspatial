@@ -57,6 +57,7 @@ ps_coords_to_sfc <- function(x, coords = c("X", "Y"),
 
   x <- right_join(y, x, by = "..ID_coords")
   x <- x[colnames]
+  x <- x[order(x$..ID_coords),]
   x$..ID_coords <- NULL
 
   if(activate) {
