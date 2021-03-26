@@ -35,7 +35,7 @@ ps_sfc_centroid1 <- function(x, sfc_name = ps_active_sfc_name(x), by = character
     if(nearest) {
       x <- x[sfc_name]
       c %<>% ps_nearest(x) %>%
-        ps_deactivate_sfc()
+        tibble::as_tibble()
       c <- c[paste0(sfc_name, ".y")]
       names(c) <- sfc_name
       c %<>% ps_activate_sfc(sfc_name = sfc_name)
@@ -68,7 +68,7 @@ ps_sfcs_centroid <- function(x, sfc_names = ps_sfc_names(x), union = TRUE){
   check_flag(union)
 
   x <- x[sfc_names] %>%
-    ps_deactivate_sfc()
+    tibble::as_tibble()
 
   if(!ps_equal_crs(x)) ps_error("Sfcs must have same crs.")
   if(any(purrr::map_lgl(x, is_longlat))) ps_warning("Centroids not accurate for long/lat data.")

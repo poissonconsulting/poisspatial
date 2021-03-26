@@ -21,7 +21,7 @@ ps_coords_to_sfc <- function(x, coords = c("X", "Y"),
 
   active_sfc_name <- ps_active_sfc_name(x)
 
-  x %<>% ps_deactivate_sfc()
+  x %<>% tibble::as_tibble()
 
   x$..ID_coords <- 1:nrow(x)
 
@@ -94,12 +94,12 @@ ps_sfc_to_coords <- function(x, sfc_name = ps_active_sfc_name(x), X = "X", Y = "
   if (!sfc_name %in% ps_sfc_names(x))
     ps_error("sfc_name '", sfc_name, "' is not an sfc column")
 
-  if (identical(sfc_name, ps_active_sfc_name(x))) x %<>% ps_deactivate_sfc()
+  if (identical(sfc_name, ps_active_sfc_name(x))) x %<>% tibble::as_tibble()
 
   coords <- sf::st_coordinates(x[[sfc_name]])
 
-  x[[X]] <- coords[,"X",drop = TRUE]
-  x[[Y]] <- coords[,"Y",drop = TRUE]
+  x[[X]] <- unname(coords[,"X",drop = TRUE])
+  x[[Y]] <- unname(coords[,"Y",drop = TRUE])
 
   if("Z" %in% colnames(coords)){
     x[[Z]] <- coords[,"Z",drop = TRUE]

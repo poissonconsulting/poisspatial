@@ -62,6 +62,8 @@ ps_activate_sfc <- function(x, sfc_name = "geometry"){
 #' @export
 #'
 ps_deactivate_sfc <- function(x){
+  lifecycle::deprecate_soft("0.0.0.9027", "ps_deactivate_sfc()", "tibble::as_tibble()")
+
   if (identical(ps_active_sfc_name(x), character(0))) return(x)
 
   x %<>%
@@ -86,7 +88,7 @@ ps_rename_active_sfc <- function(x, new_name = "geometry") {
   if (identical(new_name, active_sfc_name))
     return(x)
 
-  x %<>% ps_deactivate_sfc()
+  x %<>% tibble::as_tibble()
 
   x[new_name] <- x[active_sfc_name]
   x[active_sfc_name] <- NULL
@@ -107,7 +109,7 @@ ps_remove_sfcs <- function(x, sfc_names = ps_sfc_names(x)){
   check_vector(sfc_names, "")
   if (!any(sfc_names %in% ps_sfc_names(x))) return(x)
 
-  if (ps_active_sfc_name(x) %in% sfc_names) x %<>% ps_deactivate_sfc()
+  if (ps_active_sfc_name(x) %in% sfc_names) x %<>% tibble::as_tibble()
 
   sfc_names %<>% intersect(ps_sfc_names(x))
   x <- x[ , setdiff(colnames(x), sfc_names)]

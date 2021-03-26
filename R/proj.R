@@ -13,7 +13,7 @@ ps_sfcs_to_crs <- function(x, sfc_names = ps_sfc_names(x),
   if (!length(sfc_names)) return(x)
 
   active_sfc_name <- ps_active_sfc_name(x)
-  x %<>% ps_deactivate_sfc()
+  x %<>% tibble::as_tibble()
 
   x <- purrr::modify_at(x, .at = sfc_names, .f = sf::st_transform, crs)
 
@@ -37,7 +37,7 @@ ps_sfcs_to_wgs84 <- function(x, sfc_names = ps_sfc_names(x)) {
 #' @param sfc_names A character vector of the sfc column names
 #' @return Logical
 ps_equal_crs <- function(x, sfc_names = ps_sfc_names(x)) {
-  x %<>% ps_deactivate_sfc()
+  x %<>% tibble::as_tibble()
   x <- x[sfc_names]
   crs <- purrr::map2(x, sfc_names, function(y, z){
     c <- ps_get_proj4string(y[z])

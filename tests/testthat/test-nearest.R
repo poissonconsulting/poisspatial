@@ -36,7 +36,7 @@ test_that("nearest data.frame 2", {
   expect_identical(colnames(n), c("X", "Y", "X.y", "Y.y", "D"))
   expect_identical(n$X, x$X)
   expect_identical(n$Y, x$Y)
-  expect_equal(n$D, c(0, 6.103278, 5.830952), tolerance = 0.000001)
+  expect_equal(n$D, c(0, 6.10327780786685, 5.8309518948453))
 })
 
 test_that("nearest sf", {
@@ -55,7 +55,7 @@ test_that("nearest sf", {
   expect_identical(class(n), c("sf", "data.frame"))
   expect_identical(colnames(n), c("Row", "D", "geometry", "geometry.y"))
   expect_identical(n$geometry, x$GEOMETRY)
-  expect_equal(n$D, c(0, 6.103278, 5.830952), tolerance = 0.000001)
+  expect_equal(n$D, c(0, 6.10327780786685, 5.8309518948453))
 })
 
 test_that("nearest sf with data.frame", {
@@ -70,7 +70,7 @@ test_that("nearest sf with data.frame", {
   expect_identical(class(n), c("sf", "data.frame"))
   expect_identical(colnames(n), c("X", "Y", "Row", "D", "geometry"))
   expect_identical(n$geometry, x$geometry)
-  expect_equal(n$D, c(0, 6.103278, 5.830952), tolerance = 0.000001)
+  expect_equal(n$D, c(0, 6.10327780786685, 5.8309518948453))
 })
 
 test_that("nearest sf with X and Y and reprojection", {
@@ -90,6 +90,6 @@ test_that("nearest sf with X and Y and reprojection", {
   expect_identical(class(n), c("sf", "data.frame"))
   expect_identical(colnames(n), c("X", "Row", "D", "geometry", "geometry.y"))
   expect_identical(n$geometry, x$geometry)
-  expect_equal(n$D, c(1.00000, 5.00000, 94.13288), tolerance = 0.00001)
+  expect_equal(n$D, c(0.999960142739643, 4.99990310533304, 94.1329294416483))
 })
 
