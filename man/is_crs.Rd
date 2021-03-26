@@ -17,5 +17,6 @@ Is CRS
 }
 \examples{
 is_crs("blah")
-is_crs("+init=epsg:3857")
+is_crs("epsg:3857")
+is_crs(3857)
 }

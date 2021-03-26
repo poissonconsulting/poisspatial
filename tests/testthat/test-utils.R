@@ -7,7 +7,7 @@ test_that("utils", {
   expect_identical(ps_active_sfc_name(x), "geometry")
 
   expect_true(is_crs(28992))
-  expect_true(is_crs("+init=epsg:28992"))
+  expect_true(is_crs("epsg:28992"))
 
   epsg <- ps_get_epsg(x)
   expect_identical(epsg, 28992L)
