@@ -51,11 +51,11 @@ nn1 <- function(x, y) {
 #' @export
 ps_nearest.data.frame <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
   check_vector(by, "", length = c(1, .Machine$integer.max))
-  check_unique(by)
-  checkor(check_string(dist_col), check_null(dist_col))
+  chk_unique(by)
+  chkor(chk_string(dist_col), chk_null(dist_col))
 
   if (!is.null(names(by))) {
-    check_unique(names(by))
+    chk_unique(names(by))
     bx <- names(by)
     names(by) <- NULL
   } else
@@ -67,8 +67,8 @@ ps_nearest.data.frame <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) 
   x %<>% as_data_frame()
   y %<>% as_data_frame()
 
-  check_colnames(x, bx)
-  check_colnames(y, by)
+  check_names(x, bx)
+  check_names(y, by)
   check_nrow(x)
   check_nrow(y)
 

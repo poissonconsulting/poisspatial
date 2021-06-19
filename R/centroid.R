@@ -12,11 +12,11 @@ ps_sfc_centroid1 <- function(x, sfc_name = ps_active_sfc_name(x), by = character
                              nearest = FALSE){
 
   check_data(x)
-  check_string(sfc_name)
-  check_colnames(x, sfc_name)
-  check_vector(by, "")
-  check_colnames(x, by)
-  check_flag(nearest)
+  chk_string(sfc_name)
+  check_names(x, sfc_name)
+  chk_vector(by)
+  check_names(x, by)
+  chk_flag(nearest)
 
   if(sfc_name %in% by) ps_error("sfc_name cannot be in by")
 
@@ -64,8 +64,9 @@ ps_sfc_centroid1 <- function(x, sfc_name = ps_active_sfc_name(x), by = character
 #' @export
 ps_sfcs_centroid <- function(x, sfc_names = ps_sfc_names(x), union = TRUE){
 
-  check_vector(sfc_names, "", length = TRUE, unique = TRUE)
-  check_flag(union)
+  chk_vector(sfc_names)
+  chk_unique(sfc_names)
+  chk_flag(union)
 
   x <- x[sfc_names] %>%
     tibble::as_tibble()
