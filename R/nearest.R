@@ -69,8 +69,8 @@ ps_nearest.data.frame <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) 
 
   check_names(x, bx)
   check_names(y, by)
-  check_nrow(x)
-  check_nrow(y)
+  check_data(x)
+  check_data(y)
 
   mx <- d2nm(x, bx)
   my <- d2nm(y, by)
