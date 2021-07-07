@@ -9,7 +9,7 @@
 #' @seealso ps_read_waypoints_gpxs
 #' @export
 ps_read_waypoints_gpx <- function(file, tz = getOption("ps.tz", "UTC"), crs = getOption("ps.crs", 4326)) {
-  check_string(file)
+  chk_string(file)
 
   if (!file.exists(file))
     stop("file '", file, "' does not exist.", call. = FALSE)
@@ -46,9 +46,9 @@ ps_read_waypoints_gpx <- function(file, tz = getOption("ps.tz", "UTC"), crs = ge
 #' @export
 ps_read_waypoints_gpxs <- function(dir, pattern = "[.]gpx$", recursive = FALSE,
                                 crs = getOption("ps.crs", 4326)) {
-  check_string(dir)
-  check_string(pattern)
-  check_flag(recursive)
+  chk_string(dir)
+  chk_string(pattern)
+  chk_flag(recursive)
 
   if (!dir.exists(dir))
     stop("directory '", dir, "' does not exist", call. = FALSE)

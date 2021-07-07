@@ -1,7 +1,6 @@
-#' @import checkr
 #' @importFrom poisutils ps_error ps_warning
 #' @importFrom magrittr %<>% %>%
-#' @import sf
+#' @import sf chk
 #' @importFrom grDevices col2rgb
 #' @importFrom stats setNames
 #' @importFrom ggmap get_map

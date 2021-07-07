@@ -15,9 +15,11 @@ ps_coords_to_sfc <- function(x, coords = c("X", "Y"),
                              sfc_name = "geometry",
                              activate = TRUE) {
   if (!is.data.frame(x)) ps_error("x must inherit from a data.frame")
-  check_vector(coords, "", length = 2L:3L)
-  check_string(sfc_name)
-  check_colnames(x, coords)
+  chk_vector(coords)
+  check_values(coords, "")
+  check_dim(coords, values = c(2L:3L))
+  check_names(x, coords)
+  chk_string(sfc_name)
 
   active_sfc_name <- ps_active_sfc_name(x)
 
@@ -79,10 +81,10 @@ ps_coords_to_sfc <- function(x, coords = c("X", "Y"),
 #' @export
 ps_sfc_to_coords <- function(x, sfc_name = ps_active_sfc_name(x), X = "X", Y = "Y", Z = "Z") {
   if (!is.data.frame(x)) ps_error("x must inherit from a data.frame")
-  check_string(sfc_name)
-  check_string(X)
-  check_string(Y)
-  check_string(Z)
+  chk_string(sfc_name)
+  chk_string(X)
+  chk_string(Y)
+  chk_string(Z)
 
   if(!(class(x[[sfc_name]])[[1]] %in% c("sfc_LINESTRING", "sfc_MULTILINESTRING", "sfc_POINT", "sfc_MULTIPOINT"))){
     ps_error("sfc_name '", sfc_name, "' must be point or linestring")

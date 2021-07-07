@@ -11,7 +11,7 @@ ps_elevation_google <- function(x, sfc_name = ps_active_sfc_name(x),
                                 key = Sys.getenv("GOOGLE_MAPS_ELEVATION_API_KEY")) {
   y <- ps_sfc_to_longlat(x, sfc_name = sfc_name) # does checking
   chk::chk_string(key)
-  check_string(Z)
+  chk_string(Z)
 
 
   if(!nrow(x)) {

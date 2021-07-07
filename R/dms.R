@@ -8,7 +8,8 @@
 #' @examples
 #' ps_dd2ddm(c(70.654, NA, -56.654))
 ps_dd2ddm <- function(x) {
-  check_vector(x, c(-180, 180, NA))
+  chk_vector(x)
+  check_values(x, c(-180, 180, NA))
   negative <- x < 0
   x %<>% abs()
   d <- floor(x)
@@ -29,7 +30,8 @@ ps_dd2ddm <- function(x) {
 #' @examples
 #' ps_dm2mds(c(10.654, NA))
 ps_dm2mds <- function(x) {
-  check_vector(x, c(0, 60, NA))
+  chk_vector(x)
+  check_values(x, c(0, 60, NA))
   negative <- x < 0
   m <- floor(x)
   ds <- (x - m) * 60
@@ -48,7 +50,8 @@ ps_dm2mds <- function(x) {
 #' @examples
 #' ps_dd2dmds(c(70.654, NA, -56.654))
 ps_dd2dmds <- function(x) {
-  check_vector(x, c(-180, 180, NA))
+  chk_vector(x)
+  check_values(x, c(-180, 180, NA))
   negative <- x < 0
   x %<>% abs()
   d <- floor(x)
@@ -70,7 +73,8 @@ ps_dd2dmds <- function(x) {
 #' @examples
 #' ps_ddm2dd(c("70 39.24", NA, "-56 39.24"))
 ps_ddm2dd <- function(x) {
-  check_vector(x, c("", NA))
+  chk_vector(x)
+  check_values(x, c("", NA))
   x %<>% strsplit(" ")
   length <- vapply(x, length, 1L)
   if(any(length > 2))

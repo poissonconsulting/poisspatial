@@ -52,7 +52,7 @@ ps_equal_crs <- function(x, sfc_names = ps_sfc_names(x)) {
 #' @param sfc_name A character string indicating name of sfc column.
 #' @return A numeric vector of UTM zone(s).
 ps_utm_zone <- function(x, sfc_name = ps_active_sfc_name(x)) {
-  check_string(sfc_name)
+  chk_string(sfc_name)
 
   if (!sfc_name %in% ps_sfc_names(x)) ps_error("column '", sfc_name,"' is not an sfc column")
 

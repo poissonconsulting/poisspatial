@@ -15,9 +15,9 @@ ps_load_spatial <- function(dir = ".", pattern = NULL, recursive = FALSE,
                             crs = NULL, rename = identity,
                             envir = parent.frame(), fun = identity, ...) {
 
-  check_string(dir)
-  if(!is.null(pattern)){check_string(pattern)}
-  check_flag(recursive)
+  chk_string(dir)
+  if(!is.null(pattern)){chk_string(pattern)}
+  chk_flag(recursive)
   if(!is_crs(crs)) ps_error("must provide a valid crs.")
 
   if (!is.function(rename)) ps_error("rename must be a function")
@@ -85,7 +85,7 @@ ps_load_spatial <- function(dir = ".", pattern = NULL, recursive = FALSE,
 ps_load_spatial_db <- function(path = "~/Poisson/Data/spatial/fwa/gdb/FWA_BC.gdb", layers = NULL, crs = NULL, rename = identity,
                             envir = parent.frame(), fun = identity, ...) {
 
-  check_string(path)
+  chk_string(path)
   if(!is_crs(crs)) ps_error("must provide a valid crs.")
   if (!is.function(rename)) ps_error("rename must be a function")
   if (!is.function(fun)) ps_error("fun must be a function")
@@ -137,7 +137,7 @@ ps_fwa_gdbs <- function(dir = "~/Poisson/Data/spatial/fwa/gdb") {
 #' @return A factor of the layer names within specified geodatabase.
 #' @export
 ps_fwa_layers <- function(gdb = "FWA_BC.gdb", dir = "~/Poisson/Data/spatial/fwa/gdb/") {
-  check_string(gdb[1])
+  chk_string(gdb[1])
   if (!dir.exists(dir)) ps_error("directory '", dir, "' does not exist.")
   if(all(!gdb %in% ps_fwa_gdbs())) ps_error("That is not a recognised fwa geodatabase. See ps_fwa_gdbs() for options.")
   x <- purrr::map(gdb, ~ sf::st_layers(dsn = paste0(dir, .))[[1]]) %>%
@@ -178,14 +178,14 @@ ps_read_fwa <- function(shortcut = NULL, gdb = "FWA_BC.gdb",
 
   if(length(gdb) != 1L) ps_error("Please select one geodatabase to read.")
   if(length(layer) != 1L) ps_error("Please select one layer to read.")
-  check_string(layer)
-  check_string(gdb)
+  chk_string(layer)
+  chk_string(gdb)
   if (!dir.exists(dir)) ps_error("directory '", dir, "' does not exist.")
   if(!gdb %in% ps_fwa_gdbs()) ps_error("That is not a recognised fwa geodatabase. See ps_fwa_gdbs() for options.")
   if(all(!layer %in% ps_fwa_layers(gdb = gdb))) ps_error("That layer does not exist in the specified geodatabase. See ps_fwa_layers() for options.")
 
   if(!is.null(shortcut)){
-    check_string(shortcut)
+    chk_string(shortcut)
     if(!shortcut %in% ps_fwa_shortcuts(gdb = ps_fwa_gdbs())) ps_error("Shortcut is not valid. See ps_fwa_shortcuts() for options.")
     layer <- c(paste0("fwa_", shortcut, "_poly"), paste0("fwa_", shortcut, "_sp")) %>%
     toupper
