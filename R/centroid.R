@@ -15,6 +15,7 @@ ps_sfc_centroid1 <- function(x, sfc_name = ps_active_sfc_name(x), by = character
   chk_string(sfc_name)
   check_names(x, sfc_name)
   chk_vector(by)
+  check_values(by, "")
   check_names(x, by)
   chk_flag(nearest)
 
@@ -65,6 +66,8 @@ ps_sfc_centroid1 <- function(x, sfc_name = ps_active_sfc_name(x), by = character
 ps_sfcs_centroid <- function(x, sfc_names = ps_sfc_names(x), union = TRUE){
 
   chk_vector(sfc_names)
+  check_values(sfc_names, "")
+  check_dim(sfc_names, values = TRUE)
   chk_unique(sfc_names)
   chk_flag(union)
 

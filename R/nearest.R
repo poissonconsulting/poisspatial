@@ -50,7 +50,9 @@ nn1 <- function(x, y) {
 
 #' @export
 ps_nearest.data.frame <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
-  check_vector(by, "", length = c(1, .Machine$integer.max))
+  chk_vector(by)
+  check_values(by, "")
+  chk_gte(by, 1)
   chk_unique(by)
   chkor(chk_string(dist_col), chk_null(dist_col))
 

@@ -15,9 +15,11 @@ ps_coords_to_sfc <- function(x, coords = c("X", "Y"),
                              sfc_name = "geometry",
                              activate = TRUE) {
   if (!is.data.frame(x)) ps_error("x must inherit from a data.frame")
-  check_vector(coords,  length = 2L:3L)
-  chk_string(sfc_name)
+  chk_vector(coords)
+  check_values(coords, "")
+  check_dim(coords, values = c(2L:3L))
   check_names(x, coords)
+  chk_string(sfc_name)
 
   active_sfc_name <- ps_active_sfc_name(x)
 
