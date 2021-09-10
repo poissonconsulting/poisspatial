@@ -54,8 +54,7 @@ ps_nearest.data.frame <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) 
   check_values(by, "")
   chk_gte(by, 1)
   chk_unique(by)
-  chkor(chk_string(dist_col), chk_null(dist_col))
-
+  chk_null_or(dist_col, vld = vld_string)
   if (!is.null(names(by))) {
     chk_unique(names(by))
     bx <- names(by)
