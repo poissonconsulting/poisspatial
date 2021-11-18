@@ -88,8 +88,8 @@ test_that("centroid1", {
   expect_true(inherits(cent.pt, "sf"))
   expect_identical(sf::st_crs(cent.pt), sf::st_crs(pt))
   expect_identical(colnames(cent.pt), c("color", "geometry"))
-  expect_equal(sort(ps_sfc_to_coords(cent.pt)$X), c(-117.064654556369, -117.064599603413))
-  expect_equal(sort(ps_sfc_to_coords(cent.pt)$Y), c(50.0062715017257, 50.006919103519))
+  expect_equal(sort(ps_sfc_to_coords(cent.pt)$X), c(-117.0655727986, -117.0645996034))
+  expect_equal(sort(ps_sfc_to_coords(cent.pt)$Y), c(50.00421134984, 50.00691910352))
 
   pt <- rbind(pt, pt[pt$id == 2,])
 
