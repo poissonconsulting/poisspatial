@@ -129,3 +129,52 @@ ps_nearest.sf <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
   x %<>% sf::st_as_sf()
   x
 }
+
+#' Nearest Feature
+#'
+#' Each row in object x is bound with the closest feature in object y.
+#' Uses sf::st_nearest_feature.
+#'
+#' sf objects have their sf (active geometry) column renamed to geometry.
+#'
+#' @param x An sf object.
+#' @param y An sf object.
+#' @param dist_col A string indicating the name of the column to save the distance in.
+#' @param ... Not used
+#' @export
+ps_nearest_feature <- function(x, y, dist_col = NULL, ...) {
+
+  check_data(x)
+  check_data(y)
+  if(!(is.sf(x) & is.sf(y))) err("`x` and `y` must both be sf objects.")
+  chk_null_or(dist_col, vld = vld_string)
+
+
+  x %<>% ps_rename_active_sfc()
+  y %<>% ps_rename_active_sfc()
+  y %<>% sf::st_transform(sf::st_crs(x))
+
+  if(ps_active_sfc_name(y) %in% names(x)){
+    names(y)[names(y) == ps_active_sfc_name(y)] <- paste0(ps_active_sfc_name(y), ".y")
+    st_geometry(y) <- paste0(ps_active_sfc_name(y), ".y")
+  }
+
+  y <- y[st_nearest_feature(x, y), ]
+
+  if(!is.null(dist_col)){
+    if(dist_col %in% names(x)) err("`dist_col`, must not be already present in `names(x)`.")
+    x[dist_col] <- st_distance(x, y, by_element = TRUE)
+  }
+
+  while(any(duplicated(c(names(x), names(y))))) {
+    names(y)[names(y) %in% names(x)] %<>% paste0(".y")
+  }
+
+  x %<>% cbind(y)
+
+  sfc_names <- names(x)[sapply(names(x), function(colname) {is.sfc(x[colname][[1]])})]
+  colnames <- c(names(x)[!names(x) %in% c(sfc_names, dist_col)], dist_col, sfc_names)
+  x <- x[colnames]
+  x %<>% sf::st_as_sf()
+
+}
