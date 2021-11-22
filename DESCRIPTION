@@ -1,6 +1,6 @@
 Package: poisspatial
 Title: Spatial Functions
-Version: 0.0.0.9028
+Version: 0.1.0
 Authors@R: 
     c(person(given = "Joe",
              family = "Thorley",
