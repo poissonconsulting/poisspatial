@@ -56,6 +56,7 @@ test_that("nearest sf", {
   expect_identical(colnames(n), c("Row", "D", "geometry", "geometry.y"))
   expect_identical(n$geometry, x$GEOMETRY)
   expect_equal(n$D, c(0, 6.10327780786685, 5.8309518948453))
+
 })
 
 test_that("nearest sf with data.frame", {
@@ -91,4 +92,13 @@ test_that("nearest sf with X and Y and reprojection", {
   expect_identical(colnames(n), c("X", "Row", "D", "geometry", "geometry.y"))
   expect_identical(n$geometry, x$geometry)
   expect_equal(n$D, c(0.999960142739643, 4.99990310533304, 94.1329294416483), tolerance = 1e-05)
+})
+
+test_that("ps_nearest issues warning for non-point sf objects", {
+
+  pt <- sf::st_read(system.file("gpkg/points.gpkg", package = "poisspatial"))
+  poly <- sf::st_read(system.file("gpkg/polygons.gpkg", package = "poisspatial"))
+
+  expect_warning(ps_nearest(pt, poly), "Distance calculation uses nearest vertex for non-point geometries. Use `ps_nearest_feature` for calculating nearest feature boundary for lines and polygons.")
+
 })

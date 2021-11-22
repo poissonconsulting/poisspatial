@@ -6,7 +6,7 @@
 #' The column(s) to use when calculating the distances are converted to numeric values.
 #' Missing values are currently not permitted.
 #'
-#' sf objects have their sf (active geometry) column renamed to geometry.
+#' sf objects have their sf (active geometry) column renamed to geometry. The nearest calculation for non-point sf objects is based on feature vertices.
 #'
 #' @param x A data.frame, tibble or sf object.
 #' @param y A data.frame, tibble or sf object.
@@ -106,8 +106,11 @@ ps_nearest.tbl_df <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
 #' @export
 ps_nearest.sf <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
   x %<>% ps_rename_active_sfc()
-  if (is.sf(y))
+  warn_geom_non_point(x)
+  if (is.sf(y)) {
     y %<>% ps_rename_active_sfc()
+    warn_geom_non_point(y)
+  }
 
   colnames <- c(colnames(x), colnames(y))
 

@@ -37,5 +37,4 @@ expect_error(ps_nearest_feature(poly, pt, dist_col = "ID"),
 expect_error(ps_nearest_feature(poly, pt %>% tibble::as_tibble(), dist_col = "ID"),
              "`x` and `y` must both be sf objects.")
 
-
 })
