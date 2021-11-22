@@ -162,7 +162,7 @@ ps_nearest_feature <- function(x, y, dist_col = NULL, ...) {
   y <- y[st_nearest_feature(x, y), ]
 
   if(!is.null(dist_col)){
-    if(dist_col %in% names(x)) err("`dist_col`, must not be already present in `names(x)`.")
+    if(dist_col %in% names(x)) err("`dist_col` must not already be present in `names(x)`")
     x[dist_col] <- st_distance(x, y, by_element = TRUE)
   }
 
