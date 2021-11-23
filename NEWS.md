@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# poisspatial 0.1.0.9000 (2021-11-23)
+
+- Same as previous version.
+
+
 # poisspatial 0.1.0 (2021-11-22)
 
 - Added `ps_nearest_feature` for joining nearest based on polygon and line sf feature boundaries.
