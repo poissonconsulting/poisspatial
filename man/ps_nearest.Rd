@@ -25,5 +25,5 @@ Uses the nabor package.
 The column(s) to use when calculating the distances are converted to numeric values.
 Missing values are currently not permitted.
 
-sf objects have their sf (active geometry) column renamed to geometry.
+sf objects have their sf (active geometry) column renamed to geometry. The nearest calculation for non-point sf objects is based on feature vertices.
 }
