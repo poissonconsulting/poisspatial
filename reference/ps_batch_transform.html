@@ -57,37 +57,52 @@ to output directory with specified extension and file format (allows any extensi
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ps_batch_transform</span><span class="op">(</span>
-  <span class="va">in_dir</span>,
-  <span class="va">out_dir</span>,
-  recursive <span class="op">=</span> <span class="cn">T</span>,
-  in_pattern <span class="op">=</span> <span class="st">"[.]shp$"</span>,
-  out_pattern <span class="op">=</span> <span class="st">".sqlite"</span>,
-  in_crs <span class="op">=</span> <span class="cn">NULL</span>,
-  out_crs <span class="op">=</span> <span class="cn">NULL</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ps_batch_transform</span><span class="op">(</span></span>
+<span>  <span class="va">in_dir</span>,</span>
+<span>  <span class="va">out_dir</span>,</span>
+<span>  recursive <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>  in_pattern <span class="op">=</span> <span class="st">"[.]shp$"</span>,</span>
+<span>  out_pattern <span class="op">=</span> <span class="st">".sqlite"</span>,</span>
+<span>  in_crs <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  out_crs <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>in_dir</dt>
 <dd><p>A string of the path to the directory containing spatial files.</p></dd>
+
+
 <dt>out_dir</dt>
 <dd><p>A string of the path to the directory that output files will be saved to.</p></dd>
+
+
 <dt>recursive</dt>
 <dd><p>A logical specifying whether to search directory recursively.</p></dd>
+
+
 <dt>in_pattern</dt>
 <dd><p>A string of the pattern to use when searching for input files.</p></dd>
+
+
 <dt>out_pattern</dt>
 <dd><p>A string of the extension specifying which file format output files will be saved to.</p></dd>
+
+
 <dt>in_crs</dt>
 <dd><p>An integer of the EPSG that files are currently in (only set if crs not currently already present).</p></dd>
+
+
 <dt>out_crs</dt>
 <dd><p>An integer of the EPSG that files will be transformed to.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Files with specified crs and extension written to output directory.</p>
+    
+
+<p>Files with specified crs and extension written to output directory.</p>
     </div>
 
   </div>
@@ -102,7 +117,7 @@ to output directory with specified extension and file format (allows any extensi
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.9000.</p>
 </div>
 
       </footer></div>

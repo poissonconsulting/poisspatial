@@ -57,22 +57,29 @@ Sfc columns must have same crs and should not be longitude/latitude.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ps_sfcs_centroid</span><span class="op">(</span><span class="va">x</span>, sfc_names <span class="op">=</span> <span class="fu"><a href="ps_sfc_names.html">ps_sfc_names</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, union <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ps_sfcs_centroid</span><span class="op">(</span><span class="va">x</span>, sfc_names <span class="op">=</span> <span class="fu"><a href="ps_sfc_names.html">ps_sfc_names</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, union <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>The object</p></dd>
+
+
 <dt>sfc_names</dt>
 <dd><p>A character vector of the sfc column names</p></dd>
+
+
 <dt>union</dt>
 <dd><p>A flag indicating whether to use st_union() (the default) versus st_combine()
 prior to st_centroid()</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Sf object of centroid</p>
+    
+
+<p>Sf object of centroid</p>
     </div>
 
   </div>
@@ -87,7 +94,7 @@ prior to st_centroid()</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.9000.</p>
 </div>
 
       </footer></div>
