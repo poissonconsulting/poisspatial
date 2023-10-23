@@ -107,7 +107,7 @@ ps_utm_note <- function(x, sfc_name = ps_active_sfc_name(x), datum = "WGS84") {
 
   prj <- ps_utm_proj4string(x)
 
-  epsg <- rgdal::make_EPSG()
+  epsg <- poisspatial::epsg
   chr <-  purrr::map_chr(prj, function(y){
     note <- epsg[epsg$prj4 == y, "note"]
     note <- note[!is.na(note)] %>%
