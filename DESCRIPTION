@@ -18,7 +18,7 @@ License: MIT + file LICENSE
 URL: https://github.com/poissonconsulting/poisspatial
 BugReports: https://github.com/poissonconsulting/poisspatial/issues
 Depends: 
-    R (>= 4.0)
+    R (>= 3.6)
 Imports: 
     chk,
     dplyr,
@@ -31,7 +31,6 @@ Imports:
     poisutils,
     purrr,
     raster,
-    rgdal,
     googleway,
     sf,
     stats,
@@ -40,11 +39,12 @@ Imports:
 Suggests: 
     covr,
     testthat,
-    units
+    units,
+    usethis
 Remotes: 
     dkahle/ggmap,
     poissonconsulting/poisutils
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)

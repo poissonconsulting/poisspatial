@@ -3,10 +3,9 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![R build
-status](https://github.com/poissonconsulting/poisspatial/workflows/R-CMD-check/badge.svg)](https://github.com/poissonconsulting/poisspatial/actions)
+[![R-CMD-check](https://github.com/poissonconsulting/poisspatial/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/poissonconsulting/poisspatial/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
-coverage](https://codecov.io/gh/poissonconsulting/poisspatial/branch/master/graph/badge.svg)](https://codecov.io/gh/poissonconsulting/poisspatial?branch=master)
+coverage](https://codecov.io/gh/poissonconsulting/poisspatial/branch/master/graph/badge.svg)](https://codecov.io/gh/poissonconsulting/poisspatial?branch=main)
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
