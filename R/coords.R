@@ -8,6 +8,7 @@
 #' @param crs An integer with the EPSG code, or character with proj4string.
 #' @param sfc_name A string of the name of the sfc column to create.
 #' @param activate A flag indicating whether to activate the sfc.
+#' #' @param retain_orig A flag indicating if the input coordinates should be retained as columns in the dataframe.
 #' @return The modified object with the coordinates removed
 #' @export
 ps_coords_to_sfc <- function(x, coords = c("X", "Y"),
@@ -81,6 +82,7 @@ ps_coords_to_sfc <- function(x, coords = c("X", "Y"),
 #' @param X A string of the name of the X coordinate.
 #' @param Y A string of the name of the Y coordinate.
 #' @param Z A string of the name of the Z coordinate.
+#' @param retain_orig A a flag indicating if the input coordinates should be retained as columns in the dataframe.
 #' @return The modified object with the sfc column removed
 #' @export
 ps_sfc_to_coords <- function(x, sfc_name = ps_active_sfc_name(x), X = "X", Y = "Y", Z = "Z", retain_orig = FALSE) {
