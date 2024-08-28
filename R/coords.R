@@ -13,13 +13,15 @@
 ps_coords_to_sfc <- function(x, coords = c("X", "Y"),
                              crs = getOption("ps.crs", 4326),
                              sfc_name = "geometry",
-                             activate = TRUE) {
+                             activate = TRUE,
+                             retain_orig = FALSE) {
   if (!is.data.frame(x)) ps_error("x must inherit from a data.frame")
   chk_vector(coords)
   check_values(coords, "")
   check_dim(coords, values = c(2L:3L))
-  check_names(x, coords)
+  chk::check_names(x, coords)
   chk_string(sfc_name)
+
 
   active_sfc_name <- ps_active_sfc_name(x)
 
@@ -46,10 +48,12 @@ ps_coords_to_sfc <- function(x, coords = c("X", "Y"),
       sf::st_cast("POINT")
   }
 
+  if(!retain_orig){
   y[coords[1]] <- NULL
   y[coords[2]] <- NULL
   if(length(coords) == 3L){
     y[coords[3]] <- NULL
+  }
   }
 
   y[[sfc_name]] <- sfc
@@ -79,7 +83,7 @@ ps_coords_to_sfc <- function(x, coords = c("X", "Y"),
 #' @param Z A string of the name of the Z coordinate.
 #' @return The modified object with the sfc column removed
 #' @export
-ps_sfc_to_coords <- function(x, sfc_name = ps_active_sfc_name(x), X = "X", Y = "Y", Z = "Z") {
+ps_sfc_to_coords <- function(x, sfc_name = ps_active_sfc_name(x), X = "X", Y = "Y", Z = "Z", retain_orig = FALSE) {
   if (!is.data.frame(x)) ps_error("x must inherit from a data.frame")
   chk_string(sfc_name)
   chk_string(X)
@@ -108,7 +112,8 @@ ps_sfc_to_coords <- function(x, sfc_name = ps_active_sfc_name(x), X = "X", Y = "
     x[[Z]] <- coords[,"Z",drop = TRUE]
   }
 
+  if(!retain_orig){
   x[[sfc_name]] <- NULL
-
+  }
   x
 }
