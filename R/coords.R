@@ -22,7 +22,8 @@ ps_coords_to_sfc <- function(x, coords = c("X", "Y"),
   check_dim(coords, values = c(2L:3L))
   chk::check_names(x, coords)
   chk_string(sfc_name)
-
+chk_flag(activate)
+chk_flag(retain_orig)
 
   active_sfc_name <- ps_active_sfc_name(x)
 
