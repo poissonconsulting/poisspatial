@@ -30,7 +30,7 @@ ps_batch_transform <- function(in_dir, out_dir,
 
   pb <- txtProgressBar(min = 0, max = length(filex), style = 3)
 
-  purrr::walk(1:length(filex), function(x){
+  purrr::walk(seq_len(length(filex)), function(x){
 
     setTxtProgressBar(pb, x)
     message("Processing ", length(filex), " files.")
