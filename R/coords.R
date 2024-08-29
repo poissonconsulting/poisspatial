@@ -90,6 +90,7 @@ ps_sfc_to_coords <- function(x, sfc_name = ps_active_sfc_name(x), X = "X", Y = "
   if (!is.data.frame(x)) ps_error("x must inherit from a data.frame")
   chk_string(sfc_name)
   chk_string(X)
+  chk_flag(retain_orig)
   chk_string(Y)
   chk_string(Z)
 
