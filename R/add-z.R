@@ -15,7 +15,7 @@ ps_sfc_add_z <- function(x, sfc_column = ps_active_sfc_name(x), z_column = "Elev
   x %<>% ps_activate_sfc(sfc_column)
   x %<>% cbind(sf::st_coordinates(x))
 
-  sfg <- do.call(list, purrr::map(1:nrow(x), function(y){
+  sfg <- do.call(list, purrr::map(seq_len(nrow(x)), function(y){
     z <- c(x$X[y], x$Y[y], x[[z_column]][y])
     sfg <- sf::st_point(z, dim = "XYZ")
     sfg
