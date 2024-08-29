@@ -26,8 +26,6 @@ ps_sfc_centroid1 <- function(x, sfc_name = ps_active_sfc_name(x), by = character
 
   x %<>% ps_activate_sfc(sfc_name)
 
-  crs <- sf::st_crs(x)
-
   if(!length(by)) {
     suppressWarnings(
       c <- sf::st_combine(x) %>%
