@@ -22,8 +22,9 @@ ps_coords_to_sfc(
 
 \item{sfc_name}{A string of the name of the sfc column to create.}
 
-\item{activate}{A flag indicating whether to activate the sfc.
-#' @param retain_orig A flag indicating if the input coordinates should be retained as columns in the dataframe.}
+\item{activate}{A flag indicating whether to activate the sfc.}
+
+\item{retain_orig}{A flag indicating if the input coordinates should be retained as columns in the dataframe.}
 }
 \value{
 The modified object with the coordinates removed

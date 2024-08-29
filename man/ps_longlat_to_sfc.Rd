@@ -11,8 +11,7 @@ ps_longlat_to_sfc(x, sfc_name = "geometry", activate = TRUE)
 
 \item{sfc_name}{A string of the name of the sfc column to create.}
 
-\item{activate}{A flag indicating whether to activate the sfc.
-#' @param retain_orig A flag indicating if the input coordinates should be retained as columns in the dataframe.}
+\item{activate}{A flag indicating whether to activate the sfc.}
 }
 \value{
 The modified object with Longitude and Latitude removed
