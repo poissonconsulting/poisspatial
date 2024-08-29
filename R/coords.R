@@ -29,7 +29,7 @@ chk_flag(retain_orig)
 
   x %<>% tibble::as_tibble()
 
-  x$..ID_coords <- 1:nrow(x)
+  x$..ID_coords <- seq_len(nrow(x))
 
   y <- x[!is.na(x[[coords[1]]]) & !is.na(x[[coords[2]]]),]
 
@@ -50,12 +50,12 @@ chk_flag(retain_orig)
       sf::st_cast("POINT")
   }
 
-  if(!retain_orig){
-  y[coords[1]] <- NULL
-  y[coords[2]] <- NULL
-  if(length(coords) == 3L){
-    y[coords[3]] <- NULL
-  }
+  if (!retain_orig) {
+    y[coords[1]] <- NULL
+    y[coords[2]] <- NULL
+    if (length(coords) == 3L) {
+      y[coords[3]] <- NULL
+    }
   }
 
   y[[sfc_name]] <- sfc
@@ -116,8 +116,8 @@ ps_sfc_to_coords <- function(x, sfc_name = ps_active_sfc_name(x), X = "X", Y = "
     x[[Z]] <- coords[,"Z",drop = TRUE]
   }
 
-  if(!retain_orig){
-  x[[sfc_name]] <- NULL
+  if(!retain_orig) {
+    x[[sfc_name]] <- NULL
   }
   x
 }
