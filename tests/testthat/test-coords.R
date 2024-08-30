@@ -20,7 +20,6 @@ test_that("ps_coords_to_sfc retain_orig flag keeps input columns when TRUE", {
 
   expect_identical(x$X, y$X)
   expect_identical(x$Y, y$Y)
-
 })
 
 test_that("ps_coords_to_sfc retain_orig flag drops input columns when FALSE", {
@@ -31,7 +30,6 @@ test_that("ps_coords_to_sfc retain_orig flag drops input columns when FALSE", {
 
   expect_identical(is.null(y$X), TRUE)
   expect_identical(is.null(y$Y), TRUE)
-
 })
 
 test_that("ps_sfc_to_coords retain_orig flag keeps input column when TRUE", {
@@ -39,7 +37,6 @@ test_that("ps_sfc_to_coords retain_orig flag keeps input column when TRUE", {
   x$Row <- 2:4
 
   y <- ps_coords_to_sfc(x, crs = 28992, activate = FALSE, retain_orig = TRUE)
-
   Y2 <- ps_sfc_to_coords(y[,"geometry"], sfc_name = "geometry", retain_orig = TRUE)
 
   expect_identical(y$geometry, Y2$geometry)
