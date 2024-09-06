@@ -1,5 +1,27 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# poisspatial 0.2.1 (2024-09-06)
+
+## actions
+
+- Dependencies from source on linux.
+
+## Uncategorized
+
+- Merge pull request #46 from poissonconsulting/f-keepcoords-ghi45.
+
+  F keepcoords ghi45
+  resolves issue https://github.com/poissonconsulting/poisspatial/issues/45
+
+- Merge pull request #43 from poissonconsulting/remove-rgdal.
+
+  Remove rgdal
+
+- Merge pull request #41 from poissonconsulting/rcmd-check.
+
+  update rcdm check
+
+
 # poisspatial 0.2.0 (2024-09-06)
 
 ## actions
@@ -37,4 +59,3 @@
 
 - Added `ps_elevation_google()`.
 - soft deprecate ps_deactivate_sfc()
-
