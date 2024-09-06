@@ -8,24 +8,28 @@
 #' @param crs An integer with the EPSG code, or character with proj4string.
 #' @param sfc_name A string of the name of the sfc column to create.
 #' @param activate A flag indicating whether to activate the sfc.
+#' @param retain_orig A flag indicating if the input coordinates should be retained as columns in the dataframe.
 #' @return The modified object with the coordinates removed
 #' @export
 ps_coords_to_sfc <- function(x, coords = c("X", "Y"),
                              crs = getOption("ps.crs", 4326),
                              sfc_name = "geometry",
-                             activate = TRUE) {
+                             activate = TRUE,
+                             retain_orig = FALSE) {
   if (!is.data.frame(x)) ps_error("x must inherit from a data.frame")
   chk_vector(coords)
   check_values(coords, "")
   check_dim(coords, values = c(2L:3L))
   check_names(x, coords)
   chk_string(sfc_name)
+  chk_flag(activate)
+  chk_flag(retain_orig)
 
   active_sfc_name <- ps_active_sfc_name(x)
 
   x %<>% tibble::as_tibble()
 
-  x$..ID_coords <- 1:nrow(x)
+  x$..ID_coords <- seq_len(nrow(x))
 
   y <- x[!is.na(x[[coords[1]]]) & !is.na(x[[coords[2]]]),]
 
@@ -46,10 +50,12 @@ ps_coords_to_sfc <- function(x, coords = c("X", "Y"),
       sf::st_cast("POINT")
   }
 
-  y[coords[1]] <- NULL
-  y[coords[2]] <- NULL
-  if(length(coords) == 3L){
-    y[coords[3]] <- NULL
+  if (!retain_orig) {
+    y[coords[1]] <- NULL
+    y[coords[2]] <- NULL
+    if (length(coords) == 3L) {
+      y[coords[3]] <- NULL
+    }
   }
 
   y[[sfc_name]] <- sfc
@@ -77,12 +83,14 @@ ps_coords_to_sfc <- function(x, coords = c("X", "Y"),
 #' @param X A string of the name of the X coordinate.
 #' @param Y A string of the name of the Y coordinate.
 #' @param Z A string of the name of the Z coordinate.
+#' @param retain_orig A a flag indicating if the input coordinates should be retained as columns in the dataframe.
 #' @return The modified object with the sfc column removed
 #' @export
-ps_sfc_to_coords <- function(x, sfc_name = ps_active_sfc_name(x), X = "X", Y = "Y", Z = "Z") {
+ps_sfc_to_coords <- function(x, sfc_name = ps_active_sfc_name(x), X = "X", Y = "Y", Z = "Z", retain_orig = FALSE) {
   if (!is.data.frame(x)) ps_error("x must inherit from a data.frame")
   chk_string(sfc_name)
   chk_string(X)
+  chk_flag(retain_orig)
   chk_string(Y)
   chk_string(Z)
 
@@ -108,7 +116,8 @@ ps_sfc_to_coords <- function(x, sfc_name = ps_active_sfc_name(x), X = "X", Y = "
     x[[Z]] <- coords[,"Z",drop = TRUE]
   }
 
-  x[[sfc_name]] <- NULL
-
+  if(!retain_orig) {
+    x[[sfc_name]] <- NULL
+  }
   x
 }

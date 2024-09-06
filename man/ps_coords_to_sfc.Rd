@@ -9,7 +9,8 @@ ps_coords_to_sfc(
   coords = c("X", "Y"),
   crs = getOption("ps.crs", 4326),
   sfc_name = "geometry",
-  activate = TRUE
+  activate = TRUE,
+  retain_orig = FALSE
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ ps_coords_to_sfc(
 \item{sfc_name}{A string of the name of the sfc column to create.}
 
 \item{activate}{A flag indicating whether to activate the sfc.}
+
+\item{retain_orig}{A flag indicating if the input coordinates should be retained as columns in the dataframe.}
 }
 \value{
 The modified object with the coordinates removed

@@ -2,7 +2,7 @@ test_that("nearest data.frame 1", {
 
   x <- data.frame(Date = ISOdate(2000, 1, c(1, 4, 9)))
   y <- data.frame(Date = ISOdate(2000, 1, c(2, 6, 12)))
-  y$Row <- 1:nrow(x)
+  y$Row <- seq_len(nrow(x))
   y$Row2 <- y$Row + 1.5
 
   n <- ps_nearest(x, y, "Date")
@@ -17,7 +17,7 @@ test_that("nearest tbl_df 1", {
 
   x <- tibble::tibble(Date = ISOdate(2000, 1, c(9, 1, 4)))
   y <- data.frame(Date = ISOdate(2000, 1, c(12, 5, 6)))
-  y$Row <- 1:nrow(x)
+  y$Row <- seq_len(nrow(x))
 
   n <- ps_nearest(x, y, "Date", dist_col = "Distance")
   expect_identical(class(n), c("tbl_df", "tbl", "data.frame"))
@@ -43,7 +43,7 @@ test_that("nearest sf", {
   x <- data.frame(X = c(1,1,10), Y = c(1,10,1))
   y <- data.frame(X = c(1,4.5,5,6), Y = c(1,5,4,6))
 
-  y$Row <- 1:nrow(y)
+  y$Row <- seq_len(nrow(y))
 
   x <- sf::st_as_sf(x, coords = c("X", "Y"), crs = 28992)
   y <- sf::st_as_sf(y, coords = c("X", "Y"), crs = 28992)
@@ -63,7 +63,7 @@ test_that("nearest sf with data.frame", {
   x <- data.frame(X = c(1,1,10), Y = c(1,10,1))
   y <- data.frame(X = c(1,4.5,5,6), Y = c(1,5,4,6))
 
-  y$Row <- 1:nrow(y)
+  y$Row <- seq_len(nrow(y))
 
   x <- sf::st_as_sf(x, coords = c("X", "Y"), crs = 28992)
 
@@ -78,7 +78,7 @@ test_that("nearest sf with X and Y and reprojection", {
   x <- data.frame(X = c(1,1,10), Y = c(1,10,1))
   y <- data.frame(X = c(1,4.5,5,6), Y = c(1,5,4,6))
 
-  y$Row <- 1:nrow(y)
+  y$Row <- seq_len(nrow(y))
 
   x <- sf::st_as_sf(x, coords = c("X", "Y"), crs = 28992)
   y <- sf::st_as_sf(y, coords = c("X", "Y"), crs = 28992)

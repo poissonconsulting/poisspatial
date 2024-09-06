@@ -8,7 +8,7 @@
 #' @param rename A function that is used to rename files (after removing extension .csv) before they are passed to make.names.
 #' @param envir The environment to assign the data frames.
 #' @param fun A function that is applied to all sf objects before they are assigned to envir.
-#' @param ... Additional arguments passed to \code{st_read}.
+#' @param ... Additional arguments passed to `st_read`.
 #' @return An invisible character vector of the file names.
 #' @export
 ps_load_spatial <- function(dir = ".", pattern = NULL, recursive = FALSE,
@@ -79,7 +79,7 @@ ps_load_spatial <- function(dir = ".", pattern = NULL, recursive = FALSE,
 #' @param rename A function that is used to rename files (after removing extension .csv) before they are passed to make.names.
 #' @param envir The environment to assign the data frames.
 #' @param fun A function that is applied to all sf objects before they are assigned to envir.
-#' @param ... Additional arguments passed to \code{st_read}.
+#' @param ... Additional arguments passed to `st_read`.
 #' @return An invisible character vector of the layer names.
 #' @export
 ps_load_spatial_db <- function(path = "~/Poisson/Data/spatial/fwa/gdb/FWA_BC.gdb", layers = NULL, crs = NULL, rename = identity,

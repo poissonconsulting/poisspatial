@@ -18,7 +18,7 @@ ps_elevation_google <- function(x, sfc_name = ps_active_sfc_name(x),
     x[[Z]] <- numeric(0)
     return(x)
   }
-  y$..RowID <- 1:nrow(y)
+  y$..RowID <- seq_len(nrow(y))
   z <- y[!is.na(y$Latitude) & !is.na(y$Longitude),]
   if(!nrow(z)) {
     x[[Z]] <- NA_real_
