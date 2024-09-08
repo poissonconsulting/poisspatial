@@ -3,11 +3,10 @@
 # poisspatial 0.2.0 (2024-09-06)
 FULL SENTENCES, match to past tense like below. check all these changes and make sure they happened and what they mean.
 
-- Updated RCMD check. 
-- Dependencies from source on linux.
-- Allows user to retain input columns 
-- Remove rgdal
-
+- RCMD checks were updated. 
+- Dependencies are now loaded from the source files on linux.
+- The dependcey of `rgdal` was removed by storing a hard copy of epsg descriptions instead of retrieving them from `rgdal::make_EPSG()`.
+- Added `retain_orig` boolean flag to `ps_coords_to_sfc()` and `ps_sfc_to_coords()` allowing user to retain input columns if desired. 
 
 # poisspatial 0.1.0 (2021-11-22)
 
