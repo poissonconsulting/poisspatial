@@ -13,4 +13,4 @@
 - Added warning for `ps_nearest()` to inform user that joins are based on feature vertices for line and polygon sf objects
 - Added `Z = "Z"` argument to the function `ps_elevation_google()`.
 - Added `ps_elevation_google()`.
-- The function `ps_deactivate_sfc()` was soft depricated.
+- The function `ps_deactivate_sfc()` was soft deprecated.
