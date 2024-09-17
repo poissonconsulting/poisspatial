@@ -28,8 +28,8 @@ test_that("ps_coords_to_sfc retain_orig flag drops input columns when FALSE", {
 
   y <- ps_coords_to_sfc(x, crs = 28992, activate = FALSE, retain_orig = FALSE)
 
-  expect_identical(is.null(y$X), TRUE)
-  expect_identical(is.null(y$Y), TRUE)
+  suppressWarnings(expect_identical(is.null(y$X), TRUE))
+  suppressWarnings(expect_identical(is.null(y$Y), TRUE))
 })
 
 test_that("ps_sfc_to_coords retain_orig flag keeps input column when TRUE", {
@@ -48,6 +48,6 @@ test_that("ps_sfc_to_coords retain_orig flag keeps input column when TRUE", {
 
   y <- ps_coords_to_sfc(x, crs = 28992, activate = FALSE, retain_orig = FALSE)
 
-  expect_identical(is.null(y$X), TRUE)
-  expect_identical(is.null(y$Y), TRUE)
+  suppressWarnings(expect_identical(is.null(y$X), TRUE))
+  suppressWarnings(expect_identical(is.null(y$Y), TRUE))
 })

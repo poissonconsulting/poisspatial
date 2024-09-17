@@ -1,12 +1,15 @@
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- badges: start -->
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![R-CMD-check](https://github.com/poissonconsulting/poisspatial/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/poissonconsulting/poisspatial/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
-coverage](https://codecov.io/gh/poissonconsulting/poisspatial/branch/master/graph/badge.svg)](https://codecov.io/gh/poissonconsulting/poisspatial?branch=main)
+coverage](https://codecov.io/gh/poissonconsulting/poisspatial/graph/badge.svg)](https://app.codecov.io/gh/poissonconsulting/poisspatial)
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+<!-- badges: end -->
 
 # poisspatial
 
@@ -15,8 +18,10 @@ data.
 
 ## Installation
 
-    # install.packages("remotes")
-    remotes::install_github("poissonconsulting/poisspatial")
+``` r
+# install.packages("remotes")
+remotes::install_github("poissonconsulting/poisspatial")
+```
 
 ## Contribution
 

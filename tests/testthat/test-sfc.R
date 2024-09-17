@@ -26,7 +26,7 @@ test_that("manipulate geometry column", {
   expect_identical(z$Y, c(1, 10, 1))
   z <- ps_sfc_to_coords(z, "geometry.z", "X1", "Y1")
 
-  z <- ps_deactivate_sfc(z)
+  z <- tibble::as_tibble(z)
   expect_false(is.sf(z))
   expect_identical(colnames(z), c("Row", "geometry", "X", "Y", "X1", "Y1"))
 
