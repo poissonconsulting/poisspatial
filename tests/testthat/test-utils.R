@@ -1,5 +1,5 @@
 test_that("utils", {
-  x <- data.frame(X = c(1,1,10), Y = c(1,10,1))
+  x <- data.frame(X = c(1, 1, 10), Y = c(1, 10, 1))
   x$Row <- 2:4
   x <- sf::st_as_sf(x, coords = c("X", "Y"), crs = 28992)
   expect_true(is.sf(x))

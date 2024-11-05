@@ -1,5 +1,5 @@
 test_that("batch transform", {
-  x <- data.frame(X = c(1,1,10), Y = c(1,10,1))
+  x <- data.frame(X = c(1, 1, 10), Y = c(1, 10, 1))
   x$Row <- 2:4
   x <- sf::st_as_sf(x, coords = c("X", "Y"), crs = 28992)
   dir.create("in")
@@ -33,5 +33,4 @@ test_that("batch transform", {
   unlink("out", recursive = T)
   unlink("out2", recursive = T)
   unlink("out3", recursive = T)
-
 })

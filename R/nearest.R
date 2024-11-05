@@ -59,11 +59,13 @@ ps_nearest.data.frame <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) 
     chk_unique(names(by))
     bx <- names(by)
     names(by) <- NULL
-  } else
+  } else {
     bx <- by
+  }
 
-  if (is.sf(y))
+  if (is.sf(y)) {
     y %<>% ps_rename_active_sfc()
+  }
 
   x %<>% as_data_frame()
   y %<>% as_data_frame()
@@ -80,7 +82,7 @@ ps_nearest.data.frame <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) 
 
   nn1 <- nn1(mx, my)
 
-  y <- y[nn1$index,]
+  y <- y[nn1$index, ]
 
   if (!is.null(dist_col)) y[dist_col] <- nn1$distance
 
@@ -93,8 +95,9 @@ ps_nearest.data.frame <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) 
 
 #' @export
 ps_nearest.tbl_df <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
-  if (is.sf(y))
+  if (is.sf(y)) {
     y %<>% ps_rename_active_sfc()
+  }
 
   x %<>%
     as_data_frame() %>%
@@ -146,10 +149,9 @@ ps_nearest.sf <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
 #' @param ... Not used
 #' @export
 ps_nearest_feature <- function(x, y, dist_col = NULL, ...) {
-
   check_data(x)
   check_data(y)
-  if(!(is.sf(x) & is.sf(y))) err("`x` and `y` must both be sf objects.")
+  if (!(is.sf(x) & is.sf(y))) err("`x` and `y` must both be sf objects.")
   chk_null_or(dist_col, vld = vld_string)
 
 
@@ -157,27 +159,28 @@ ps_nearest_feature <- function(x, y, dist_col = NULL, ...) {
   y %<>% ps_rename_active_sfc()
   y %<>% sf::st_transform(sf::st_crs(x))
 
-  if(ps_active_sfc_name(y) %in% names(x)){
+  if (ps_active_sfc_name(y) %in% names(x)) {
     names(y)[names(y) == ps_active_sfc_name(y)] <- paste0(ps_active_sfc_name(y), ".y")
     st_geometry(y) <- paste0(ps_active_sfc_name(y), ".y")
   }
 
   y <- y[st_nearest_feature(x, y), ]
 
-  if(!is.null(dist_col)){
-    if(dist_col %in% names(x)) err("`dist_col` must not already be present in `names(x)`")
+  if (!is.null(dist_col)) {
+    if (dist_col %in% names(x)) err("`dist_col` must not already be present in `names(x)`")
     x[dist_col] <- st_distance(x, y, by_element = TRUE)
   }
 
-  while(any(duplicated(c(names(x), names(y))))) {
+  while (any(duplicated(c(names(x), names(y))))) {
     names(y)[names(y) %in% names(x)] %<>% paste0(".y")
   }
 
   x %<>% cbind(y)
 
-  sfc_names <- names(x)[sapply(names(x), function(colname) {is.sfc(x[colname][[1]])})]
+  sfc_names <- names(x)[sapply(names(x), function(colname) {
+    is.sfc(x[colname][[1]])
+  })]
   colnames <- c(names(x)[!names(x) %in% c(sfc_names, dist_col)], dist_col, sfc_names)
   x <- x[colnames]
   x %<>% sf::st_as_sf()
-
 }

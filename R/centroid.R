@@ -9,8 +9,7 @@
 #' @return Sf object of centroid
 #' @export
 ps_sfc_centroid1 <- function(x, sfc_name = ps_active_sfc_name(x), by = character(0),
-                             nearest = FALSE){
-
+                             nearest = FALSE) {
   check_data(x)
   chk_string(sfc_name)
   check_names(x, sfc_name)
@@ -19,19 +18,21 @@ ps_sfc_centroid1 <- function(x, sfc_name = ps_active_sfc_name(x), by = character
   check_names(x, by)
   chk_flag(nearest)
 
-  if(sfc_name %in% by) ps_error("sfc_name cannot be in by")
+  if (sfc_name %in% by) ps_error("sfc_name cannot be in by")
 
-  if(!all(sf::st_is(x[[sfc_name]], "POINT")))
+  if (!all(sf::st_is(x[[sfc_name]], "POINT"))) {
     ps_error("ps_sfcs_centroid1 is only defined for POINT sfc")
+  }
 
   x %<>% ps_activate_sfc(sfc_name)
 
-  if(!length(by)) {
+  if (!length(by)) {
     suppressWarnings(
       c <- sf::st_combine(x) %>%
         sf::st_centroid() %>%
-        sf::st_sf(geometry = .))
-    if(nearest) {
+        sf::st_sf(geometry = .)
+    )
+    if (nearest) {
       x <- x[sfc_name]
       c %<>% ps_nearest(x) %>%
         tibble::as_tibble()
@@ -61,8 +62,7 @@ ps_sfc_centroid1 <- function(x, sfc_name = ps_active_sfc_name(x), by = character
 #' prior to st_centroid()
 #' @return Sf object of centroid
 #' @export
-ps_sfcs_centroid <- function(x, sfc_names = ps_sfc_names(x), union = TRUE){
-
+ps_sfcs_centroid <- function(x, sfc_names = ps_sfc_names(x), union = TRUE) {
   chk_vector(sfc_names)
   check_values(sfc_names, "")
   check_dim(sfc_names, values = TRUE)
@@ -72,12 +72,12 @@ ps_sfcs_centroid <- function(x, sfc_names = ps_sfc_names(x), union = TRUE){
   x <- x[sfc_names] %>%
     tibble::as_tibble()
 
-  if(!ps_equal_crs(x)) ps_error("Sfcs must have same crs.")
-  if(any(purrr::map_lgl(x, is_longlat))) ps_warning("Centroids not accurate for long/lat data.")
+  if (!ps_equal_crs(x)) ps_error("Sfcs must have same crs.")
+  if (any(purrr::map_lgl(x, is_longlat))) ps_warning("Centroids not accurate for long/lat data.")
 
   crs <- sf::st_crs(x[[sfc_names[1]]])
 
-  suppressWarnings(c <- purrr::map(x, function(y){
+  suppressWarnings(c <- purrr::map(x, function(y) {
     y %<>% sf::st_cast("POINT") %>%
       do.call(rbind, .)
   }) %>%
@@ -86,14 +86,13 @@ ps_sfcs_centroid <- function(x, sfc_names = ps_sfc_names(x), union = TRUE){
     ps_coords_to_sfc(crs = crs) %>%
     ps_activate_sfc())
 
-    if(union) {
-      c %<>% sf::st_union()
-    } else
-      c %<>% sf::st_combine()
+  if (union) {
+    c %<>% sf::st_union()
+  } else {
+    c %<>% sf::st_combine()
+  }
   c %<>% sf::st_centroid()
 
   sf <- sf::st_sf(geometry = c)
   sf
 }
-
-

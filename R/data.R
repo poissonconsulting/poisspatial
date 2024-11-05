@@ -7,4 +7,3 @@
 #' @examples
 #' epsg
 "epsg"
-

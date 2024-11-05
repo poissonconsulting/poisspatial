@@ -1,5 +1,4 @@
 test_that("works", {
-
   tracks <- ps_read_tracks_gpxs(system.file("gpx", package = "poisspatial"), tz = "PST8PDT", recursive = TRUE)
 
   expect_is(tracks, "sf")
@@ -9,5 +8,3 @@ test_that("works", {
   expect_identical(lubridate::hour(tracks$DateTime[1]), 21L)
   expect_identical(sort(unique(tracks$File)), sort(c("20110401.gpx", "20110402.gpx", "sub2/20110403.gpx")))
 })
-
-

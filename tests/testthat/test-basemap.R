@@ -1,5 +1,4 @@
 test_that("basemap related functions work", {
-
   pt <- readRDS(system.file("sf/pt.rds", package = "poisspatial")) %>%
     ps_sfcs_to_wgs84()
 
@@ -18,14 +17,14 @@ test_that("basemap related functions work", {
   pad <- ps_pad_bbox(bbox, 500)
   expect_is(pad, "numeric")
   expect_identical(length(pad), 4L)
-  expect_identical(bbox[[1]]-500, pad[[1]])
+  expect_identical(bbox[[1]] - 500, pad[[1]])
 
   pad2 <- ps_pad_bbox(bbox, c(10, 200, 300, 500))
   expect_error(ps_pad_bbox(bbox, c(10, 20, 30, "a")))
   expect_is(pad, "numeric")
   expect_identical(length(pad), 4L)
-  expect_identical(bbox[[2]]-200, pad2[[2]])
-  expect_identical(bbox[[4]]+500, pad2[[4]])
+  expect_identical(bbox[[2]] - 200, pad2[[2]])
+  expect_identical(bbox[[4]] + 500, pad2[[4]])
 
   sfc <- ps_create_bounds(poly, 200)
   expect_is(sfc, "sfc")
@@ -41,8 +40,8 @@ test_that("basemap related functions work", {
   expect_identical(sf::st_crs(sfc2), sf::st_crs(sf::st_transform(poly, 26911)))
   expect_identical(length(sfc2), 1L)
   expect_identical(length(sf::st_cast(sfc2, "POINT")), 5L)
-  expect_identical(sf::st_bbox(sf::st_transform(poly, 26911))[[1]] -10, sf::st_coordinates(sfc2)[1,1][[1]])
-  expect_identical(sf::st_bbox(sf::st_transform(poly, 26911))[[3]] + 200, sf::st_coordinates(sfc2)[3,1][[1]])
+  expect_identical(sf::st_bbox(sf::st_transform(poly, 26911))[[1]] - 10, sf::st_coordinates(sfc2)[1, 1][[1]])
+  expect_identical(sf::st_bbox(sf::st_transform(poly, 26911))[[3]] + 200, sf::st_coordinates(sfc2)[3, 1][[1]])
 
   # ggmap <- ps_bbox_ggmap(x = bbox2, "google", "satellite")
   # expect_is(ggmap, "ggmap")

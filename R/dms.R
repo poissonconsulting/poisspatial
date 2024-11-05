@@ -77,8 +77,9 @@ ps_ddm2dd <- function(x) {
   check_values(x, c("", NA))
   x %<>% strsplit(" ")
   length <- vapply(x, length, 1L)
-  if(any(length > 2))
+  if (any(length > 2)) {
     ps_error("ddm must be two real numbers separated by a single space")
+  }
 
   negative <- vapply(x, function(x) grepl("^-", x)[1], TRUE)
   is.na(negative) <- vapply(x, function(x) is.na(x[1]), TRUE)

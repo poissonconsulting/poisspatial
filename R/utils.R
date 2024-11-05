@@ -64,8 +64,9 @@ ps_get_proj4string <- function(x) {
 }
 
 as_data_frame <- function(x) {
-  if (!is.sf(x))
+  if (!is.sf(x)) {
     return(as.data.frame(x))
+  }
 
   x %<>% sf::st_cast(to = "POINT")
   coords <- sf::st_coordinates(x)
@@ -78,8 +79,9 @@ as_data_frame <- function(x) {
 }
 
 punctuate_strings <- function(x, qualifier = "or") {
-  if (length(x) == 1)
+  if (length(x) == 1) {
     return(x)
+  }
   n <- length(x)
   paste(paste(x[-n], collapse = ", "), qualifier, x[n])
 }
@@ -93,7 +95,7 @@ xml_sapply_value <- function(x, name) {
 }
 
 xml_attr <- function(x, attr) {
-   XML::xmlGetAttr(x, attr)
+  XML::xmlGetAttr(x, attr)
 }
 
 xml_sapply_attr <- function(x, attr) {
@@ -127,5 +129,5 @@ xml_wpt_data_frame <- function(x, wpt) {
 }
 
 warn_geom_non_point <- function(x) {
-  if(!all(sf::st_geometry_type(x) %in% c("POINT", "MULTIPOINT"))) ps_warning("Distance calculation uses nearest vertex for non-point geometries. Use `ps_nearest_feature` for calculating nearest feature boundary for lines and polygons.")
+  if (!all(sf::st_geometry_type(x) %in% c("POINT", "MULTIPOINT"))) ps_warning("Distance calculation uses nearest vertex for non-point geometries. Use `ps_nearest_feature` for calculating nearest feature boundary for lines and polygons.")
 }
