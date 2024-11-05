@@ -96,8 +96,8 @@ test_that("nearest sf with X and Y and reprojection", {
 
 test_that("ps_nearest issues warning for non-point sf objects", {
 
-  pt <- sf::st_read(system.file("gpkg/points.gpkg", package = "poisspatial"))
-  poly <- sf::st_read(system.file("gpkg/polygons.gpkg", package = "poisspatial"))
+  pt <- sf::st_read(system.file("gpkg/points.gpkg", package = "poisspatial"), quiet = TRUE)
+  poly <- sf::st_read(system.file("gpkg/polygons.gpkg", package = "poisspatial"), quiet = TRUE)
 
   expect_warning(ps_nearest(pt, poly), "Distance calculation uses nearest vertex for non-point geometries. Use `ps_nearest_feature` for calculating nearest feature boundary for lines and polygons.")
 

@@ -1,7 +1,7 @@
 test_that("ps_nearest_feature joins correct feature, manages names and calculates distance", {
 
-pt <- sf::st_read(system.file("gpkg/points.gpkg", package = "poisspatial"))
-poly <- sf::st_read(system.file("gpkg/polygons.gpkg", package = "poisspatial"))
+pt <- sf::st_read(system.file("gpkg/points.gpkg", package = "poisspatial"), quiet = TRUE)
+poly <- sf::st_read(system.file("gpkg/polygons.gpkg", package = "poisspatial"), quiet = TRUE)
 
 pt2 <- ps_nearest_feature(pt, poly, dist_col = "dist")
 
@@ -28,8 +28,8 @@ expect_identical(ps_active_sfc_name(pt2), "geometry")
 
 test_that("ps_nearest_feature errors", {
 
-pt <- sf::st_read(system.file("gpkg/points.gpkg", package = "poisspatial"))
-poly <- sf::st_read(system.file("gpkg/polygons.gpkg", package = "poisspatial"))
+pt <- sf::st_read(system.file("gpkg/points.gpkg", package = "poisspatial"), quiet = TRUE)
+poly <- sf::st_read(system.file("gpkg/polygons.gpkg", package = "poisspatial"), quiet = TRUE)
 
 expect_error(ps_nearest_feature(poly, pt, dist_col = "ID"),
              "`dist_col` must not already be present in `names(x)`", fixed = TRUE)
