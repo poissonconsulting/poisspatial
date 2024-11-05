@@ -151,7 +151,7 @@ ps_nearest.sf <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
 ps_nearest_feature <- function(x, y, dist_col = NULL, ...) {
   check_data(x)
   check_data(y)
-  if (!(is.sf(x) & is.sf(y))) err("`x` and `y` must both be sf objects.")
+  if (!(is.sf(x) && is.sf(y))) err("`x` and `y` must both be sf objects.")
   chk_null_or(dist_col, vld = vld_string)
 
 
