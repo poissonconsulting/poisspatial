@@ -11,18 +11,22 @@
 ps_read_waypoints_gpx <- function(file, tz = getOption("ps.tz", "UTC"), crs = getOption("ps.crs", 4326)) {
   chk_string(file)
 
-  if (!file.exists(file))
+  if (!file.exists(file)) {
     stop("file '", file, "' does not exist.", call. = FALSE)
+  }
 
   gpx <- XML::xmlTreeParse(file, useInternalNodes = TRUE) %>%
     XML::xmlRoot() %>%
     magrittr::extract("wpt")
 
-  if (!length(gpx))
+  if (!length(gpx)) {
     stop("file '", file, "' does not contain waypoints", call. = FALSE)
+  }
 
-  names(gpx) <- vapply(gpx, xml_value, character(1), name = "time",
-                       USE.NAMES = FALSE)
+  names(gpx) <- vapply(gpx, xml_value, character(1),
+    name = "time",
+    USE.NAMES = FALSE
+  )
 
   gpx %<>%
     purrr::imap(xml_wpt_data_frame) %>%
@@ -45,13 +49,14 @@ ps_read_waypoints_gpx <- function(file, tz = getOption("ps.tz", "UTC"), crs = ge
 #' @seealso ps_read_waypoints_gpx
 #' @export
 ps_read_waypoints_gpxs <- function(dir, pattern = "[.]gpx$", recursive = FALSE,
-                                crs = getOption("ps.crs", 4326)) {
+                                   crs = getOption("ps.crs", 4326)) {
   chk_string(dir)
   chk_string(pattern)
   chk_flag(recursive)
 
-  if (!dir.exists(dir))
+  if (!dir.exists(dir)) {
     stop("directory '", dir, "' does not exist", call. = FALSE)
+  }
 
   files <- list.files(dir, pattern = pattern, recursive = recursive, full.names = TRUE)
   sfiles <- list.files(dir, pattern = pattern, recursive = recursive)
@@ -60,11 +65,13 @@ ps_read_waypoints_gpxs <- function(dir, pattern = "[.]gpx$", recursive = FALSE,
 
   gpx <- lapply(files, ps_read_waypoints_gpx, crs = crs) %>%
     stats::setNames(sfiles) %>%
-    purrr::imap(function(x, name) {x$file <- name; x}) %>%
+    purrr::imap(function(x, name) {
+      x$file <- name
+      x
+    }) %>%
     do.call(rbind, .)
 
-  gpx <- gpx[,c("file", "wpt", "geometry")] %>%
+  gpx <- gpx[, c("file", "wpt", "geometry")] %>%
     stats::setNames(c("File", "Waypoint", "geometry"))
   gpx
 }
-

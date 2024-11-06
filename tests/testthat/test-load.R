@@ -29,8 +29,12 @@ test_that("can set crs when missing", {
 
 test_that("rename and fun arguments work", {
   dir <- system.file("files", package = "poisspatial")
-  rename <- function(x) {gsub("pol", "", x)}
-  trans <- function(x) {x %<>% sf::st_transform(4326)}
+  rename <- function(x) {
+    gsub("pol", "", x)
+  }
+  trans <- function(x) {
+    x %<>% sf::st_transform(4326)
+  }
   sink(get_null_device())
   files <- ps_load_spatial(dir, recursive = T, pattern = ".shp", crs = 26911, rename = rename, fun = trans)
   sink()
@@ -40,7 +44,9 @@ test_that("rename and fun arguments work", {
 test_that("spatial database loads", {
   path <- system.file("files/ikeda.gpkg", package = "poisspatial")
   rename <- toupper
-  trans <- function(x) {sf::st_transform(x, 3005)}
+  trans <- function(x) {
+    sf::st_transform(x, 3005)
+  }
   sink(get_null_device())
   ikeda <- ps_load_spatial_db(path = path, rename = rename, fun = trans)
   sink()

@@ -8,7 +8,7 @@ test_that("elevation data can be added to a specified sfc column", {
   ptz2 <- ps_sfc_add_z(ptz, sfc_column = "geometry", remove_z = F)
   expect_true(ncol(ptz2) == 6)
   # check works on default args when activate sfc
-  ptz2 <-  ps_activate_sfc(ptz) %>%
+  ptz2 <- ps_activate_sfc(ptz) %>%
     ps_sfc_add_z()
   # check that sfc is xyz
   expect_true(inherits(ptz2$geometry[[1]], "XYZ"))
@@ -23,6 +23,3 @@ test_that("elevation data can be added to a specified sfc column", {
   expect_true(ncol(ptz2) == 5)
   expect_true(inherits(pt$geometry[[1]], "XYZ"))
 })
-
-
-

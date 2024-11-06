@@ -1,5 +1,4 @@
 test_that("works", {
-
   pt <- readRDS(system.file("sf/pt.rds", package = "poisspatial")) %>%
     ps_sfcs_to_wgs84()
 
@@ -52,7 +51,6 @@ test_that("works", {
 })
 
 test_that("centroid1", {
-
   pt <- readRDS(system.file("sf/pt.rds", package = "poisspatial")) %>%
     ps_sfcs_to_wgs84()
 
@@ -91,7 +89,7 @@ test_that("centroid1", {
   expect_equal(sort(ps_sfc_to_coords(cent.pt)$X), c(-117.0655727986, -117.0645996034))
   expect_equal(sort(ps_sfc_to_coords(cent.pt)$Y), c(50.00421134984, 50.00691910352))
 
-  pt <- rbind(pt, pt[pt$id == 2,])
+  pt <- rbind(pt, pt[pt$id == 2, ])
 
   pt <- ps_sfcs_to_utm(pt)
   cent.pt <- ps_sfc_centroid1(pt, by = "color")

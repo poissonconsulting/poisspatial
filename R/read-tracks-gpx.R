@@ -11,18 +11,22 @@
 ps_read_tracks_gpx <- function(file, tz = getOption("ps.tz", "UTC"), crs = getOption("ps.crs", 4326)) {
   chk_string(file)
 
-  if (!file.exists(file))
+  if (!file.exists(file)) {
     stop("file '", file, "' does not exist.", call. = FALSE)
+  }
 
   gpx <- XML::xmlTreeParse(file, useInternalNodes = TRUE) %>%
     XML::xmlRoot() %>%
     magrittr::extract("trk")
 
-  if (!length(gpx))
+  if (!length(gpx)) {
     stop("file '", file, "' does not contain tracks", call. = FALSE)
+  }
 
-  names(gpx) <- vapply(gpx, xml_value, character(1), name = "name",
-                       USE.NAMES = FALSE)
+  names(gpx) <- vapply(gpx, xml_value, character(1),
+    name = "name",
+    USE.NAMES = FALSE
+  )
   gpx %<>%
     lapply(magrittr::extract2, "trkseg") %>%
     purrr::imap(xml_trkseg_data_frame) %>%
@@ -52,8 +56,9 @@ ps_read_tracks_gpxs <- function(dir, pattern = "[.]gpx$", recursive = FALSE,
   chk_string(pattern)
   chk_flag(recursive)
 
-  if (!dir.exists(dir))
+  if (!dir.exists(dir)) {
     stop("directory '", dir, "' does not exist", call. = FALSE)
+  }
 
   files <- list.files(dir, pattern = pattern, recursive = recursive, full.names = TRUE)
   sfiles <- list.files(dir, pattern = pattern, recursive = recursive)
@@ -62,10 +67,13 @@ ps_read_tracks_gpxs <- function(dir, pattern = "[.]gpx$", recursive = FALSE,
 
   gpx <- lapply(files, ps_read_tracks_gpx, tz = tz, crs = crs) %>%
     stats::setNames(sfiles) %>%
-    purrr::imap(function(x, name) {x$file <- name; x}) %>%
+    purrr::imap(function(x, name) {
+      x$file <- name
+      x
+    }) %>%
     do.call(rbind, .)
 
-  gpx <- gpx[,c("file", "track", "datetime", "geometry")] %>%
+  gpx <- gpx[, c("file", "track", "datetime", "geometry")] %>%
     stats::setNames(c("File", "Track", "DateTime", "geometry"))
   gpx
 }

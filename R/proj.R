@@ -7,10 +7,13 @@
 #' @export
 ps_sfcs_to_crs <- function(x, sfc_names = ps_sfc_names(x),
                            crs = getOption("ps.crs", 4326)) {
-  if (!all(sfc_names %in% ps_sfc_names(x)))
+  if (!all(sfc_names %in% ps_sfc_names(x))) {
     ps_error("missing sfc_names")
+  }
 
-  if (!length(sfc_names)) return(x)
+  if (!length(sfc_names)) {
+    return(x)
+  }
 
   active_sfc_name <- ps_active_sfc_name(x)
   x %<>% tibble::as_tibble()
@@ -39,7 +42,7 @@ ps_sfcs_to_wgs84 <- function(x, sfc_names = ps_sfc_names(x)) {
 ps_equal_crs <- function(x, sfc_names = ps_sfc_names(x)) {
   x %<>% tibble::as_tibble()
   x <- x[sfc_names]
-  crs <- purrr::map2(x, sfc_names, function(y, z){
+  crs <- purrr::map2(x, sfc_names, function(y, z) {
     c <- ps_get_proj4string(y[z])
   }) %>% unlist()
 
@@ -54,7 +57,7 @@ ps_equal_crs <- function(x, sfc_names = ps_sfc_names(x)) {
 ps_utm_zone <- function(x, sfc_name = ps_active_sfc_name(x)) {
   chk_string(sfc_name)
 
-  if (!sfc_name %in% ps_sfc_names(x)) ps_error("column '", sfc_name,"' is not an sfc column")
+  if (!sfc_name %in% ps_sfc_names(x)) ps_error("column '", sfc_name, "' is not an sfc column")
 
   x %<>% ps_sfcs_to_wgs84(sfc_names = sfc_name)
 
@@ -63,14 +66,24 @@ ps_utm_zone <- function(x, sfc_name = ps_active_sfc_name(x)) {
   long <- coords$X
   lat <- coords$Y
 
-  get_zone <- function(lat, long){
-    if(lat >= 56 && lat < 64 && long >= 3 && long < 12){x <- 32} else if(
-      lat >= 72 && lat < 84 && long >= 0 && long < 9) {x <- 31} else if(
-        lat >= 72 && lat < 84 && long >= 9 && long < 21) {x <- 33} else if(
-          lat >= 72 && lat < 84 && long >= 21 && long < 33) {x <- 35} else if(
-            lat >= 72 && lat < 84 && long >= 33 && long < 42) {x <- 37} else{
-              x <- (floor((long + 180)/6) %% 60) + 1
-            }
+  get_zone <- function(lat, long) {
+    if (lat >= 56 && lat < 64 && long >= 3 && long < 12) {
+      x <- 32
+    } else if (
+      lat >= 72 && lat < 84 && long >= 0 && long < 9) {
+      x <- 31
+    } else if (
+      lat >= 72 && lat < 84 && long >= 9 && long < 21) {
+      x <- 33
+    } else if (
+      lat >= 72 && lat < 84 && long >= 21 && long < 33) {
+      x <- 35
+    } else if (
+      lat >= 72 && lat < 84 && long >= 33 && long < 42) {
+      x <- 37
+    } else {
+      x <- (floor((long + 180) / 6) %% 60) + 1
+    }
   }
 
   purrr::map2_dbl(lat, long, get_zone)
@@ -87,12 +100,13 @@ ps_utm_proj4string <- function(x, sfc_name = ps_active_sfc_name(x), datum = "WGS
   zone <- ps_utm_zone(x, sfc_name)
   lat <- ps_sfc_to_coords(x[sfc_name])$Y
 
-  prj <- purrr::map2_chr(zone, lat, function(y, z){
-    if (z >= 0){
+  prj <- purrr::map2_chr(zone, lat, function(y, z) {
+    if (z >= 0) {
       paste0("+proj=utm +zone=", y, " +datum=", datum, " +units=m +no_defs +type=crs")
-    } else{
+    } else {
       paste0("+proj=utm +zone=", y, " +south", " +datum=", datum, " +units=m +no_defs +type=crs")
-    }})
+    }
+  })
   prj
 }
 
@@ -104,14 +118,13 @@ ps_utm_proj4string <- function(x, sfc_name = ps_active_sfc_name(x), datum = "WGS
 #'
 #' @return A character vector of UTM zone description(s).
 ps_utm_note <- function(x, sfc_name = ps_active_sfc_name(x), datum = "WGS84") {
-
   prj <- ps_utm_proj4string(x)
 
   epsg <- poisspatial::epsg
-  chr <-  purrr::map_chr(prj, function(y){
+  chr <- purrr::map_chr(prj, function(y) {
     note <- epsg[epsg$prj4 == y, "note"]
     note <- note[!is.na(note)] %>%
-      sub("# ", "",.)
+      sub("# ", "", .)
   })
   chr
 }

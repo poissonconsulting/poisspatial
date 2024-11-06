@@ -14,37 +14,41 @@
 ps_load_spatial <- function(dir = ".", pattern = NULL, recursive = FALSE,
                             crs = NULL, rename = identity,
                             envir = parent.frame(), fun = identity, ...) {
-
   chk_string(dir)
-  if(!is.null(pattern)){chk_string(pattern)}
+  if (!is.null(pattern)) {
+    chk_string(pattern)
+  }
   chk_flag(recursive)
-  if(!is_crs(crs)) ps_error("must provide a valid crs.")
+  if (!is_crs(crs)) ps_error("must provide a valid crs.")
 
   if (!is.function(rename)) ps_error("rename must be a function")
   if (!is.function(fun)) ps_error("fun must be a function")
 
   if (!dir.exists(dir)) ps_error("directory '", dir, "' does not exist")
 
-  file_names <- list.files(dir, pattern = pattern, full.names = TRUE,
-                           recursive = recursive)
+  file_names <- list.files(dir,
+    pattern = pattern, full.names = TRUE,
+    recursive = recursive
+  )
 
-   if (!length(file_names)) {
+  if (!length(file_names)) {
     poisutils::ps_warning("no files matching that extension found.")
     return(invisible(character(0)))
   }
 
   df <- data.frame(file_names,
-                   files = basename(file_names))
+    files = basename(file_names)
+  )
   df$ext <- tools::file_ext(df$files)
   df %<>% purrr::modify(as.character)
 
-  df <- df[!df$ext %in% c("sbn", "dbf", "sbx", "shx", "xlsx", "csv", "pdf", "docx", "prj"),]
+  df <- df[!df$ext %in% c("sbn", "dbf", "sbx", "shx", "xlsx", "csv", "pdf", "docx", "prj"), ]
 
-  df$names <- purrr::map2(df$files, df$ext, function(x, y){
+  df$names <- purrr::map2(df$files, df$ext, function(x, y) {
     x %<>% gsub(paste0(".", y), "", .)
   })
 
-  data <- purrr::map(df$file_names, function(x){
+  data <- purrr::map(df$file_names, function(x) {
     tryCatch(sf::st_read(x), error = function(e) NULL)
   })
 
@@ -55,18 +59,21 @@ ps_load_spatial <- function(dir = ".", pattern = NULL, recursive = FALSE,
   data[sapply(data, is.null)] <- NULL
 
   # set crs
-  if(!is.null(crs)){
-    data %<>% purrr::map(function(x){
-      if(is.na(sf::st_crs(x))){
-        x %<>% sf::st_set_crs(crs)} else {
-          x <- x
-        }
+  if (!is.null(crs)) {
+    data %<>% purrr::map(function(x) {
+      if (is.na(sf::st_crs(x))) {
+        x %<>% sf::st_set_crs(crs)
+      } else {
+        x <- x
+      }
     })
   }
 
   data %<>% purrr::map(fun)
 
-  purrr::imap(data, function(x, name) {assign(name, x, envir = envir)})
+  purrr::imap(data, function(x, name) {
+    assign(name, x, envir = envir)
+  })
   invisible(df$files)
 }
 
@@ -83,17 +90,20 @@ ps_load_spatial <- function(dir = ".", pattern = NULL, recursive = FALSE,
 #' @return An invisible character vector of the layer names.
 #' @export
 ps_load_spatial_db <- function(path = "~/Poisson/Data/spatial/fwa/gdb/FWA_BC.gdb", layers = NULL, crs = NULL, rename = identity,
-                            envir = parent.frame(), fun = identity, ...) {
-
+                               envir = parent.frame(), fun = identity, ...) {
   chk_string(path)
-  if(!is_crs(crs)) ps_error("must provide a valid crs.")
+  if (!is_crs(crs)) ps_error("must provide a valid crs.")
   if (!is.function(rename)) ps_error("rename must be a function")
   if (!is.function(fun)) ps_error("fun must be a function")
   if (!file.exists(path)) ps_error(path, "' does not exist.")
-  if(!(tools::file_ext(path) %in% c("gdb", "gpkg", "sqlite"))) ps_error("dir must have extension .gdb, .gpkg, or .sqlite")
+  if (!(tools::file_ext(path) %in% c("gdb", "gpkg", "sqlite"))) ps_error("dir must have extension .gdb, .gpkg, or .sqlite")
 
   l <- sf::st_layers(path)$name
-  if(is.null(layers)){layers <- l} else {layers <- layers}
+  if (is.null(layers)) {
+    layers <- l
+  } else {
+    layers <- layers
+  }
   # if(!l %in% layers) ps_error("Layers do not exist in geodatabase.")
 
   g <- purrr::map(layers, ~ tryCatch(sf::st_read(dsn = path, layer = .), error = function(e) NULL))
@@ -103,18 +113,21 @@ ps_load_spatial_db <- function(path = "~/Poisson/Data/spatial/fwa/gdb/FWA_BC.gdb
     make.names(unique = TRUE)
 
   # set crs
-  if(!is.null(crs)){
-    g %<>% purrr::map(function(x){
-      if(is.na(sf::st_crs(x))){
-        x %<>% sf::st_set_crs(crs)} else {
-          x <- x
-        }
+  if (!is.null(crs)) {
+    g %<>% purrr::map(function(x) {
+      if (is.na(sf::st_crs(x))) {
+        x %<>% sf::st_set_crs(crs)
+      } else {
+        x <- x
+      }
     })
   }
 
   g %<>% purrr::map(fun)
 
-  purrr::imap(g, function(x, name) {assign(name, x, envir = envir)})
+  purrr::imap(g, function(x, name) {
+    assign(name, x, envir = envir)
+  })
   invisible(l)
 }
 
@@ -139,10 +152,10 @@ ps_fwa_gdbs <- function(dir = "~/Poisson/Data/spatial/fwa/gdb") {
 ps_fwa_layers <- function(gdb = "FWA_BC.gdb", dir = "~/Poisson/Data/spatial/fwa/gdb/") {
   chk_string(gdb[1])
   if (!dir.exists(dir)) ps_error("directory '", dir, "' does not exist.")
-  if(all(!gdb %in% ps_fwa_gdbs())) ps_error("That is not a recognised fwa geodatabase. See ps_fwa_gdbs() for options.")
+  if (all(!gdb %in% ps_fwa_gdbs())) ps_error("That is not a recognised fwa geodatabase. See ps_fwa_gdbs() for options.")
   x <- purrr::map(gdb, ~ sf::st_layers(dsn = paste0(dir, .))[[1]]) %>%
-    unlist %>%
-    unique
+    unlist() %>%
+    unique()
   x
 }
 
@@ -153,11 +166,11 @@ ps_fwa_layers <- function(gdb = "FWA_BC.gdb", dir = "~/Poisson/Data/spatial/fwa/
 #' @return A factor of the layer names within specified geodatabase.
 #' @export
 ps_fwa_shortcuts <- function(gdb = "FWA_BC.gdb", dir = "~/Poisson/Data/spatial/fwa/gdb/") {
-  if(all(!gdb %in% ps_fwa_gdbs())) ps_error("gdb is not a valid geodatabase.")
+  if (all(!gdb %in% ps_fwa_gdbs())) ps_error("gdb is not a valid geodatabase.")
   x <- ps_fwa_layers(gdb = gdb)
   ex <- grep("_max|_fwa|50K|CODES", x, value = T)
   x <- setdiff(x, ex) %>%
-    tolower %>%
+    tolower() %>%
     gsub("fwa_|_poly|_sp", "", .)
   x
 }
@@ -175,22 +188,24 @@ ps_fwa_shortcuts <- function(gdb = "FWA_BC.gdb", dir = "~/Poisson/Data/spatial/f
 #' @export
 ps_read_fwa <- function(shortcut = NULL, gdb = "FWA_BC.gdb",
                         layer = "FWA_COASTLINES_SP", dir = "~/Poisson/Data/spatial/fwa/gdb/") {
-
-  if(length(gdb) != 1L) ps_error("Please select one geodatabase to read.")
-  if(length(layer) != 1L) ps_error("Please select one layer to read.")
+  if (length(gdb) != 1L) ps_error("Please select one geodatabase to read.")
+  if (length(layer) != 1L) ps_error("Please select one layer to read.")
   chk_string(layer)
   chk_string(gdb)
   if (!dir.exists(dir)) ps_error("directory '", dir, "' does not exist.")
-  if(!gdb %in% ps_fwa_gdbs()) ps_error("That is not a recognised fwa geodatabase. See ps_fwa_gdbs() for options.")
-  if(all(!layer %in% ps_fwa_layers(gdb = gdb))) ps_error("That layer does not exist in the specified geodatabase. See ps_fwa_layers() for options.")
+  if (!gdb %in% ps_fwa_gdbs()) ps_error("That is not a recognised fwa geodatabase. See ps_fwa_gdbs() for options.")
+  if (all(!layer %in% ps_fwa_layers(gdb = gdb))) ps_error("That layer does not exist in the specified geodatabase. See ps_fwa_layers() for options.")
 
-  if(!is.null(shortcut)){
+  if (!is.null(shortcut)) {
     chk_string(shortcut)
-    if(!shortcut %in% ps_fwa_shortcuts(gdb = ps_fwa_gdbs())) ps_error("Shortcut is not valid. See ps_fwa_shortcuts() for options.")
+    if (!shortcut %in% ps_fwa_shortcuts(gdb = ps_fwa_gdbs())) ps_error("Shortcut is not valid. See ps_fwa_shortcuts() for options.")
     layer <- c(paste0("fwa_", shortcut, "_poly"), paste0("fwa_", shortcut, "_sp")) %>%
-    toupper
+      toupper()
     all <- ps_fwa_layers(gdb = ps_fwa_gdbs())
-    layer <- layer[layer %in% all]} else {layer <- layer}
+    layer <- layer[layer %in% all]
+  } else {
+    layer <- layer
+  }
 
   x <- sf::st_read(dsn = paste0(dir, gdb), layer = layer)
   x
@@ -202,10 +217,7 @@ ps_read_fwa <- function(shortcut = NULL, gdb = "FWA_BC.gdb",
 #' @export
 ps_ws_codes <- function() {
   x <- ps_fwa_shortcuts(gdb = "FWA_LINEAR_BOUNDARIES_SP.gdb") %>%
-    toupper %>%
-    factor
+    toupper() %>%
+    factor()
   x
 }
-
-
-

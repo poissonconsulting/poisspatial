@@ -14,13 +14,13 @@ ps_elevation_google <- function(x, sfc_name = ps_active_sfc_name(x),
   chk_string(Z)
 
 
-  if(!nrow(x)) {
+  if (!nrow(x)) {
     x[[Z]] <- numeric(0)
     return(x)
   }
   y$..RowID <- seq_len(nrow(y))
-  z <- y[!is.na(y$Latitude) & !is.na(y$Longitude),]
-  if(!nrow(z)) {
+  z <- y[!is.na(y$Latitude) & !is.na(y$Longitude), ]
+  if (!nrow(z)) {
     x[[Z]] <- NA_real_
     return(x)
   }
@@ -30,13 +30,13 @@ ps_elevation_google <- function(x, sfc_name = ps_active_sfc_name(x),
   z$Longitude <- NULL
 
   elevation <- googleway::google_elevation(z, key = key)$results$elevation
-  if(is.null(elevation)) {
+  if (is.null(elevation)) {
     stop("Invalid key.", call. = FALSE)
   }
   z$Z <- elevation
   z <- z[c("..RowID", "Z")]
   y <- dplyr::left_join(y, z, by = "..RowID")
-  y <- y[order(y$..RowID),]
+  y <- y[order(y$..RowID), ]
   x[[Z]] <- y$Z
   x
 }

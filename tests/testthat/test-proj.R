@@ -1,5 +1,4 @@
 test_that("works", {
-
   pt <- readRDS(system.file("sf/pt.rds", package = "poisspatial"))
   expect_true(!ps_equal_crs(pt))
   pt %<>% ps_sfcs_to_wgs84()

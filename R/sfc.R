@@ -4,7 +4,9 @@
 #' @return A character vector of the name of the sfc column(s).
 #' @export
 ps_sfc_names <- function(x) {
-  if (!is.data.frame(x)) return(character(0))
+  if (!is.data.frame(x)) {
+    return(character(0))
+  }
 
   sfc_names <- colnames(x)
   sfc_names <- sfc_names[vapply(x, is.sfc, TRUE)]
@@ -18,8 +20,12 @@ ps_sfc_names <- function(x) {
 #' @return A character vector of the name of the active sfc column.
 #' @export
 ps_active_sfc_name <- function(x) {
-  if (!is.sf(x)) return(character(0))
-  if (is.null(attr(x, "sf_column"))) return(character(0))
+  if (!is.sf(x)) {
+    return(character(0))
+  }
+  if (is.null(attr(x, "sf_column"))) {
+    return(character(0))
+  }
 
   attr(x, "sf_column")
 }
@@ -40,11 +46,13 @@ ps_inactive_sfc_names <- function(x) {
 #' @param x The object object.
 #' @param sfc_name A string indicating the name of the sfc column to activate.
 #' @export
-ps_activate_sfc <- function(x, sfc_name = "geometry"){
+ps_activate_sfc <- function(x, sfc_name = "geometry") {
   chk_string(sfc_name)
   if (!sfc_name %in% ps_sfc_names(x)) ps_error("sfc_name must be an sfc column.")
 
-  if (identical(sfc_name, ps_active_sfc_name(x))) return(x)
+  if (identical(sfc_name, ps_active_sfc_name(x))) {
+    return(x)
+  }
 
   if (is.sf(x)) {
     x %<>% sf::st_set_geometry(sfc_name)
@@ -61,10 +69,12 @@ ps_activate_sfc <- function(x, sfc_name = "geometry"){
 #' @param x A sf object.
 #' @export
 #'
-ps_deactivate_sfc <- function(x){
+ps_deactivate_sfc <- function(x) {
   lifecycle::deprecate_soft("0.0.0.9027", "ps_deactivate_sfc()", "tibble::as_tibble()")
 
-  if (identical(ps_active_sfc_name(x), character(0))) return(x)
+  if (identical(ps_active_sfc_name(x), character(0))) {
+    return(x)
+  }
 
   x %<>%
     as.data.frame() %>%
@@ -85,8 +95,9 @@ ps_rename_active_sfc <- function(x, new_name = "geometry") {
   if (!length(active_sfc_name)) ps_error("x does not have an active sfc column")
   chk_string(new_name)
 
-  if (identical(new_name, active_sfc_name))
+  if (identical(new_name, active_sfc_name)) {
     return(x)
+  }
 
   x %<>% tibble::as_tibble()
 
@@ -104,15 +115,17 @@ ps_rename_active_sfc <- function(x, new_name = "geometry") {
 #' @param x An sf object.
 #' @param sfc_names A character vector indicating the name of the sfc column(s) to remove.
 #' @export
-ps_remove_sfcs <- function(x, sfc_names = ps_sfc_names(x)){
+ps_remove_sfcs <- function(x, sfc_names = ps_sfc_names(x)) {
   if (!is.data.frame(x)) ps_error("x must be a data.frame")
   chk_vector(sfc_names)
   check_values(sfc_names, "")
-  if (!any(sfc_names %in% ps_sfc_names(x))) return(x)
+  if (!any(sfc_names %in% ps_sfc_names(x))) {
+    return(x)
+  }
 
   if (ps_active_sfc_name(x) %in% sfc_names) x %<>% tibble::as_tibble()
 
   sfc_names %<>% intersect(ps_sfc_names(x))
-  x <- x[ , setdiff(colnames(x), sfc_names)]
+  x <- x[, setdiff(colnames(x), sfc_names)]
   x
 }
