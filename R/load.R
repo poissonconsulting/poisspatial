@@ -89,7 +89,7 @@ ps_load_spatial <- function(dir = ".", pattern = NULL, recursive = FALSE,
 #' @param ... Additional arguments passed to `st_read`.
 #' @return An invisible character vector of the layer names.
 #' @export
-ps_load_spatial_db <- function(path = "~/Poisson/Data/spatial/fwa/gdb/FWA_BC.gdb", layers = NULL, crs = NULL, rename = identity,
+ps_load_spatial_db <- function(path = "~/Poisson/Files - Data/Data/spatial/fwa/gdb/FWA_BC.gdb", layers = NULL, crs = NULL, rename = identity,
                                envir = parent.frame(), fun = identity, ...) {
   chk_string(path)
   if (!is_crs(crs)) ps_error("must provide a valid crs.")
@@ -136,7 +136,7 @@ ps_load_spatial_db <- function(path = "~/Poisson/Data/spatial/fwa/gdb/FWA_BC.gdb
 #' @param dir A character string indicating path to directory holding fwa geodatabases.
 #' @return A factor of the geodatabase names.
 #' @export
-ps_fwa_gdbs <- function(dir = "~/Poisson/Data/spatial/fwa/gdb") {
+ps_fwa_gdbs <- function(dir = "~/Poisson/Files - Data/Data/spatial/fwa/gdb") {
   if (!dir.exists(dir)) ps_error("directory '", dir, "' does not exist.")
   x <- list.files(dir, full.names = F, recursive = F, pattern = ".gdb")
   x
@@ -149,7 +149,7 @@ ps_fwa_gdbs <- function(dir = "~/Poisson/Data/spatial/fwa/gdb") {
 #' The default should not have to be changed.
 #' @return A factor of the layer names within specified geodatabase.
 #' @export
-ps_fwa_layers <- function(gdb = "FWA_BC.gdb", dir = "~/Poisson/Data/spatial/fwa/gdb/") {
+ps_fwa_layers <- function(gdb = "FWA_BC.gdb", dir = "~/Poisson/Files - Data/Data/spatial/fwa/gdb/") {
   chk_string(gdb[1])
   if (!dir.exists(dir)) ps_error("directory '", dir, "' does not exist.")
   if (all(!gdb %in% ps_fwa_gdbs())) ps_error("That is not a recognised fwa geodatabase. See ps_fwa_gdbs() for options.")
@@ -165,7 +165,7 @@ ps_fwa_layers <- function(gdb = "FWA_BC.gdb", dir = "~/Poisson/Data/spatial/fwa/
 #' @param gdb A character string vector indicating FWA geodatabases to extract layer shortcuts from.
 #' @return A factor of the layer names within specified geodatabase.
 #' @export
-ps_fwa_shortcuts <- function(gdb = "FWA_BC.gdb", dir = "~/Poisson/Data/spatial/fwa/gdb/") {
+ps_fwa_shortcuts <- function(gdb = "FWA_BC.gdb", dir = "~/Poisson/Files - Data/Data/spatial/fwa/gdb/") {
   if (all(!gdb %in% ps_fwa_gdbs())) ps_error("gdb is not a valid geodatabase.")
   x <- ps_fwa_layers(gdb = gdb)
   ex <- grep("_max|_fwa|50K|CODES", x, value = T)
@@ -187,7 +187,7 @@ ps_fwa_shortcuts <- function(gdb = "FWA_BC.gdb", dir = "~/Poisson/Data/spatial/f
 #' @return sf object.
 #' @export
 ps_read_fwa <- function(shortcut = NULL, gdb = "FWA_BC.gdb",
-                        layer = "FWA_COASTLINES_SP", dir = "~/Poisson/Data/spatial/fwa/gdb/") {
+                        layer = "FWA_COASTLINES_SP", dir = "~/Poisson/Files - Data/Data/spatial/fwa/gdb/") {
   if (length(gdb) != 1L) ps_error("Please select one geodatabase to read.")
   if (length(layer) != 1L) ps_error("Please select one layer to read.")
   chk_string(layer)
