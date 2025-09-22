@@ -8,7 +8,7 @@ ps_read_fwa(
   shortcut = NULL,
   gdb = "FWA_BC.gdb",
   layer = "FWA_COASTLINES_SP",
-  dir = "~/Poisson/Data/spatial/fwa/gdb/"
+  dir = "~/Poisson/Files - Data/Data/spatial/fwa/gdb/"
 )
 }
 \arguments{

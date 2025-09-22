@@ -1,10 +1,14 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# poisspatial 0.2.1 (2025-09-11)
+
+- Update default directories for `ps_load_spatial_db()`, `ps_fwa_gdbs()`, `ps_fwa_layers()`, `ps_fwa_shortcuts()`, and `ps_read_fwa()`.
+
 # poisspatial 0.2.0 (2024-09-06)
 
 - The RCMD checks were updated. 
 - Dependencies are now loaded from the source files on linux.
-- The dependcey of `rgdal` was removed by storing a hard copy of epsg descriptions instead of retrieving them from `rgdal::make_EPSG()`.
+- The dependency of `rgdal` was removed by storing a hard copy of epsg descriptions instead of retrieving them from `rgdal::make_EPSG()`.
 - Added `retain_orig` boolean flag to `ps_coords_to_sfc()` and `ps_sfc_to_coords()` allowing user to retain input columns if desired. 
 
 # poisspatial 0.1.0 (2021-11-22)

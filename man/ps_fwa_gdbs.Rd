@@ -4,7 +4,7 @@
 \alias{ps_fwa_gdbs}
 \title{FWA gdbs}
 \usage{
-ps_fwa_gdbs(dir = "~/Poisson/Data/spatial/fwa/gdb")
+ps_fwa_gdbs(dir = "~/Poisson/Files - Data/Data/spatial/fwa/gdb")
 }
 \arguments{
 \item{dir}{A character string indicating path to directory holding fwa geodatabases.}
