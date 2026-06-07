@@ -5,13 +5,16 @@ Authors@R:
     c(person(given = "Joe",
              family = "Thorley",
              role = c("aut", "cre"),
-             email = "joe@poissonconsulting.ca"),
+             email = "joe@poissonconsulting.ca",
+             comment = c(ORCID = "0000-0002-7683-4592")),
       person(given = "Seb",
              family = "Dalgarno",
-             role = "aut"),
+             role = "aut",
+             comment = c(ORCID = "0000-0002-3658-4517")),
       person(given = "Evan",
              family = "Amies-Galonski",
-             role = "ctb"))
+             role = "ctb",
+             comment = c(ORCID = "0000-0003-1096-2089")))
 Description: Spatial functions for Poisson Consulting scripts and
     packages.
 License: MIT + file LICENSE
