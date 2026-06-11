@@ -4,15 +4,15 @@
 
 - **[Joe
   Thorley](https://www.poissonconsulting.ca/author/joe-thorley/)**.
-  Author, maintainer.
+  Author, maintainer. [](https://orcid.org/0000-0002-7683-4592)
 
 - **[Seb
   Dalgarno](https://www.poissonconsulting.ca/author/seb-dalgarno/)**.
-  Author.
+  Author. [](https://orcid.org/0000-0002-3658-4517)
 
 - **[Evan
   Amies-Galonski](https://www.poissonconsulting.ca/author/evan-amies-galonski/)**.
-  Contributor.
+  Contributor. [](https://orcid.org/0000-0003-1096-2089)
 
 ## Citation
 
