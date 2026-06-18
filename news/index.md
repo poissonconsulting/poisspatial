@@ -1,5 +1,10 @@
 # Changelog
 
+## poisspatial 0.2.1.9000 (2026-06-18)
+
+- Add fledge-bump workflow
+- Add fledge-tag-on-merge workflow
+
 ## poisspatial 0.2.1 (2025-09-11)
 
 - Update default directories for
