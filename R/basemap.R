@@ -11,7 +11,9 @@ is_pad <- function(x) {
 #' @param x object to test.
 #' @return flag.
 is_raster <- function(x) {
-  inherits(x, "RasterBrick") || inherits(x, "RasterStack") || inherits(x, "RasterLayer")
+  inherits(x, "RasterBrick") ||
+    inherits(x, "RasterStack") ||
+    inherits(x, "RasterLayer")
 }
 
 #' Test if numeric vector is long/lat
@@ -32,9 +34,15 @@ is_longlat_real <- function(x) {
 #' @export
 ps_sfg_rectangle <- function(x) {
   x %<>% as.vector()
-  if (length(x) != 4) ps_error("as.vector(x) must have length 4 (xmin, ymin, xmax, ymax")
+  if (length(x) != 4) {
+    ps_error("as.vector(x) must have length 4 (xmin, ymin, xmax, ymax")
+  }
 
-  mat <- matrix(c(x[1], x[2], x[1], x[4], x[3], x[4], x[3], x[2], x[1], x[2]), ncol = 2, byrow = TRUE)
+  mat <- matrix(
+    c(x[1], x[2], x[1], x[4], x[3], x[4], x[3], x[2], x[1], x[2]),
+    ncol = 2,
+    byrow = TRUE
+  )
   poly <- st_polygon(list(mat))
   poly
 }
@@ -71,10 +79,16 @@ ps_sf_rectangle <- function(x, crs) {
 #' @return modified object.
 #' @export
 ps_pad_bbox <- function(x, pad) {
-  if (length(as.vector(x)) != 4) ps_error("as.vector(x) must have length 4 (xmin, ymin, xmax, ymax")
-  if (!is_pad(pad)) ps_error("pad must be numeric vector with length 1 or 4")
+  if (length(as.vector(x)) != 4) {
+    ps_error("as.vector(x) must have length 4 (xmin, ymin, xmax, ymax")
+  }
+  if (!is_pad(pad)) {
+    ps_error("pad must be numeric vector with length 1 or 4")
+  }
 
-  if (length(pad) == 1L) pad <- rep(pad, 4)
+  if (length(pad) == 1L) {
+    pad <- rep(pad, 4)
+  }
   y <- c(
     x[1] - pad[1],
     x[2] - pad[2],
@@ -95,8 +109,12 @@ ps_pad_bbox <- function(x, pad) {
 #' @return sfc polygon.
 #' @export
 ps_create_bounds <- function(x, pad) {
-  if (!is.sf(x)) ps_error("x must be a sf object")
-  if (!is_pad(pad)) ps_error("pad must be numeric vector with length 1 or 4")
+  if (!is.sf(x)) {
+    ps_error("x must be a sf object")
+  }
+  if (!is_pad(pad)) {
+    ps_error("pad must be numeric vector with length 1 or 4")
+  }
 
   if (is_longlat(x)) {
     y <- ps_sfcs_to_utm(x)
@@ -126,9 +144,26 @@ ps_create_bounds <- function(x, pad) {
 #' @export
 ps_bbox_ggmap <- function(x, source, maptype) {
   x %<>% as.vector()
-  if (length(x) != 4) ps_error("as.vector(x) must have length 4 (xmin, ymin, xmax, ymax")
-  if (!source %in% c("google", "osm", "stamen", "cloudmade")) ps_error("source must be a valid source readable by ggmap.")
-  if (!maptype %in% c("terrain", "terrain-background", "satellite", "roadmap", "hybrid", "watercolor", "toner")) ps_error("maptype must be a valid maptype readable by ggmap.")
+  if (length(x) != 4) {
+    ps_error("as.vector(x) must have length 4 (xmin, ymin, xmax, ymax")
+  }
+  if (!source %in% c("google", "osm", "stamen", "cloudmade")) {
+    ps_error("source must be a valid source readable by ggmap.")
+  }
+  if (
+    !maptype %in%
+      c(
+        "terrain",
+        "terrain-background",
+        "satellite",
+        "roadmap",
+        "hybrid",
+        "watercolor",
+        "toner"
+      )
+  ) {
+    ps_error("maptype must be a valid maptype readable by ggmap.")
+  }
 
   map <- ggmap::get_map(
     location = x,
@@ -144,7 +179,9 @@ ps_bbox_ggmap <- function(x, source, maptype) {
 #' @return raster object.
 #' @export
 ps_ggmap_to_raster <- function(x) {
-  if (!inherits(x, "ggmap")) ps_error("x must be a ggmap object (e.g. from ps_bbox_ggmap)")
+  if (!inherits(x, "ggmap")) {
+    ps_error("x must be a ggmap object (e.g. from ps_bbox_ggmap)")
+  }
 
   map_bbox <- attr(x, "bb")
   .extent <- raster::extent(as.numeric(map_bbox[c(2, 4, 1, 3)]))
@@ -167,7 +204,9 @@ ps_ggmap_to_raster <- function(x) {
 #' ggplot2::geom_point(data = x, aes(x = x, y = y, col = rgb(layer.1/255, layer.2/255, layer.3/255))).
 #' @export
 ps_raster_to_df <- function(x) {
-  if (!is_raster(x)) ps_error("x must be a raster object (e.g. from ps_ggmap_raster)")
+  if (!is_raster(x)) {
+    ps_error("x must be a raster object (e.g. from ps_ggmap_raster)")
+  }
 
   df <- data.frame(raster::rasterToPoints(x))
   df
@@ -186,10 +225,29 @@ ps_raster_to_df <- function(x) {
 #' @return ggmap object.
 #' @export
 ps_sf_ggmap <- function(x, pad, source, maptype) {
-  if (!is.sf(x)) ps_error("x must be a sf object")
-  if (!is_pad(pad)) ps_error("pad must be numeric vector of length 1 or 4")
-  if (!source %in% c("google", "osm", "stamen", "cloudmade")) ps_error("source must be a valid source readable by ggmap.")
-  if (!maptype %in% c("terrain", "terrain-background", "satellite", "roadmap", "hybrid", "watercolor", "toner")) ps_error("maptype must be a valid maptype readable by ggmap.")
+  if (!is.sf(x)) {
+    ps_error("x must be a sf object")
+  }
+  if (!is_pad(pad)) {
+    ps_error("pad must be numeric vector of length 1 or 4")
+  }
+  if (!source %in% c("google", "osm", "stamen", "cloudmade")) {
+    ps_error("source must be a valid source readable by ggmap.")
+  }
+  if (
+    !maptype %in%
+      c(
+        "terrain",
+        "terrain-background",
+        "satellite",
+        "roadmap",
+        "hybrid",
+        "watercolor",
+        "toner"
+      )
+  ) {
+    ps_error("maptype must be a valid maptype readable by ggmap.")
+  }
 
   bbox <- ps_create_bounds(x, pad) %>%
     st_transform(4326) %>%

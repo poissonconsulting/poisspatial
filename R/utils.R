@@ -129,5 +129,9 @@ xml_wpt_data_frame <- function(x, wpt) {
 }
 
 warn_geom_non_point <- function(x) {
-  if (!all(sf::st_geometry_type(x) %in% c("POINT", "MULTIPOINT"))) ps_warning("Distance calculation uses nearest vertex for non-point geometries. Use `ps_nearest_feature` for calculating nearest feature boundary for lines and polygons.")
+  if (!all(sf::st_geometry_type(x) %in% c("POINT", "MULTIPOINT"))) {
+    ps_warning(
+      "Distance calculation uses nearest vertex for non-point geometries. Use `ps_nearest_feature` for calculating nearest feature boundary for lines and polygons."
+    )
+  }
 }

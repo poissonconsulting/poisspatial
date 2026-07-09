@@ -46,7 +46,12 @@ test_that("manipulate geometry column", {
   ### test when Z column
   x <- data.frame(X = c(1, 1, 10), Y = c(1, 10, 1), Z = c(1, 1, 1))
   x$Row <- 2:4
-  x <- ps_coords_to_sfc(x, crs = 28992, coords = c("X", "Y", "Z"), activate = TRUE)
+  x <- ps_coords_to_sfc(
+    x,
+    crs = 28992,
+    coords = c("X", "Y", "Z"),
+    activate = TRUE
+  )
   expect_length(colnames(sf::st_coordinates(x)), 3L)
   y <- ps_sfc_to_coords(x)
   expect_true("Z" %in% names(y))

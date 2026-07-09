@@ -3,7 +3,10 @@ test_that("works", {
   expect_true(!ps_equal_crs(pt))
   pt %<>% ps_sfcs_to_wgs84()
   expect_true(ps_equal_crs(pt))
-  expect_identical(ps_get_proj4string(pt$geometry), "+proj=longlat +datum=WGS84 +no_defs")
+  expect_identical(
+    ps_get_proj4string(pt$geometry),
+    "+proj=longlat +datum=WGS84 +no_defs"
+  )
 
   poly <- readRDS(system.file("sf/poly.rds", package = "poisspatial")) %>%
     ps_sfcs_to_wgs84()
@@ -22,8 +25,14 @@ test_that("works", {
   y <- ps_sfcs_to_crs(pt, crs = 26911)
   z <- ps_sfcs_to_crs(pt, sfc_names = "geometry", crs = 26911)
 
-  expect_identical(sf::st_crs(y$geometry.2)$proj4string, sf::st_crs(z$geometry)$proj4string)
-  expect_identical(sf::st_crs(y$geometry.2)$proj4string, sf::st_crs(y$geometry)$proj4string)
+  expect_identical(
+    sf::st_crs(y$geometry.2)$proj4string,
+    sf::st_crs(z$geometry)$proj4string
+  )
+  expect_identical(
+    sf::st_crs(y$geometry.2)$proj4string,
+    sf::st_crs(y$geometry)$proj4string
+  )
 
   x <- ps_sfcs_to_utm(pt)
   y <- ps_sfcs_to_utm(pt, sfc_names = "geometry.2")

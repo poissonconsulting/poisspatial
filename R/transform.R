@@ -13,16 +13,25 @@
 #' @param out_pattern A string of the extension specifying which file format output files will be saved to.
 #' @return Files with specified crs and extension written to output directory.
 #' @export
-ps_batch_transform <- function(in_dir, out_dir,
-                               recursive = T,
-                               in_pattern = "[.]shp$",
-                               out_pattern = ".sqlite",
-                               in_crs = NULL, out_crs = NULL) {
+ps_batch_transform <- function(
+  in_dir,
+  out_dir,
+  recursive = T,
+  in_pattern = "[.]shp$",
+  out_pattern = ".sqlite",
+  in_crs = NULL,
+  out_crs = NULL
+) {
   if (!(dir.exists(out_dir))) {
     dir.create(out_dir)
   }
 
-  filex <- list.files(path = in_dir, full.names = T, recursive = recursive, pattern = in_pattern)
+  filex <- list.files(
+    path = in_dir,
+    full.names = T,
+    recursive = recursive,
+    pattern = in_pattern
+  )
 
   pb <- txtProgressBar(min = 0, max = length(filex), style = 3)
 

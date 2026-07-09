@@ -5,7 +5,12 @@ test_that("batch transform", {
   dir.create("in")
   sf::st_write(x, "in/x.shp", quiet = TRUE)
   sink(get_null_device())
-  ps_batch_transform(in_dir = "in/", out_dir = "out/", in_crs = 28992, out_crs = 4326)
+  ps_batch_transform(
+    in_dir = "in/",
+    out_dir = "out/",
+    in_crs = 28992,
+    out_crs = 4326
+  )
   sink(get_null_device())
   l <- list.files("out")
   expect_true(!identical(length(l), 0L))

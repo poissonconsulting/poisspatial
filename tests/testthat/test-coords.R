@@ -8,7 +8,10 @@ test_that("ps_coords_to_sfc when missnig values", {
   y2 <- ps_coords_to_sfc(x, crs = 28992, activate = FALSE)
   expect_identical(y[c(1, 3), ], y2[c(1, 3), ])
   expect_identical(y[, 1], y2[, 1])
-  expect_identical(y2$geometry[[2]], structure(c(NA_real_, NA_real_), class = c("XY", "POINT", "sfg")))
+  expect_identical(
+    y2$geometry[[2]],
+    structure(c(NA_real_, NA_real_), class = c("XY", "POINT", "sfg"))
+  )
 })
 
 test_that("ps_coords_to_sfc retain_orig flag keeps input columns when TRUE", {
@@ -36,7 +39,11 @@ test_that("ps_sfc_to_coords retain_orig flag keeps input column when TRUE", {
   x$Row <- 2:4
 
   y <- ps_coords_to_sfc(x, crs = 28992, activate = FALSE, retain_orig = TRUE)
-  Y2 <- ps_sfc_to_coords(y[, "geometry"], sfc_name = "geometry", retain_orig = TRUE)
+  Y2 <- ps_sfc_to_coords(
+    y[, "geometry"],
+    sfc_name = "geometry",
+    retain_orig = TRUE
+  )
 
   expect_identical(y$geometry, Y2$geometry)
 })

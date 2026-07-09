@@ -8,7 +8,11 @@
 #' @return An sf object with a tibble of the datetime and a sfc_POINT geometry of three dimensional points where the third dimension is the elevation in m.
 #' @seealso ps_read_tracks_gpxs
 #' @export
-ps_read_tracks_gpx <- function(file, tz = getOption("ps.tz", "UTC"), crs = getOption("ps.crs", 4326)) {
+ps_read_tracks_gpx <- function(
+  file,
+  tz = getOption("ps.tz", "UTC"),
+  crs = getOption("ps.crs", 4326)
+) {
   chk_string(file)
 
   if (!file.exists(file)) {
@@ -23,7 +27,10 @@ ps_read_tracks_gpx <- function(file, tz = getOption("ps.tz", "UTC"), crs = getOp
     stop("file '", file, "' does not contain tracks", call. = FALSE)
   }
 
-  names(gpx) <- vapply(gpx, xml_value, character(1),
+  names(gpx) <- vapply(
+    gpx,
+    xml_value,
+    character(1),
     name = "name",
     USE.NAMES = FALSE
   )
@@ -31,7 +38,10 @@ ps_read_tracks_gpx <- function(file, tz = getOption("ps.tz", "UTC"), crs = getOp
     lapply(magrittr::extract2, "trkseg") %>%
     purrr::imap(xml_trkseg_data_frame) %>%
     do.call(rbind, .) %>%
-    sf::st_as_sf(coords = c("longitude", "latitude", "elevation"), crs = 4326) %>%
+    sf::st_as_sf(
+      coords = c("longitude", "latitude", "elevation"),
+      crs = 4326
+    ) %>%
     sf::st_transform(crs = crs)
 
   gpx$datetime %<>% lubridate::with_tz(tz)
@@ -49,9 +59,13 @@ ps_read_tracks_gpx <- function(file, tz = getOption("ps.tz", "UTC"), crs = getOp
 #' @return An sf object with a tibble of the datetime (POSIXct) and the file path (character) and a sfc_POINT geometry of three dimensional points where the third dimension is the elevation in m.
 #' @seealso ps_read_tracks_gpx
 #' @export
-ps_read_tracks_gpxs <- function(dir, pattern = "[.]gpx$", recursive = FALSE,
-                                tz = getOption("ps.tz", "UTC"),
-                                crs = getOption("ps.crs", 4326)) {
+ps_read_tracks_gpxs <- function(
+  dir,
+  pattern = "[.]gpx$",
+  recursive = FALSE,
+  tz = getOption("ps.tz", "UTC"),
+  crs = getOption("ps.crs", 4326)
+) {
   chk_string(dir)
   chk_string(pattern)
   chk_flag(recursive)
@@ -60,10 +74,17 @@ ps_read_tracks_gpxs <- function(dir, pattern = "[.]gpx$", recursive = FALSE,
     stop("directory '", dir, "' does not exist", call. = FALSE)
   }
 
-  files <- list.files(dir, pattern = pattern, recursive = recursive, full.names = TRUE)
+  files <- list.files(
+    dir,
+    pattern = pattern,
+    recursive = recursive,
+    full.names = TRUE
+  )
   sfiles <- list.files(dir, pattern = pattern, recursive = recursive)
 
-  if (!length(files)) stop("there are no gpx files", call. = FALSE)
+  if (!length(files)) {
+    stop("there are no gpx files", call. = FALSE)
+  }
 
   gpx <- lapply(files, ps_read_tracks_gpx, tz = tz, crs = crs) %>%
     stats::setNames(sfiles) %>%
