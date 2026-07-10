@@ -8,7 +8,11 @@
 #' @return An sf object with a tibble of the datetime and a sfc_POINT geometry of three dimensional points where the third dimension is the elevation in m.
 #' @seealso ps_read_waypoints_gpxs
 #' @export
-ps_read_waypoints_gpx <- function(file, tz = getOption("ps.tz", "UTC"), crs = getOption("ps.crs", 4326)) {
+ps_read_waypoints_gpx <- function(
+  file,
+  tz = getOption("ps.tz", "UTC"),
+  crs = getOption("ps.crs", 4326)
+) {
   chk_string(file)
 
   if (!file.exists(file)) {
@@ -23,7 +27,10 @@ ps_read_waypoints_gpx <- function(file, tz = getOption("ps.tz", "UTC"), crs = ge
     stop("file '", file, "' does not contain waypoints", call. = FALSE)
   }
 
-  names(gpx) <- vapply(gpx, xml_value, character(1),
+  names(gpx) <- vapply(
+    gpx,
+    xml_value,
+    character(1),
     name = "time",
     USE.NAMES = FALSE
   )
@@ -48,8 +55,12 @@ ps_read_waypoints_gpx <- function(file, tz = getOption("ps.tz", "UTC"), crs = ge
 #' @return An sf object with a tibble of the datetime (POSIXct) and the file path (character) and a sfc_POINT geometry of three dimensional points where the third dimension is the elevation in m.
 #' @seealso ps_read_waypoints_gpx
 #' @export
-ps_read_waypoints_gpxs <- function(dir, pattern = "[.]gpx$", recursive = FALSE,
-                                   crs = getOption("ps.crs", 4326)) {
+ps_read_waypoints_gpxs <- function(
+  dir,
+  pattern = "[.]gpx$",
+  recursive = FALSE,
+  crs = getOption("ps.crs", 4326)
+) {
   chk_string(dir)
   chk_string(pattern)
   chk_flag(recursive)
@@ -58,10 +69,17 @@ ps_read_waypoints_gpxs <- function(dir, pattern = "[.]gpx$", recursive = FALSE,
     stop("directory '", dir, "' does not exist", call. = FALSE)
   }
 
-  files <- list.files(dir, pattern = pattern, recursive = recursive, full.names = TRUE)
+  files <- list.files(
+    dir,
+    pattern = pattern,
+    recursive = recursive,
+    full.names = TRUE
+  )
   sfiles <- list.files(dir, pattern = pattern, recursive = recursive)
 
-  if (!length(files)) stop("there are no gpx files", call. = FALSE)
+  if (!length(files)) {
+    stop("there are no gpx files", call. = FALSE)
+  }
 
   gpx <- lapply(files, ps_read_waypoints_gpx, crs = crs) %>%
     stats::setNames(sfiles) %>%

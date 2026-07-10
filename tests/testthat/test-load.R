@@ -36,7 +36,14 @@ test_that("rename and fun arguments work", {
     x %<>% sf::st_transform(4326)
   }
   sink(get_null_device())
-  files <- ps_load_spatial(dir, recursive = T, pattern = ".shp", crs = 26911, rename = rename, fun = trans)
+  files <- ps_load_spatial(
+    dir,
+    recursive = T,
+    pattern = ".shp",
+    crs = 26911,
+    rename = rename,
+    fun = trans
+  )
   sink()
   expect_identical(sf::st_crs(yna)$epsg, 4326L)
 })
@@ -50,7 +57,10 @@ test_that("spatial database loads", {
   sink(get_null_device())
   ikeda <- ps_load_spatial_db(path = path, rename = rename, fun = trans)
   sink()
-  expect_identical(sf::st_crs(SITE)$proj4string, "+proj=aea +lat_0=45 +lon_0=-126 +lat_1=50 +lat_2=58.5 +x_0=1000000 +y_0=0 +datum=NAD83 +units=m +no_defs")
+  expect_identical(
+    sf::st_crs(SITE)$proj4string,
+    "+proj=aea +lat_0=45 +lon_0=-126 +lat_1=50 +lat_2=58.5 +x_0=1000000 +y_0=0 +datum=NAD83 +units=m +no_defs"
+  )
   l <- ls()
   expect_true(any(l %in% c("CREEK", "SITE", "IKEDA")))
 })

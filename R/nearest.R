@@ -49,7 +49,13 @@ nn1 <- function(x, y) {
 }
 
 #' @export
-ps_nearest.data.frame <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
+ps_nearest.data.frame <- function(
+  x,
+  y,
+  by = c("X", "Y"),
+  dist_col = NULL,
+  ...
+) {
   chk_vector(by)
   check_values(by, "")
   chk_gte(by, 1)
@@ -84,7 +90,9 @@ ps_nearest.data.frame <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) 
 
   y <- y[nn1$index, ]
 
-  if (!is.null(dist_col)) y[dist_col] <- nn1$distance
+  if (!is.null(dist_col)) {
+    y[dist_col] <- nn1$distance
+  }
 
   rownames <- rownames(x)
   x %<>% cbind(y)
@@ -117,7 +125,9 @@ ps_nearest.sf <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
 
   colnames <- c(colnames(x), colnames(y))
 
-  if (is.sf(y)) y %<>% sf::st_transform(sf::st_crs(x))
+  if (is.sf(y)) {
+    y %<>% sf::st_transform(sf::st_crs(x))
+  }
 
   x %<>%
     as_data_frame() %>%
@@ -151,23 +161,29 @@ ps_nearest.sf <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
 ps_nearest_feature <- function(x, y, dist_col = NULL, ...) {
   check_data(x)
   check_data(y)
-  if (!(is.sf(x) && is.sf(y))) err("`x` and `y` must both be sf objects.")
+  if (!(is.sf(x) && is.sf(y))) {
+    err("`x` and `y` must both be sf objects.")
+  }
   chk_null_or(dist_col, vld = vld_string)
-
 
   x %<>% ps_rename_active_sfc()
   y %<>% ps_rename_active_sfc()
   y %<>% sf::st_transform(sf::st_crs(x))
 
   if (ps_active_sfc_name(y) %in% names(x)) {
-    names(y)[names(y) == ps_active_sfc_name(y)] <- paste0(ps_active_sfc_name(y), ".y")
+    names(y)[names(y) == ps_active_sfc_name(y)] <- paste0(
+      ps_active_sfc_name(y),
+      ".y"
+    )
     st_geometry(y) <- paste0(ps_active_sfc_name(y), ".y")
   }
 
   y <- y[st_nearest_feature(x, y), ]
 
   if (!is.null(dist_col)) {
-    if (dist_col %in% names(x)) err("`dist_col` must not already be present in `names(x)`")
+    if (dist_col %in% names(x)) {
+      err("`dist_col` must not already be present in `names(x)`")
+    }
     x[dist_col] <- st_distance(x, y, by_element = TRUE)
   }
 
@@ -180,7 +196,11 @@ ps_nearest_feature <- function(x, y, dist_col = NULL, ...) {
   sfc_names <- names(x)[sapply(names(x), function(colname) {
     is.sfc(x[colname][[1]])
   })]
-  colnames <- c(names(x)[!names(x) %in% c(sfc_names, dist_col)], dist_col, sfc_names)
+  colnames <- c(
+    names(x)[!names(x) %in% c(sfc_names, dist_col)],
+    dist_col,
+    sfc_names
+  )
   x <- x[colnames]
   x %<>% sf::st_as_sf()
 }

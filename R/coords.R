@@ -11,12 +11,17 @@
 #' @param retain_orig A flag indicating if the input coordinates should be retained as columns in the dataframe.
 #' @return The modified object with the coordinates removed
 #' @export
-ps_coords_to_sfc <- function(x, coords = c("X", "Y"),
-                             crs = getOption("ps.crs", 4326),
-                             sfc_name = "geometry",
-                             activate = TRUE,
-                             retain_orig = FALSE) {
-  if (!is.data.frame(x)) ps_error("x must inherit from a data.frame")
+ps_coords_to_sfc <- function(
+  x,
+  coords = c("X", "Y"),
+  crs = getOption("ps.crs", 4326),
+  sfc_name = "geometry",
+  activate = TRUE,
+  retain_orig = FALSE
+) {
+  if (!is.data.frame(x)) {
+    ps_error("x must inherit from a data.frame")
+  }
   chk_vector(coords)
   check_values(coords, "")
   check_dim(coords, values = c(2L:3L))
@@ -43,7 +48,10 @@ ps_coords_to_sfc <- function(x, coords = c("X", "Y"),
   if (length(coords) == 3L) {
     y <- y[!is.na(y[[coords[3]]]), ]
 
-    sfc <- matrix(c(y[[coords[1]]], y[[coords[2]]], y[[coords[3]]]), ncol = 3) %>%
+    sfc <- matrix(
+      c(y[[coords[1]]], y[[coords[2]]], y[[coords[3]]]),
+      ncol = 3
+    ) %>%
       sf::st_multipoint(dim = "XYZ") %>%
       sf::st_sfc(crs = crs) %>%
       sf::st_cast("POINT")
@@ -86,19 +94,33 @@ ps_coords_to_sfc <- function(x, coords = c("X", "Y"),
 #' @param retain_orig A a flag indicating if the input coordinates should be retained as columns in the dataframe.
 #' @return The modified object with the sfc column removed
 #' @export
-ps_sfc_to_coords <- function(x, sfc_name = ps_active_sfc_name(x), X = "X", Y = "Y", Z = "Z", retain_orig = FALSE) {
-  if (!is.data.frame(x)) ps_error("x must inherit from a data.frame")
+ps_sfc_to_coords <- function(
+  x,
+  sfc_name = ps_active_sfc_name(x),
+  X = "X",
+  Y = "Y",
+  Z = "Z",
+  retain_orig = FALSE
+) {
+  if (!is.data.frame(x)) {
+    ps_error("x must inherit from a data.frame")
+  }
   chk_string(sfc_name)
   chk_string(X)
   chk_flag(retain_orig)
   chk_string(Y)
   chk_string(Z)
 
-  if (!(class(x[[sfc_name]])[[1]] %in% c("sfc_LINESTRING", "sfc_MULTILINESTRING", "sfc_POINT", "sfc_MULTIPOINT"))) {
+  if (
+    !(class(x[[sfc_name]])[[1]] %in%
+      c("sfc_LINESTRING", "sfc_MULTILINESTRING", "sfc_POINT", "sfc_MULTIPOINT"))
+  ) {
     ps_error("sfc_name '", sfc_name, "' must be point or linestring")
   }
 
-  if (class(x[[sfc_name]])[[1]] %in% c("sfc_LINESTRING", "sfc_MULTILINESTRING")) {
+  if (
+    class(x[[sfc_name]])[[1]] %in% c("sfc_LINESTRING", "sfc_MULTILINESTRING")
+  ) {
     x <- st_cast(x, warn = FALSE, "POINT")
   }
 
@@ -106,7 +128,9 @@ ps_sfc_to_coords <- function(x, sfc_name = ps_active_sfc_name(x), X = "X", Y = "
     ps_error("sfc_name '", sfc_name, "' is not an sfc column")
   }
 
-  if (identical(sfc_name, ps_active_sfc_name(x))) x %<>% tibble::as_tibble()
+  if (identical(sfc_name, ps_active_sfc_name(x))) {
+    x %<>% tibble::as_tibble()
+  }
 
   coords <- sf::st_coordinates(x[[sfc_name]])
 

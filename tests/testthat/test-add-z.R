@@ -14,8 +14,7 @@ test_that("elevation data can be added to a specified sfc column", {
   expect_true(inherits(ptz2$geometry[[1]], "XYZ"))
   expect_true(!inherits(ptz$geometry[[1]], "XYZ"))
   # must have correct x_column
-  expect_error(ptz %<>% rename(Elev = Elvation) %>%
-    ps_sfc_add_z())
+  expect_error(ptz %<>% rename(Elev = Elvation) %>% ps_sfc_add_z())
   # check works if units not set
   pt <- readRDS(system.file("sf/pt.rds", package = "poisspatial"))
   pt$Elevation <- c(1, 100, 200)

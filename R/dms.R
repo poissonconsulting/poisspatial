@@ -83,8 +83,7 @@ ps_ddm2dd <- function(x) {
 
   negative <- vapply(x, function(x) grepl("^-", x)[1], TRUE)
   is.na(negative) <- vapply(x, function(x) is.na(x[1]), TRUE)
-  x %<>% lapply(function(x) sub("^-", "", x)) %>%
-    lapply(as.numeric)
+  x %<>% lapply(function(x) sub("^-", "", x)) %>% lapply(as.numeric)
   x[!is.na(negative)] %<>% lapply(function(x) x[1] + x[2] / 60)
   x %<>% unlist()
   x[!is.na(negative) & negative] %<>% magrittr::multiply_by(-1)

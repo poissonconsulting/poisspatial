@@ -71,7 +71,10 @@ test_that("centroid1", {
   expect_identical(colnames(cent.pt), c("color", "geometry"))
 
   expect_equal(ps_sfc_to_coords(cent.pt)$X, ps_sfc_to_coords(cent.pt)$X)
-  expect_equal(ps_sfc_to_coords(cent.pt)$Y, c(50.006919103519, 50.0052414257851))
+  expect_equal(
+    ps_sfc_to_coords(cent.pt)$Y,
+    c(50.006919103519, 50.0052414257851)
+  )
 
   cent.pt <- ps_sfc_centroid1(pt, nearest = TRUE)
   expect_true(inherits(cent.pt$geometry, "sfc_POINT"))
@@ -86,8 +89,14 @@ test_that("centroid1", {
   expect_true(inherits(cent.pt, "sf"))
   expect_identical(sf::st_crs(cent.pt), sf::st_crs(pt))
   expect_identical(colnames(cent.pt), c("color", "geometry"))
-  expect_equal(sort(ps_sfc_to_coords(cent.pt)$X), c(-117.0655727986, -117.0645996034))
-  expect_equal(sort(ps_sfc_to_coords(cent.pt)$Y), c(50.00421134984, 50.00691910352))
+  expect_equal(
+    sort(ps_sfc_to_coords(cent.pt)$X),
+    c(-117.0655727986, -117.0645996034)
+  )
+  expect_equal(
+    sort(ps_sfc_to_coords(cent.pt)$Y),
+    c(50.00421134984, 50.00691910352)
+  )
 
   pt <- rbind(pt, pt[pt$id == 2, ])
 
@@ -97,12 +106,18 @@ test_that("centroid1", {
   expect_true(inherits(cent.pt, "sf"))
   expect_identical(sf::st_crs(cent.pt), sf::st_crs(pt))
   expect_identical(colnames(cent.pt), c("color", "geometry"))
-  expect_equal(ps_sfc_to_coords(cent.pt)$X, c(495371.000000044, 495345.000000045))
+  expect_equal(
+    ps_sfc_to_coords(cent.pt)$X,
+    c(495371.000000044, 495345.000000045)
+  )
 
   cent.pt <- ps_sfc_centroid1(pt, by = "color", nearest = TRUE)
   expect_true(inherits(cent.pt$geometry, "sfc_POINT"))
   expect_true(inherits(cent.pt, "sf"))
   expect_identical(sf::st_crs(cent.pt), sf::st_crs(pt))
   expect_identical(colnames(cent.pt), c("color", "geometry"))
-  expect_equal(ps_sfc_to_coords(cent.pt)$X, c(495371.000000044, 495367.000000045))
+  expect_equal(
+    ps_sfc_to_coords(cent.pt)$X,
+    c(495371.000000044, 495367.000000045)
+  )
 })
