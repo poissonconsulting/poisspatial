@@ -1,5 +1,9 @@
 # Changelog
 
+## poisspatial 0.2.1.9002 (2026-07-10)
+
+- Same as previous version.
+
 ## poisspatial 0.2.1.9001 (2026-07-04)
 
 - Same as previous version.
