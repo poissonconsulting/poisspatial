@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# poisspatial 0.2.1.9003 (2026-07-15)
+
+- Same as previous version.
+
+
 # poisspatial 0.2.1.9002 (2026-07-10)
 
 - Same as previous version.
