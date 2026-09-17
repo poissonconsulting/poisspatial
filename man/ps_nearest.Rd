@@ -4,7 +4,7 @@
 \alias{ps_nearest}
 \title{Nearest Neighbour}
 \usage{
-ps_nearest(x, y, by = c("X", "Y"), dist_col = NULL, ...)
+ps_nearest(x, y, by = c("X", "Y"), dist_col = NULL, keep_names = FALSE, ...)
 }
 \arguments{
 \item{x}{A data.frame, tibble or sf object.}
@@ -14,6 +14,8 @@ ps_nearest(x, y, by = c("X", "Y"), dist_col = NULL, ...)
 \item{by}{A possibly named character vector specifying the column(s) to calculate the distance over.}
 
 \item{dist_col}{A string indicating the name of the column to save the distance in.}
+
+\item{keep_names}{A flag specifying whether to keep the original sfc names instead of renaming them to geometry.}
 
 \item{...}{Not used}
 }
@@ -25,5 +27,5 @@ Uses the nabor package.
 The column(s) to use when calculating the distances are converted to numeric values.
 Missing values are currently not permitted.
 
-sf objects have their sf (active geometry) column renamed to geometry. The nearest calculation for non-point sf objects is based on feature vertices.
+By default sf objects have their sf (active geometry) column renamed to geometry. The nearest calculation for non-point sf objects is based on feature vertices.
 }

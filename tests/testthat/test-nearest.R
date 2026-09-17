@@ -56,6 +56,38 @@ test_that("nearest sf", {
   expect_equal(n$D, c(0, 6.10327780786685, 5.8309518948453))
 })
 
+test_that("nearest sf with keep_names = TRUE preserves original sfc names", {
+  x <- data.frame(X = c(1, 1, 10), Y = c(1, 10, 1))
+  y <- data.frame(X = c(1, 4.5, 5, 6), Y = c(1, 5, 4, 6))
+
+  y$Row <- seq_len(nrow(y))
+
+  x <- sf::st_as_sf(x, coords = c("X", "Y"), crs = 28992)
+  y <- sf::st_as_sf(y, coords = c("X", "Y"), crs = 28992)
+
+  x <- ps_rename_active_sfc(x, "GEOMETRY")
+  y <- ps_rename_active_sfc(y, "GEOMETRY2")
+
+  n <- ps_nearest(x, y, dist_col = "D", keep_names = TRUE)
+  expect_identical(class(n), c("sf", "data.frame"))
+  expect_identical(colnames(n), c("Row", "D", "GEOMETRY", "GEOMETRY2"))
+  expect_identical(n$GEOMETRY, x$GEOMETRY)
+  expect_equal(n$D, c(0, 6.10327780786685, 5.8309518948453))
+})
+
+test_that("nearest sf with keep_names = TRUE still suffixes a genuine name collision", {
+  x <- data.frame(X = c(1, 1, 10), Y = c(1, 10, 1))
+  y <- data.frame(X = c(1, 4.5, 5, 6), Y = c(1, 5, 4, 6))
+
+  y$Row <- seq_len(nrow(y))
+
+  x <- sf::st_as_sf(x, coords = c("X", "Y"), crs = 28992)
+  y <- sf::st_as_sf(y, coords = c("X", "Y"), crs = 28992)
+
+  n <- ps_nearest(x, y, dist_col = "D", keep_names = TRUE)
+  expect_identical(colnames(n), c("Row", "D", "geometry", "geometry.y"))
+})
+
 test_that("nearest sf with data.frame", {
   x <- data.frame(X = c(1, 1, 10), Y = c(1, 10, 1))
   y <- data.frame(X = c(1, 4.5, 5, 6), Y = c(1, 5, 4, 6))
