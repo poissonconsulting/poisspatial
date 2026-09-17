@@ -6,15 +6,16 @@
 #' The column(s) to use when calculating the distances are converted to numeric values.
 #' Missing values are currently not permitted.
 #'
-#' sf objects have their sf (active geometry) column renamed to geometry. The nearest calculation for non-point sf objects is based on feature vertices.
+#' By default sf objects have their sf (active geometry) column renamed to geometry. The nearest calculation for non-point sf objects is based on feature vertices.
 #'
 #' @param x A data.frame, tibble or sf object.
 #' @param y A data.frame, tibble or sf object.
 #' @param by A possibly named character vector specifying the column(s) to calculate the distance over.
 #' @param dist_col A string indicating the name of the column to save the distance in.
+#' @param keep_names A flag specifying whether to keep the original sfc names instead of renaming them to geometry.
 #' @param ... Not used
 #' @export
-ps_nearest <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
+ps_nearest <- function(x, y, by = c("X", "Y"), dist_col = NULL, keep_names = FALSE, ...) {
   UseMethod("ps_nearest")
 }
 
@@ -54,6 +55,7 @@ ps_nearest.data.frame <- function(
   y,
   by = c("X", "Y"),
   dist_col = NULL,
+  keep_names = FALSE,
   ...
 ) {
   chk_vector(by)
@@ -61,6 +63,7 @@ ps_nearest.data.frame <- function(
   chk_gte(by, 1)
   chk_unique(by)
   chk_null_or(dist_col, vld = vld_string)
+  chk_flag(keep_names)
   if (!is.null(names(by))) {
     chk_unique(names(by))
     bx <- names(by)
@@ -69,7 +72,7 @@ ps_nearest.data.frame <- function(
     bx <- by
   }
 
-  if (is.sf(y)) {
+  if (is.sf(y) && !keep_names) {
     y %<>% ps_rename_active_sfc()
   }
 
@@ -102,24 +105,29 @@ ps_nearest.data.frame <- function(
 }
 
 #' @export
-ps_nearest.tbl_df <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
-  if (is.sf(y)) {
+ps_nearest.tbl_df <- function(x, y, by = c("X", "Y"), dist_col = NULL, keep_names = FALSE, ...) {
+  if (is.sf(y) && !keep_names) {
     y %<>% ps_rename_active_sfc()
   }
 
   x %<>%
     as_data_frame() %>%
-    ps_nearest(y = y, by = by, dist_col = dist_col) %>%
+    ps_nearest(y = y, by = by, dist_col = dist_col, keep_names = keep_names) %>%
     tibble::as_tibble()
   x
 }
 
 #' @export
-ps_nearest.sf <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
-  x %<>% ps_rename_active_sfc()
+ps_nearest.sf <- function(x, y, by = c("X", "Y"), dist_col = NULL, keep_names = FALSE, ...) {
+  chk_flag(keep_names)
+  if (!keep_names) {
+    x %<>% ps_rename_active_sfc()
+  }
   warn_geom_non_point(x)
   if (is.sf(y)) {
-    y %<>% ps_rename_active_sfc()
+    if (!keep_names) {
+      y %<>% ps_rename_active_sfc()
+    }
     warn_geom_non_point(y)
   }
 
@@ -131,7 +139,7 @@ ps_nearest.sf <- function(x, y, by = c("X", "Y"), dist_col = NULL, ...) {
 
   x %<>%
     as_data_frame() %>%
-    ps_nearest(y = y, by = by, dist_col = dist_col)
+    ps_nearest(y = y, by = by, dist_col = dist_col, keep_names = keep_names)
 
   colnames[duplicated(colnames)] %<>% paste0(".y")
 
