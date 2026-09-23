@@ -5,8 +5,7 @@ data.
 
 ## Installation
 
-``` r
-
+``` R
 # install.packages("remotes")
 remotes::install_github("poissonconsulting/poisspatial")
 ```

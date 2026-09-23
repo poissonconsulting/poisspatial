@@ -6,7 +6,7 @@ Uses the nabor package.
 ## Usage
 
 ``` r
-ps_nearest(x, y, by = c("X", "Y"), dist_col = NULL, ...)
+ps_nearest(x, y, by = c("X", "Y"), dist_col = NULL, keep_names = FALSE, ...)
 ```
 
 ## Arguments
@@ -28,6 +28,11 @@ ps_nearest(x, y, by = c("X", "Y"), dist_col = NULL, ...)
 
   A string indicating the name of the column to save the distance in.
 
+- keep_names:
+
+  A flag specifying whether to keep the original sfc names instead of
+  renaming them to geometry.
+
 - ...:
 
   Not used
@@ -37,6 +42,6 @@ ps_nearest(x, y, by = c("X", "Y"), dist_col = NULL, ...)
 The column(s) to use when calculating the distances are converted to
 numeric values. Missing values are currently not permitted.
 
-sf objects have their sf (active geometry) column renamed to geometry.
-The nearest calculation for non-point sf objects is based on feature
-vertices.
+By default sf objects have their sf (active geometry) column renamed to
+geometry. The nearest calculation for non-point sf objects is based on
+feature vertices.
