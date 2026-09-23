@@ -1,4 +1,3 @@
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- badges: start -->
 
@@ -18,10 +17,8 @@ data.
 
 ## Installation
 
-``` r
-# install.packages("remotes")
-remotes::install_github("poissonconsulting/poisspatial")
-```
+    # install.packages("remotes")
+    remotes::install_github("poissonconsulting/poisspatial")
 
 ## Contribution
 
