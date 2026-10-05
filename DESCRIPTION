@@ -27,7 +27,7 @@ Imports:
     dplyr,
     lifecycle,
     ggmap,
-    lubridate,
+    dttr2,
     magrittr,
     nabor,
     plyr,

@@ -44,7 +44,7 @@ ps_read_tracks_gpx <- function(
     ) %>%
     sf::st_transform(crs = crs)
 
-  gpx$datetime %<>% lubridate::with_tz(tz)
+  gpx$datetime %<>% dttr2::dtt_adjust_tz(tz)
   gpx
 }
 
