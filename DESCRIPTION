@@ -18,7 +18,7 @@ Authors@R:
 Description: Spatial functions for Poisson Consulting scripts and
     packages.
 License: MIT + file LICENSE
-URL: https://github.com/poissonconsulting/poisspatial
+URL: https://poissonconsulting.github.io/poisspatial
 BugReports: https://github.com/poissonconsulting/poisspatial/issues
 Depends: 
     R (>= 3.6)
@@ -51,4 +51,4 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 Config/Needs/website: poissonconsulting/poissontemplate
-Config/roxygen2/version: 7.3.3.9000
+Config/roxygen2/version: 8.1.0.9000

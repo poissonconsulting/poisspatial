@@ -15,7 +15,14 @@
 #' @param keep_names A flag specifying whether to keep the original sfc names instead of renaming them to geometry.
 #' @param ... Not used
 #' @export
-ps_nearest <- function(x, y, by = c("X", "Y"), dist_col = NULL, keep_names = FALSE, ...) {
+ps_nearest <- function(
+  x,
+  y,
+  by = c("X", "Y"),
+  dist_col = NULL,
+  keep_names = FALSE,
+  ...
+) {
   UseMethod("ps_nearest")
 }
 
@@ -105,7 +112,14 @@ ps_nearest.data.frame <- function(
 }
 
 #' @export
-ps_nearest.tbl_df <- function(x, y, by = c("X", "Y"), dist_col = NULL, keep_names = FALSE, ...) {
+ps_nearest.tbl_df <- function(
+  x,
+  y,
+  by = c("X", "Y"),
+  dist_col = NULL,
+  keep_names = FALSE,
+  ...
+) {
   if (is.sf(y) && !keep_names) {
     y %<>% ps_rename_active_sfc()
   }
@@ -118,7 +132,14 @@ ps_nearest.tbl_df <- function(x, y, by = c("X", "Y"), dist_col = NULL, keep_name
 }
 
 #' @export
-ps_nearest.sf <- function(x, y, by = c("X", "Y"), dist_col = NULL, keep_names = FALSE, ...) {
+ps_nearest.sf <- function(
+  x,
+  y,
+  by = c("X", "Y"),
+  dist_col = NULL,
+  keep_names = FALSE,
+  ...
+) {
   chk_flag(keep_names)
   if (!keep_names) {
     x %<>% ps_rename_active_sfc()

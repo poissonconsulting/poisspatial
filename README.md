@@ -1,4 +1,6 @@
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
 <!-- badges: start -->
 
 [![Lifecycle:
@@ -17,8 +19,10 @@ data.
 
 ## Installation
 
-    # install.packages("remotes")
-    remotes::install_github("poissonconsulting/poisspatial")
+``` r
+# install.packages("remotes")
+remotes::install_github("poissonconsulting/poisspatial")
+```
 
 ## Contribution
 
