@@ -60,10 +60,16 @@ import(sf)
 importFrom(dplyr,right_join)
 importFrom(ggmap,get_map)
 importFrom(grDevices,col2rgb)
-importFrom(magrittr,"%<>%")
-importFrom(magrittr,"%>%")
-importFrom(poisutils,ps_error)
-importFrom(poisutils,ps_warning)
+importFrom(magrittr,
+  "%<>%",
+  "%>%"
+)
+importFrom(poisutils,
+  ps_error,
+  ps_warning
+)
 importFrom(stats,setNames)
-importFrom(utils,setTxtProgressBar)
-importFrom(utils,txtProgressBar)
+importFrom(utils,
+  setTxtProgressBar,
+  txtProgressBar
+)
