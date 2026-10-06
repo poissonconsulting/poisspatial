@@ -152,7 +152,8 @@ ps_utm_note <- function(x, sfc_name = ps_active_sfc_name(x), datum = "WGS84") {
 
 #' Reproject sfc columns to UTMs.
 #'
-#' The UTM zone is that for the centroid of the centroids of the columns.
+#' Transforms one or more sfc columns from any valid CRS (e.g. lat/long)
+#' into a single UTM projection.
 #'
 #' @param x The object
 #' @param sfc_names A character vector of the sfc column names
