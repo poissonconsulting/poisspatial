@@ -1,5 +1,20 @@
 # Changelog
 
+## poisspatial 0.2.1.9004 (2026-10-07)
+
+- Update build script and air formatting
+  ([\#61](https://github.com/poissonconsulting/poisspatial/issues/61)).
+
+- Replacing lubridate with dttr2 and fix documentation
+  ([\#62](https://github.com/poissonconsulting/poisspatial/issues/62)).
+
+  - Replace dependency on lubridate with dttr2.
+
+- Add keep_names arg to ps_nearest fixes
+  [\#59](https://github.com/poissonconsulting/poisspatial/issues/59)
+  ([\#60](https://github.com/poissonconsulting/poisspatial/issues/60))
+  ([\#59](https://github.com/poissonconsulting/poisspatial/issues/59)).
+
 ## poisspatial 0.2.1.9003 (2026-07-15)
 
 - Same as previous version.

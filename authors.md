@@ -20,13 +20,13 @@ Source:
 [`DESCRIPTION`](https://github.com/poissonconsulting/poisspatial/blob/main/DESCRIPTION)
 
 Thorley J, Dalgarno S (2026). *poisspatial: Spatial Functions*. R
-package version 0.2.1.9003,
+package version 0.2.1.9004,
 <https://poissonconsulting.github.io/poisspatial>.
 
     @Manual{,
       title = {poisspatial: Spatial Functions},
       author = {Joe Thorley and Seb Dalgarno},
       year = {2026},
-      note = {R package version 0.2.1.9003},
+      note = {R package version 0.2.1.9004},
       url = {https://poissonconsulting.github.io/poisspatial},
     }
