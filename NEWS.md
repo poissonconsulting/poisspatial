@@ -1,4 +1,15 @@
-<!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
+<!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
+
+# poisspatial 0.2.1.9004 (2026-10-07)
+
+- Update build script and air formatting (#61).
+
+- Replacing lubridate with dttr2 and fix documentation (#62).
+
+  - Replace dependency on lubridate with dttr2.
+
+- Add keep_names arg to ps_nearest fixes #59 (#60) (#59).
+
 
 # poisspatial 0.2.1.9003 (2026-07-15)
 
