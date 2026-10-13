@@ -1,5 +1,9 @@
 # Changelog
 
+## poisspatial 0.2.1.9005 (2026-10-13)
+
+- Same as previous version.
+
 ## poisspatial 0.2.1.9004 (2026-10-07)
 
 - Update build script and air formatting
